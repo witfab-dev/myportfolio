@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Witness Fabrice — Software Developer | React & Flutter</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Witness Fabrice — Kigali-based developer building web & mobile apps with React, Node.js, and Flutter. View projects & hire me.">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Setup Inter font and default dark mode styles */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        /* Default Dark Mode */
+        :root {
+            --bg-primary: #111827; /* Gray-900 */
+            --bg-secondary: #1f2937; /* Gray-800 */
+            --text-primary: #f9fafb; /* Gray-50 */
+            --text-secondary: #9ca3af; /* Gray-400 */
+            --accent-color: #3b82f6; /* Blue-500 */
+        }
+        /* Light Mode Override */
+        .light-mode {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f3f4f6;
+            --text-primary: #1f2937;
+            --text-secondary: #6b7280;
+            --accent-color: #10b981; /* Emerald-500 */
+        }
+
+        .dark-mode, .light-mode {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+        }
+        
+        /* Custom scrollbar for aesthetics */
+        body::-webkit-scrollbar {
+            width: 8px;
+        }
+        body::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+            border-radius: 4px;
+        }
+        .section-padding {
+            padding: 4rem 1rem;
+        }
+        @media (min-width: 640px) {
+            .section-padding {
+                padding: 6rem 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="dark-mode">
+
+    <!-- Navbar -->
+    <header class="sticky top-0 z-50 py-4 shadow-lg" style="background-color: var(--bg-secondary);">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <!-- Logo/Name -->
+            <a href="#hero" class="text-xl font-bold tracking-tight" style="color: var(--text-primary);">W. Fabrice</a>
+            
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex space-x-6 text-sm">
+                <a href="#about" class="hover:underline" style="color: var(--text-primary);">About</a>
+                <a href="#projects" class="hover:underline" style="color: var(--text-primary);">Projects</a>
+                <a href="#skills" class="hover:underline" style="color: var(--text-primary);">Skills</a>
+                <a href="#contact" class="hover:underline" style="color: var(--text-primary);">Contact</a>
+            </div>
+
+            <!-- CTA and Dark Mode Toggle -->
+            <div class="flex items-center space-x-3">
+                <button id="theme-toggle" class="p-2 rounded-full transition duration-150" style="background-color: var(--bg-primary); color: var(--text-primary);">
+                    <svg id="moon-icon" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path></svg>
+                    <svg id="sun-icon" class="h-5 w-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                </button>
+                <a href="#contact" class="hidden sm:inline-block px-4 py-2 text-sm font-medium rounded-lg transition duration-300" 
+                   style="background-color: var(--accent-color); color: var(--bg-primary); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                    Hire Me
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- 1) Hero / Landing -->
+        <section id="hero" class="section-padding flex items-center min-h-[80vh] text-center" style="background-color: var(--bg-primary);">
+            <div class="max-w-5xl mx-auto">
+                <div class="mb-8">
+                    <img src="https://placehold.co/128x128/3b82f6/ffffff?text=WF" 
+                         alt="Professional headshot of Witness Fabrice" 
+                         class="rounded-full mx-auto w-32 h-32 object-cover border-4" 
+                         style="border-color: var(--accent-color);">
+                </div>
+                
+                <h1 class="text-5xl sm:text-7xl font-extrabold tracking-tighter mb-4" style="color: var(--text-primary);">
+                    Witness Fabrice
+                </h1>
+                
+                <h2 class="text-xl sm:text-2xl font-semibold mb-4" style="color: var(--accent-color);">
+                    Software Developer | Web & Mobile
+                </h2>
+                
+                <p class="text-lg sm:text-xl max-w-3xl mx-auto mb-8" style="color: var(--text-secondary);">
+                    I build fast, maintainable web & mobile apps that solve real business problems.
+                </p>
+
+                <div class="flex justify-center space-x-4 mb-8">
+                    <a href="#projects" class="px-8 py-3 text-lg font-bold rounded-lg transition duration-300 transform hover:scale-[1.02]" 
+                       style="background-color: var(--accent-color); color: var(--bg-primary); box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);">
+                        View My Work
+                    </a>
+                    <a href="#contact" class="px-8 py-3 text-lg font-medium rounded-lg border-2 transition duration-300 hover:opacity-80" 
+                       style="border-color: var(--text-secondary); color: var(--text-primary);">
+                        Download CV
+                    </a>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="mt-8 text-sm sm:text-base" style="color: var(--text-secondary);">
+                    <span class="mx-3">5+ projects</span> • 
+                    <span class="mx-3">3 years experience</span> • 
+                    <span class="mx-3">10k+ users reached</span>
+                </div>
+
+                <!-- Social Icons -->
+                <div class="flex justify-center space-x-6 mt-6">
+                    <a href="https://github.com/witnessfabrice" target="_blank" class="text-2xl hover:opacity-80 transition duration-150" style="color: var(--text-primary);">
+                        <i data-lucide="github" class="w-6 h-6"></i>
+                    </a>
+                    <a href="https://linkedin.com/in/witnessfabrice" target="_blank" class="text-2xl hover:opacity-80 transition duration-150" style="color: var(--text-primary);">
+                        <i data-lucide="linkedin" class="w-6 h-6"></i>
+                    </a>
+                    <a href="https://twitter.com/witnessfabrice" target="_blank" class="text-2xl hover:opacity-80 transition duration-150" style="color: var(--text-primary);">
+                        <i data-lucide="twitter" class="w-6 h-6"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2) About / Bio -->
+        <section id="about" class="section-padding" style="background-color: var(--bg-secondary);">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-10 text-center" style="color: var(--accent-color);">About Me</h2>
+                
+                <div class="grid md:grid-cols-3 gap-12 items-start">
+                    <!-- Bio Content -->
+                    <div class="md:col-span-2">
+                        <p class="text-lg mb-6" style="color: var(--text-primary);">
+                            I’m Witness Fabrice — I build web and mobile apps using **React**, **Node.js**, and **Flutter**. I focus on performance and a great user experience, ensuring the code is clean, scalable, and easy to maintain.
+                        </p>
+                        <p class="mb-6" style="color: var(--text-secondary);">
+                            My journey started with a deep curiosity for how digital products are built. What motivates me is the challenge of turning complex problems into elegant, production-ready solutions that truly impact users' lives. I enjoy mentoring junior developers and fostering a collaborative, learning-focused environment.
+                        </p>
+
+                        <!-- What I Do -->
+                        <h3 class="text-xl font-semibold mb-4" style="color: var(--text-primary);">What I Offer:</h3>
+                        <ul class="list-disc list-inside space-y-2 mb-6 ml-4" style="color: var(--text-secondary);">
+                            <li>Full-stack Web Application Development (React & Node.js)</li>
+                            <li>Cross-Platform Mobile App Development (Flutter)</li>
+                            <li>API Design and Implementation</li>
+                            <li>Code Review and Technical Mentoring</li>
+                        </ul>
+
+                        <!-- Approach -->
+                        <div class="flex flex-wrap gap-3 mb-8">
+                            <span class="px-4 py-1 text-sm rounded-full font-medium" style="background-color: var(--accent-color); color: var(--bg-primary);">Agile Development</span>
+                            <span class="px-4 py-1 text-sm rounded-full font-medium" style="background-color: var(--accent-color); color: var(--bg-primary);">User-First Design</span>
+                            <span class="px-4 py-1 text-sm rounded-full font-medium" style="background-color: var(--accent-color); color: var(--bg-primary);">TDD Practices</span>
+                            <span class="px-4 py-1 text-sm rounded-full font-medium" style="background-color: var(--accent-color); color: var(--bg-primary);">Quick Prototypes</span>
+                        </div>
+                        
+                        <p class="text-sm" style="color: var(--text-secondary);">
+                            **Location & Timezone:** Kigali, Rwanda (UTC+02:00) | **Availability:** Open to freelance / contract / full-time
+                        </p>
+                    </div>
+
+                    <!-- Photo & Fun Facts -->
+                    <div class="md:sticky md:top-20 flex flex-col items-center p-6 rounded-xl" style="background-color: var(--bg-primary); border: 1px solid var(--text-secondary);">
+                        <img src="https://placehold.co/250x250/3b82f6/ffffff?text=WF+Portrait" 
+                             alt="Professional portrait of Witness Fabrice" 
+                             class="rounded-xl w-full h-auto object-cover mb-6 border-2"
+                             style="border-color: var(--accent-color);">
+                        
+                        <h3 class="text-xl font-semibold mb-2" style="color: var(--text-primary);">Fun Facts</h3>
+                        <ul class="text-center space-y-1 text-sm" style="color: var(--text-secondary);">
+                            <li>Fluent in Kinyarwanda, English, and French.</li>
+                            <li>Loves trail running and coffee brewing.</li>
+                        </ul>
+                        <a href="#" class="mt-6 px-4 py-2 text-sm font-medium rounded-lg transition duration-300" 
+                           style="background-color: var(--accent-color); color: var(--bg-primary);">
+                            Download CV
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 3) Projects -->
+        <section id="projects" class="section-padding" style="background-color: var(--bg-primary);">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center" style="color: var(--accent-color);">Featured Projects</h2>
+                
+                <div class="space-y-16">
+                    <!-- PROJECT 1: Mobile Marketplace -->
+                    <div class="p-6 rounded-xl shadow-xl transition duration-300 hover:shadow-2xl" style="background-color: var(--bg-secondary);">
+                        <div class="grid md:grid-cols-12 gap-8 items-center">
+                            <div class="md:col-span-7">
+                                <h3 class="text-2xl font-bold mb-2" style="color: var(--text-primary);">Market-Kigali</h3>
+                                <p class="mb-4 text-lg" style="color: var(--text-secondary);">
+                                    Mobile marketplace app connecting local sellers to customers — built with Flutter and Firebase.
+                                </p>
+                                
+                                <div class="flex flex-wrap gap-2 text-sm mb-4">
+                                    <span class="px-3 py-1 rounded-full text-xs font-medium" style="background-color: var(--accent-color); color: var(--bg-primary);">Mobile</span>
+                                    <span class="px-3 py-1 rounded-full text-xs font-medium" style="background-color: var(--accent-color); color: var(--bg-primary);">E-commerce</span>
+                                    <span class="px-3 py-1 rounded-full text-xs font-medium" style="background-color: var(--accent-color); color: var(--bg-primary);">Firebase</span>
+                                </div>
+                                
+                                <div class="space-y-4 mb-6" style="color: var(--text-secondary);">
+                                    <p class="font-semibold" style="color: var(--text-primary);">Problem Statement:</p>
+                                    <p>Solved the lack of a reliable, location-aware mobile platform for local artisans to sell goods directly to Kigali residents.</p>
+                                    
+                                    <p class="font-semibold" style="color: var(--text-primary);">Details:</p>
+                                    <ul class="list-disc list-inside ml-4 space-y-1 text-sm">
+                                        <li>**Your Role:** Sole Developer (Frontend & Backend/Firebase)</li>
+                                        <li>**Timeframe:** Jan–Mar 2024</li>
+                                        <li>**Tech Stack:** Flutter • Dart • Firebase (Firestore & Auth)</li>
+                                        <li>**Key Features:** Real-time chat, Integrated Payments, Location-based search.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="mb-6">
+                                    <p class="font-semibold mb-2" style="color: var(--text-primary);">Outcome & Metrics:</p>
+                                    <p style="color: var(--text-secondary);">
+                                        Achieved **2,500 downloads** in the first month. Reduced page load by 40% (due to efficient data caching) → **+12% conversions** of product views to cart additions.
+                                    </p>
+                                </div>
+                                
+                                <!-- CTAs -->
+                                <div class="flex space-x-3">
+                                    <a href="#" target="_blank" class="px-4 py-2 text-sm rounded-lg font-medium transition duration-300" style="background-color: var(--accent-color); color: var(--bg-primary);">View Live Demo</a>
+                                    <a href="https://github.com/witnessfabrice/market-kigali" target="_blank" class="px-4 py-2 text-sm rounded-lg font-medium border-2 transition duration-300 hover:opacity-80" style="border-color: var(--text-secondary); color: var(--text-primary);">View Code</a>
+                                </div>
+                            </div>
+                            
+                            <!-- Media -->
+                            <div class="md:col-span-5">
+                                <img src="https://placehold.co/400x300/10b981/ffffff?text=Mobile+App+Screenshot" 
+                                     alt="Screenshot of the Market-Kigali mobile application home screen" 
+                                     class="rounded-lg shadow-2xl w-full h-auto">
+                                <p class="text-xs text-center mt-2 italic" style="color: var(--text-secondary);">Image: Home screen showcasing popular local products.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PROJECT 2: SaaS Dashboard -->
+                    <div class="p-6 rounded-xl shadow-xl transition duration-300 hover:shadow-2xl" style="background-color: var(--bg-secondary);">
+                        <!-- ... structure similar to Project 1 ... -->
+                        <div class="grid md:grid-cols-12 gap-8 items-center">
+                            <div class="md:col-span-7 order-2 md:order-1">
+                                <h3 class="text-2xl font-bold mb-2" style="color: var(--text-primary);">Analytics API Hub</h3>
+                                <p class="mb-4 text-lg" style="color: var(--text-secondary);">
+                                    A multi-tenant SaaS dashboard for tracking customer engagement metrics.
+                                </p>
+                                
+                                <div class="flex flex-wrap gap-2 text-sm mb-4">
+                                    <span class="px-3 py-1 rounded-full text-xs font-medium" style="background-color: var(--accent-color); color: var(--bg-primary);">Web</span>
+                                    <span class="px-3 py-1 rounded-full text-xs font-medium" style="background-color: var(--accent-color); color: var(--bg-primary);">API</span>
+                                    <span class="px-3 py-1 rounded-full text-xs font-medium" style="background-color: var(--accent-color); color: var(--bg-primary);">Open Source</span>
+                                </div>
+                                
+                                <div class="space-y-4 mb-6" style="color: var(--text-secondary);">
+                                    <p class="font-semibold" style="color: var(--text-primary);">Problem Statement:</p>
+                                    <p>Provided a unified, highly performant REST API and user interface for accessing cross-platform analytics data.</p>
+                                    
+                                    <p class="font-semibold" style="color: var(--text-primary);">Details:</p>
+                                    <ul class="list-disc list-inside ml-4 space-y-1 text-sm">
+                                        <li>**Your Role:** Backend/API Engineer</li>
+                                        <li>**Timeframe:** Oct–Dec 2023</li>
+                                        <li>**Tech Stack:** Node.js • Express • PostgreSQL • React (Admin UI)</li>
+                                        <li>**Key Features:** Token-based Auth, Real-time charting, Custom report generation.</li>
+                                    </ul>
+                                </div>
+
+                                <div class="mb-6">
+                                    <p class="font-semibold mb-2" style="color: var(--text-primary);">Outcome & Metrics:</p>
+                                    <p style="color: var(--text-secondary);">
+                                        Built microservice that handled **10k req/min**, reducing API latency by **30%** and supporting **20+ active tenants**.
+                                    </p>
+                                </div>
+                                
+                                <!-- CTAs -->
+                                <div class="flex space-x-3">
+                                    <a href="#" target="_blank" class="px-4 py-2 text-sm rounded-lg font-medium transition duration-300" style="background-color: var(--accent-color); color: var(--bg-primary);">View Live Demo</a>
+                                    <a href="https://github.com/witnessfabrice/analytics-api-hub" target="_blank" class="px-4 py-2 text-sm rounded-lg font-medium border-2 transition duration-300 hover:opacity-80" style="border-color: var(--text-secondary); color: var(--text-primary);">View Code</a>
+                                </div>
+                            </div>
+                            
+                            <!-- Media -->
+                            <div class="md:col-span-5 order-1 md:order-2">
+                                <img src="https://placehold.co/400x300/3b82f6/ffffff?text=Dashboard+Screenshot" 
+                                     alt="Screenshot of the Analytics API Hub dashboard interface" 
+                                     class="rounded-lg shadow-2xl w-full h-auto">
+                                <p class="text-xs text-center mt-2 italic" style="color: var(--text-secondary);">Image: Dashboard view showing live analytics charts.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5) Skills & Tech Stack -->
+        <section id="skills" class="section-padding" style="background-color: var(--bg-secondary);">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center" style="color: var(--accent-color);">Skills & Tech Stack</h2>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Frontend -->
+                    <div class="p-6 rounded-xl" style="background-color: var(--bg-primary);">
+                        <h3 class="text-xl font-semibold mb-4 flex items-center" style="color: var(--text-primary);">
+                            <i data-lucide="monitor" class="w-5 h-5 mr-2" style="color: var(--accent-color);"></i> Frontend
+                        </h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-full text-sm" style="background-color: var(--accent-color); color: var(--bg-primary);">React (Advanced)</span>
+                            <span class="px-3 py-1 rounded-full text-sm" style="background-color: var(--accent-color); color: var(--bg-primary);">JavaScript (ES6+)</span>
+                            <span class="px-3 py-1 rounded-full text-sm" style="background-color: var(--accent-color); color: var(--bg-primary);">Tailwind CSS</span>
+                            <span class="px-3 py-1 rounded-full text-sm" style="background-color: var(--accent-color); color: var(--bg-primary);">HTML & CSS</span>
+                            <span class="px-3 py-1 rounded-full text-sm" style="background-color: var(--accent-color); color: var(--bg-primary);">TypeScript</span>
+                        </div>
+                    </div>
+
+                    <!-- Backend & DB -->
+                    <div class="p-6 rounded-xl" style="background-color: var(--bg-primary);">
+                        <h3 class="text-xl font-semibold mb-4 flex items-center" style="color: var(--text-primary);">
+                            <i data-lucide="server" class="w-5 h-5 mr-2" style="color: var(--accent-color);"></i> Backend & DB
+                        </h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-full text-sm" style="background-color: var(--accent-color); color: var(--bg-primary);">Node.js (Advanced)</span>
+                            <span class="px-3 py-1 rounded-full text-sm" style="background-color: var(--accent-color); color: var(--bg-primary);">Express</span>
+                            <span class="px-3 py-1 rounded-full text-sm" style="background-color: var(--accent-color); color: var(--bg-primary);">PostgreSQL</span>
+                            <span class="px-3 py-1 rounded-full text-sm" style="background-color: var(--accent-color); color: var(--bg-primary);">MongoDB</span>
+                            <span class="px-3 py-1 rounded-full text-sm" style="background-color: var(--accent-color); color: var(--bg-primary);">Firebase</span>
+                        </div>
+                    </div>
+
+                    <!-- Mobile & DevOps -->
+                    <div class="p-6 rounded-xl" style="background-color: var(--bg-primary);">
+                        <h3 class="text-xl font-semibold mb-4 flex items-center" style="color: var(--text-primary);">
+                            <i data-lucide="smartphone" class="w-5 h-5 mr-2" style="color: var(--accent-color);"></i> Mobile & Tools
+                        </h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 rounded-full text-sm" style="background-color: var(--accent-color); color: var(--bg-primary);">Flutter (Intermediate)</span>
+                            <span class="px-3 py-1 rounded-full text-sm" style="background-color: var(--accent-color); color: var(--bg-primary);">Dart</span>
+                            <span class="px-3 py-1 rounded-full text-sm" style="background-color: var(--accent-color); color: var(--bg-primary);">Docker</span>
+                            <span class="px-3 py-1 rounded-full text-sm" style="background-color: var(--accent-color); color: var(--bg-primary);">Git / GitHub</span>
+                            <span class="px-3 py-1 rounded-full text-sm" style="background-color: var(--accent-color); color: var(--bg-primary);">VS Code</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Soft Skills -->
+                <div class="mt-10 pt-8 border-t" style="border-color: var(--text-secondary);">
+                    <h3 class="text-xl font-semibold mb-4 text-center" style="color: var(--text-primary);">Soft Skills</h3>
+                    <div class="flex justify-center flex-wrap gap-4 text-sm" style="color: var(--text-secondary);">
+                        <span class="p-2 rounded-lg border-2" style="border-color: var(--text-secondary);">Effective Communication</span>
+                        <span class="p-2 rounded-lg border-2" style="border-color: var(--text-secondary);">Problem-Solving</span>
+                        <span class="p-2 rounded-lg border-2" style="border-color: var(--text-secondary);">Technical Mentoring</span>
+                        <span class="p-2 rounded-lg border-2" style="border-color: var(--text-secondary);">Teamwork</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6) Experience & 7) Education -->
+        <section id="experience" class="section-padding" style="background-color: var(--bg-primary);">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center" style="color: var(--accent-color);">Professional Journey</h2>
+
+                <!-- Experience -->
+                <div class="mb-12">
+                    <h3 class="text-2xl font-semibold mb-6" style="color: var(--text-primary);">Work Experience</h3>
+                    
+                    <div class="p-6 rounded-xl border-l-4" style="border-color: var(--accent-color); background-color: var(--bg-secondary);">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="text-xl font-bold" style="color: var(--text-primary);">Senior Full-Stack Developer</h4>
+                            <span class="text-sm font-medium" style="color: var(--text-secondary);">Jan 2022 – Present</span>
+                        </div>
+                        <p class="mb-2" style="color: var(--accent-color);"><a href="https://example.com/techcorp" target="_blank" class="hover:underline">Innovatech Solutions</a> | Kigali, Remote</p>
+                        <p class="mb-4 text-sm italic" style="color: var(--text-secondary);">
+                            Spearheaded the development of a core customer relationship management (CRM) platform.
+                        </p>
+                        
+                        <ul class="list-disc list-inside space-y-2 text-sm ml-4" style="color: var(--text-primary);">
+                            <li><span style="color: var(--text-secondary);">Led a team of 3 engineers in building scalable, modular microservices.</span></li>
+                            <li><span style="color: var(--text-secondary);">Improved API response time by **45%**, reducing user wait time and increasing retention by **8%**.</span></li>
+                            <li><span style="color: var(--text-secondary);">Developed and maintained CI/CD pipelines using Docker and GitHub Actions.</span></li>
+                            <li><span style="color: var(--text-secondary);">Mentored two junior developers in best practices for React and Node.js.</span></li>
+                        </ul>
+                        <p class="mt-4 text-xs" style="color: var(--text-secondary);">
+                            Technologies used: React, Node.js, TypeScript, PostgreSQL, AWS, Docker.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Education & Certifications -->
+                <div>
+                    <h3 class="text-2xl font-semibold mb-6" style="color: var(--text-primary);">Education & Certifications</h3>
+                    
+                    <!-- Education -->
+                    <div class="p-6 rounded-xl mb-4" style="background-color: var(--bg-secondary);">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="text-xl font-bold" style="color: var(--text-primary);">B.S. in Computer Science</h4>
+                            <span class="text-sm font-medium" style="color: var(--text-secondary);">2018 – 2022</span>
+                        </div>
+                        <p class="text-sm" style="color: var(--accent-color);">University of Rwanda, College of Science and Technology</p>
+                        <p class="mt-2 text-sm italic" style="color: var(--text-secondary);">Relevant Projects: Advanced Algorithms, Distributed Systems.</p>
+                    </div>
+
+                    <!-- Certification -->
+                    <div class="p-6 rounded-xl" style="background-color: var(--bg-secondary);">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="text-xl font-bold" style="color: var(--text-primary);">Google Cloud Professional Developer</h4>
+                            <span class="text-sm font-medium" style="color: var(--text-secondary);">Issued: Apr 2023</span>
+                        </div>
+                        <p class="text-sm" style="color: var(--accent-color);">Google Cloud (Linked Badge)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9) Testimonials -->
+        <section id="testimonials" class="section-padding" style="background-color: var(--bg-secondary);">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-12" style="color: var(--accent-color);">What Clients Say</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="p-8 rounded-xl shadow-lg" style="background-color: var(--bg-primary);">
+                        <i data-lucide="quote" class="w-8 h-8 mx-auto mb-4" style="color: var(--accent-color);"></i>
+                        <blockquote class="italic text-lg mb-4" style="color: var(--text-primary);">
+                            "Witness delivered a high-quality product ahead of schedule. The API performance was exceptional, improving our deployment process significantly."
+                        </blockquote>
+                        <p class="font-semibold" style="color: var(--accent-color);">Jean Uwacu</p>
+                        <p class="text-sm" style="color: var(--text-secondary);">CTO, TechForge Solutions</p>
+                    </div>
+                    
+                    <!-- Testimonial 2 -->
+                    <div class="p-8 rounded-xl shadow-lg" style="background-color: var(--bg-primary);">
+                        <i data-lucide="quote" class="w-8 h-8 mx-auto mb-4" style="color: var(--accent-color);"></i>
+                        <blockquote class="italic text-lg mb-4" style="color: var(--text-primary);">
+                            "His expertise in Flutter helped us launch our cross-platform app smoothly. He’s a natural mentor and a vital team player."
+                        </blockquote>
+                        <p class="font-semibold" style="color: var(--accent-color);">Kevine Mbabazi</p>
+                        <p class="text-sm" style="color: var(--text-secondary);">Product Manager, Mobile Innovations</p>
+                    </div>
+                </div>
+
+                <a href="mailto:witnessfabrice@email.com?subject=Testimonial%20Request" 
+                   class="mt-10 inline-flex items-center px-6 py-3 text-base font-medium rounded-lg transition duration-300" 
+                   style="background-color: var(--accent-color); color: var(--bg-primary);">
+                    Request a Testimonial
+                </a>
+            </div>
+        </section>
+
+
+        <!-- 11) Contact -->
+        <section id="contact" class="section-padding" style="background-color: var(--bg-primary);">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-center" style="color: var(--accent-color);">Get In Touch</h2>
+                <p class="text-lg text-center mb-10" style="color: var(--text-secondary);">
+                    Have a project idea or just want to chat about development? I'd love to hear from you.
+                </p>
+
+                <form id="contact-form" class="space-y-6 p-8 rounded-xl shadow-2xl" style="background-color: var(--bg-secondary);">
+                    
+                    <div>
+                        <label for="name" class="block text-sm font-medium mb-1" style="color: var(--text-primary);">Name</label>
+                        <input type="text" id="name" name="name" required
+                               class="w-full px-4 py-3 rounded-lg border-2" 
+                               style="background-color: var(--bg-primary); border-color: var(--text-secondary); color: var(--text-primary);">
+                    </div>
+
+                    <div>
+                        <label for="email" class="block text-sm font-medium mb-1" style="color: var(--text-primary);">Email</label>
+                        <input type="email" id="email" name="email" required
+                               class="w-full px-4 py-3 rounded-lg border-2" 
+                               style="background-color: var(--bg-primary); border-color: var(--text-secondary); color: var(--text-primary);">
+                    </div>
+
+                    <div>
+                        <label for="message" class="block text-sm font-medium mb-1" style="color: var(--text-primary);">Message</label>
+                        <textarea id="message" name="message" rows="5" required
+                                  class="w-full px-4 py-3 rounded-lg border-2" 
+                                  style="background-color: var(--bg-primary); border-color: var(--text-secondary); color: var(--text-primary);"></textarea>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <input id="consent" name="consent" type="checkbox" required
+                               class="mt-1 mr-2 rounded" 
+                               style="background-color: var(--bg-primary); border-color: var(--text-secondary);">
+                        <label for="consent" class="text-sm" style="color: var(--text-secondary);">
+                            I consent to Witness Fabrice storing my data and contacting me in relation to this inquiry.
+                        </label>
+                    </div>
+
+                    <button type="submit" class="w-full px-6 py-3 font-bold text-lg rounded-lg transition duration-300 transform hover:scale-[1.01]" 
+                            style="background-color: var(--accent-color); color: var(--bg-primary); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);">
+                        Send Message
+                    </button>
+                    
+                    <!-- Message Box for Feedback -->
+                    <div id="feedback-message" class="hidden p-4 mt-4 rounded-lg font-medium text-center" style="background-color: #15803d; color: #dcfce7;">
+                        Thanks for reaching out! I received your message and will reply within 48 hours.
+                    </div>
+                </form>
+                
+                <p class="text-center mt-6 text-sm" style="color: var(--text-secondary);">
+                    Expected response time: I reply within **48 hours**.
+                </p>
+
+                <!-- Alternate Contact -->
+                <div class="flex justify-center space-x-6 mt-8">
+                    <a href="mailto:witnessfabrice@email.com" class="text-sm hover:underline" style="color: var(--accent-color);">
+                        witnessfabrice@email.com
+                    </a>
+                    <a href="https://calendly.com/witnessfabrice" target="_blank" class="text-sm hover:underline" style="color: var(--accent-color);">
+                        Schedule a Call
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 12) Footer -->
+    <footer class="py-8" style="background-color: var(--bg-secondary);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            
+            <p class="mb-4 text-lg font-medium" style="color: var(--text-primary);">
+                "I build fast, maintainable web & mobile apps."
+            </p>
+
+            <!-- Quick Links -->
+            <div class="flex justify-center flex-wrap gap-x-6 gap-y-2 text-sm mb-6" style="color: var(--text-secondary);">
+                <a href="#hero" class="hover:underline">Home</a>
+                <a href="#about" class="hover:underline">About</a>
+                <a href="#projects" class="hover:underline">Projects</a>
+                <a href="#contact" class="hover:underline">Contact</a>
+                <a href="#" class="hover:underline">Resume</a>
+            </div>
+
+            <!-- Social Icons -->
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="https://github.com/witnessfabrice" target="_blank" class="text-xl hover:opacity-80 transition duration-150" style="color: var(--text-primary);">
+                    <i data-lucide="github" class="w-5 h-5"></i>
+                </a>
+                <a href="https://linkedin.com/in/witnessfabrice" target="_blank" class="text-xl hover:opacity-80 transition duration-150" style="color: var(--text-primary);">
+                    <i data-lucide="linkedin" class="w-5 h-5"></i>
+                </a>
+                <a href="https://twitter.com/witnessfabrice" target="_blank" class="text-xl hover:opacity-80 transition duration-150" style="color: var(--text-primary);">
+                    <i data-lucide="twitter" class="w-5 h-5"></i>
+                </a>
+            </div>
+
+            <!-- Copyright and Microcopy -->
+            <p class="text-xs" style="color: var(--text-secondary);">
+                &copy; 2025 Witness Fabrice. Built with ❤️ in Kigali.
+            </p>
+            <div class="text-xs mt-1 space-x-3" style="color: var(--text-secondary);">
+                 <a href="#" class="hover:underline">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // -----------------------------
+        // Dark Mode Toggle Logic
+        // -----------------------------
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        const moonIcon = document.getElementById('moon-icon');
+        const sunIcon = document.getElementById('sun-icon');
+        const ACCENT_COLOR_DARK = '#3b82f6'; // Blue-500
+        const ACCENT_COLOR_LIGHT = '#10b981'; // Emerald-500
+
+        // Set initial theme based on local storage or default to dark
+        function initializeTheme() {
+            const currentTheme = localStorage.getItem('theme') || 'dark';
+            if (currentTheme === 'light') {
+                setTheme('light');
+            } else {
+                setTheme('dark');
+            }
+        }
+
+        function setTheme(theme) {
+            if (theme === 'light') {
+                body.classList.add('light-mode');
+                body.classList.remove('dark-mode');
+                moonIcon.classList.add('hidden');
+                sunIcon.classList.remove('hidden');
+                document.documentElement.style.setProperty('--accent-color', ACCENT_COLOR_LIGHT);
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.classList.add('dark-mode');
+                body.classList.remove('light-mode');
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.remove('hidden');
+                document.documentElement.style.setProperty('--accent-color', ACCENT_COLOR_DARK);
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        themeToggle.addEventListener('click', () => {
+            if (body.classList.contains('dark-mode')) {
+                setTheme('light');
+            } else {
+                setTheme('dark');
+            }
+        });
+        
+        // -----------------------------
+        // Contact Form Submission
+        // -----------------------------
+        const contactForm = document.getElementById('contact-form');
+        const feedbackMessage = document.getElementById('feedback-message');
+
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Stop the default form submission
+            
+            // In a real application, you would send this data to a backend service (e.g., Firebase, email service)
+            console.log('Form submitted!');
+            // const formData = new FormData(contactForm);
+            // const data = Object.fromEntries(formData.entries());
+            // console.log(data);
+
+            // Simulate success feedback
+            feedbackMessage.classList.remove('hidden');
+            contactForm.reset(); // Clear form fields
+            
+            // Hide the message after 5 seconds
+            setTimeout(() => {
+                feedbackMessage.classList.add('hidden');
+            }, 5000);
+        });
+
+        // Initialize theme on load
+        window.onload = initializeTheme;
+    </script>
+</body>
+</html>
