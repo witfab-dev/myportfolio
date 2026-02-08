@@ -4,55 +4,203 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Witness Fabrice — Software Developer | React & Flutter</title>
+    
     <!-- SEO Meta Tags -->
     <meta name="description" content="Witness Fabrice — Kigali-based developer building web & mobile apps with React, Node.js, and Flutter. View projects & hire me.">
+    <meta name="keywords" content="software developer, React, Flutter, Node.js, Kigali, Rwanda, full-stack developer">
+    <meta name="author" content="Witness Fabrice">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Witness Fabrice — Software Developer">
+    <meta property="og:description" content="Building fast, maintainable web & mobile apps.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://placehold.co/1200x630/3b82f6/ffffff?text=Witness+Fabrice+Portfolio">
+    
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Typing Animation Library -->
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    
     <style>
         /* Setup Inter font and default dark mode styles */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        
         body {
             font-family: 'Inter', sans-serif;
             transition: background-color 0.3s, color 0.3s;
+            scroll-behavior: smooth;
         }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-hover);
+        }
+        
         /* Default Dark Mode */
         :root {
-            --bg-primary: #111827; /* Gray-900 */
-            --bg-secondary: #1f2937; /* Gray-800 */
-            --text-primary: #f9fafb; /* Gray-50 */
-            --text-secondary: #9ca3af; /* Gray-400 */
-            --accent-color: #3b82f6; /* Blue-500 */
+            --bg-primary: #111827;
+            --bg-secondary: #1f2937;
+            --text-primary: #f9fafb;
+            --text-secondary: #9ca3af;
+            --accent-color: #3b82f6;
+            --accent-hover: #2563eb;
+            --card-bg: #1f2937;
+            --border-color: #374151;
         }
+        
         /* Light Mode Override */
         .light-mode {
             --bg-primary: #ffffff;
             --bg-secondary: #f3f4f6;
             --text-primary: #1f2937;
             --text-secondary: #6b7280;
-            --accent-color: #10b981; /* Emerald-500 */
+            --accent-color: #10b981;
+            --accent-hover: #059669;
+            --card-bg: #f9fafb;
+            --border-color: #e5e7eb;
         }
-
+        
         .dark-mode, .light-mode {
             background-color: var(--bg-primary);
             color: var(--text-primary);
         }
         
-        /* Custom scrollbar for aesthetics */
-        body::-webkit-scrollbar {
-            width: 8px;
+        /* Glass Effect */
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        body::-webkit-scrollbar-thumb {
-            background: var(--accent-color);
+        
+        .light-mode .glass-effect {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent-color), #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Progress Bars */
+        .progress-bar {
+            height: 8px;
+            background: var(--bg-secondary);
             border-radius: 4px;
+            overflow: hidden;
         }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-hover));
+            border-radius: 4px;
+            transition: width 1s ease-in-out;
+        }
+        
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        /* Hover Effects */
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Section Spacing */
         .section-padding {
-            padding: 4rem 1rem;
+            padding: 5rem 1rem;
         }
+        
         @media (min-width: 640px) {
             .section-padding {
                 padding: 6rem 2rem;
+            }
+        }
+        
+        /* Skill Radar Chart Container */
+        .radar-container {
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+        }
+        
+        /* Loading Animation */
+        .loading-spinner {
+            border: 3px solid var(--bg-secondary);
+            border-top: 3px solid var(--accent-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Print Styles */
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            
+            .section-padding {
+                padding: 2rem 0 !important;
+            }
+            
+            body {
+                background: white !important;
+                color: black !important;
             }
         }
     </style>
@@ -60,710 +208,1449 @@
 
 <body class="dark-mode">
 
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="fixed inset-0 flex items-center justify-center z-50" style="background-color: var(--bg-primary);">
+        <div class="text-center">
+            <div class="loading-spinner mx-auto mb-4"></div>
+            <p style="color: var(--text-secondary);">Loading portfolio...</p>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top p-3 rounded-full shadow-lg hover-lift" style="background-color: var(--accent-color); color: white;">
+        <i data-lucide="arrow-up" class="w-5 h-5"></i>
+    </button>
+
     <!-- Navbar -->
-    <header class="sticky top-0 z-50 py-4 shadow-lg" style="background-color: var(--bg-secondary);">
+    <header class="sticky top-0 z-50 py-4 glass-effect">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
             <!-- Logo/Name -->
-            <a href="#hero" class="text-xl font-bold tracking-tight" style="color: var(--text-primary);">W. Fabrice</a>
+            <a href="#hero" class="text-xl font-bold tracking-tight flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background-color: var(--accent-color);">
+                    <span class="text-white font-bold">WF</span>
+                </div>
+                <span style="color: var(--text-primary);">W. Fabrice</span>
+            </a>
             
             <!-- Desktop Navigation -->
             <div class="hidden md:flex space-x-6 text-sm">
-                <a href="#about" class="hover:underline" style="color: var(--text-primary);">About</a>
-                <a href="#projects" class="hover:underline" style="color: var(--text-primary);">Projects</a>
-                <a href="#skills" class="hover:underline" style="color: var(--text-primary);">Skills</a>
-                <a href="#contact" class="hover:underline" style="color: var(--text-primary);">Contact</a>
+                <a href="#about" class="hover:underline transition duration-300" style="color: var(--text-primary);">About</a>
+                <a href="#projects" class="hover:underline transition duration-300" style="color: var(--text-primary);">Projects</a>
+                <a href="#skills" class="hover:underline transition duration-300" style="color: var(--text-primary);">Skills</a>
+                <a href="#experience" class="hover:underline transition duration-300" style="color: var(--text-primary);">Experience</a>
+                <a href="#contact" class="hover:underline transition duration-300" style="color: var(--text-primary);">Contact</a>
             </div>
 
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg" style="color: var(--text-primary);">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+
             <!-- CTA and Dark Mode Toggle -->
-            <div class="flex items-center space-x-3">
-                <button id="theme-toggle" class="p-2 rounded-full transition duration-150" style="background-color: var(--bg-primary); color: var(--text-primary);">
+            <div class="hidden md:flex items-center space-x-3">
+                <button id="theme-toggle" class="p-2 rounded-full transition duration-150 hover-lift" style="background-color: var(--bg-secondary); color: var(--text-primary);">
                     <svg id="moon-icon" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path></svg>
-                    <svg id="sun-icon" class="h-5 w-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <svg id="sun-icon" class="h-5 w-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></circle><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
                 </button>
-                <a href="#contact" class="hidden sm:inline-block px-4 py-2 text-sm font-medium rounded-lg transition duration-300" 
-                   style="background-color: var(--accent-color); color: var(--bg-primary); box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);">
+                <button id="print-btn" class="p-2 rounded-full transition duration-150 hover-lift" style="background-color: var(--bg-secondary); color: var(--text-primary);">
+                    <i data-lucide="printer" class="w-5 h-5"></i>
+                </button>
+                <a href="#contact" class="px-4 py-2 text-sm font-medium rounded-lg transition duration-300 hover-lift" 
+                   style="background-color: var(--accent-color); color: white;">
                     Hire Me
                 </a>
             </div>
         </nav>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden absolute top-full left-0 right-0 glass-effect shadow-lg">
+            <div class="flex flex-col p-4 space-y-4">
+                <a href="#about" class="py-2 px-4 rounded-lg transition duration-300" style="color: var(--text-primary);">About</a>
+                <a href="#projects" class="py-2 px-4 rounded-lg transition duration-300" style="color: var(--text-primary);">Projects</a>
+                <a href="#skills" class="py-2 px-4 rounded-lg transition duration-300" style="color: var(--text-primary);">Skills</a>
+                <a href="#experience" class="py-2 px-4 rounded-lg transition duration-300" style="color: var(--text-primary);">Experience</a>
+                <a href="#contact" class="py-2 px-4 rounded-lg transition duration-300" style="color: var(--text-primary);">Contact</a>
+                <div class="flex space-x-2 pt-4 border-t" style="border-color: var(--border-color);">
+                    <button id="mobile-theme-toggle" class="flex-1 py-2 rounded-lg" style="background-color: var(--bg-secondary); color: var(--text-primary);">Toggle Theme</button>
+                    <button id="mobile-print-btn" class="flex-1 py-2 rounded-lg" style="background-color: var(--bg-secondary); color: var(--text-primary);">Print CV</button>
+                </div>
+            </div>
+        </div>
     </header>
 
     <main>
         <!-- 1) Hero / Landing -->
-        <section id="hero" class="section-padding flex items-center min-h-[80vh] text-center" style="background-color: var(--bg-primary);">
-            <div class="max-w-5xl mx-auto">
-                <div class="mb-8">
-                    <img src="https://placehold.co/128x128/3b82f6/ffffff?text=WF" 
-                         alt="Professional headshot of Witness Fabrice" 
-                         class="rounded-full mx-auto w-32 h-32 object-cover border-4" 
-                         style="border-color: var(--accent-color);">
-                </div>
-                
-                <h1 class="text-5xl sm:text-7xl font-extrabold tracking-tighter mb-4" style="color: var(--text-primary);">
-                    Witness Fabrice
-                </h1>
-                
-                <h2 class="text-xl sm:text-2xl font-semibold mb-4" style="color: var(--accent-color);">
-                    Software Developer | Web & Mobile
-                </h2>
-                
-                <p class="text-lg sm:text-xl max-w-3xl mx-auto mb-8" style="color: var(--text-secondary);">
-                    I build fast, maintainable web & mobile apps that solve real business problems.
-                </p>
+        <section id="hero" class="section-padding flex items-center min-h-screen" style="background-color: var(--bg-primary);">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <!-- Left Column: Content -->
+                    <div data-aos="fade-right">
+                        <div class="mb-8">
+                            <div class="inline-block px-3 py-1 rounded-full text-sm font-medium mb-4" style="background-color: var(--accent-color); color: white;">
+                                <span id="typed-text"></span>
+                            </div>
+                            <h1 class="text-5xl sm:text-7xl font-bold mb-4 gradient-text">
+                                Witness Fabrice
+                            </h1>
+                            <h2 class="text-2xl sm:text-3xl font-semibold mb-6" style="color: var(--accent-color);">
+                                Full-Stack Developer
+                            </h2>
+                            <p class="text-lg mb-8" style="color: var(--text-secondary);">
+                                I build high-performance web & mobile applications that solve real-world problems. Passionate about clean code, scalable architecture, and exceptional user experiences.
+                            </p>
+                            
+                            <div class="flex flex-wrap gap-4 mb-8">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-3 h-3 rounded-full" style="background-color: #10B981;"></div>
+                                    <span class="text-sm" style="color: var(--text-secondary);">Available for projects</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <div class="w-3 h-3 rounded-full" style="background-color: #3B82F6;"></div>
+                                    <span class="text-sm" style="color: var(--text-secondary);">Kigali, Rwanda (UTC+2)</span>
+                                </div>
+                            </div>
 
-                <div class="flex justify-center space-x-4 mb-8">
-                    <a href="#projects" class="px-8 py-3 text-lg font-bold rounded-lg transition duration-300 transform hover:scale-[1.02]" 
-                       style="background-color: var(--accent-color); color: var(--bg-primary); box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);">
-                        View My Work
-                    </a>
-                    <a href="#contact" class="px-8 py-3 text-lg font-medium rounded-lg border-2 transition duration-300 hover:opacity-80" 
-                       style="border-color: var(--text-secondary); color: var(--text-primary);">
-                        Download CV
-                    </a>
-                </div>
+                            <div class="flex flex-wrap gap-4">
+                                <a href="#projects" class="px-6 py-3 font-semibold rounded-lg transition duration-300 hover-lift flex items-center gap-2" 
+                                   style="background-color: var(--accent-color); color: white;">
+                                    <i data-lucide="briefcase" class="w-5 h-5"></i>
+                                    View Projects
+                                </a>
+                                <a href="#contact" class="px-6 py-3 font-semibold rounded-lg border-2 transition duration-300 hover-lift flex items-center gap-2" 
+                                   style="border-color: var(--accent-color); color: var(--text-primary);">
+                                    <i data-lucide="mail" class="w-5 h-5"></i>
+                                    Contact Me
+                                </a>
+                            </div>
+                        </div>
+                    </div>
 
-                <!-- Quick Stats -->
-                <div class="mt-8 text-sm sm:text-base" style="color: var(--text-secondary);">
-                    <span class="mx-3">5+ projects</span> • 
-                    <span class="mx-3">3 years experience</span> • 
-                    <span class="mx-3">10k+ users reached</span>
-                </div>
+                    <!-- Right Column: Profile Image & Stats -->
+                    <div data-aos="fade-left">
+                        <div class="relative">
+                            <div class="w-64 h-64 mx-auto rounded-full overflow-hidden border-4 floating" style="border-color: var(--accent-color);">
+                                <img src="https://placehold.co/400x400/3b82f6/ffffff?text=WF" 
+                                     alt="Professional headshot of Witness Fabrice" 
+                                     class="w-full h-full object-cover">
+                            </div>
+                            
+                            <!-- Floating Stats Cards -->
+                            <div class="absolute -top-4 -left-4 p-4 rounded-xl shadow-lg hover-lift" style="background-color: var(--card-bg);">
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold gradient-text">5+</div>
+                                    <div class="text-sm" style="color: var(--text-secondary);">Projects</div>
+                                </div>
+                            </div>
+                            
+                            <div class="absolute -bottom-4 -right-4 p-4 rounded-xl shadow-lg hover-lift" style="background-color: var(--card-bg);">
+                                <div class="text-center">
+                                    <div class="text-2xl font-bold gradient-text">3+</div>
+                                    <div class="text-sm" style="color: var(--text-secondary);">Years</div>
+                                </div>
+                            </div>
+                        </div>
 
-                <!-- Social Icons -->
-                <div class="flex justify-center space-x-6 mt-6">
-                    <a href="https://github.com/witnessfabrice" target="_blank" class="text-2xl hover:opacity-80 transition duration-150" style="color: var(--text-primary);">
-                        <i data-lucide="github" class="w-6 h-6"></i>
-                    </a>
-                    <a href="https://linkedin.com/in/witnessfabrice" target="_blank" class="text-2xl hover:opacity-80 transition duration-150" style="color: var(--text-primary);">
-                        <i data-lucide="linkedin" class="w-6 h-6"></i>
-                    </a>
-                    <a href="https://twitter.com/witnessfabrice" target="_blank" class="text-2xl hover:opacity-80 transition duration-150" style="color: var(--text-primary);">
-                        <i data-lucide="twitter" class="w-6 h-6"></i>
-                    </a>
+                        <!-- Tech Stack Badges -->
+                        <div class="mt-12 flex flex-wrap justify-center gap-3">
+                            <span class="px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1" style="background-color: var(--bg-secondary); color: var(--text-primary);">
+                                <i data-lucide="react" class="w-4 h-4"></i>
+                                React
+                            </span>
+                            <span class="px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1" style="background-color: var(--bg-secondary); color: var(--text-primary);">
+                                <i data-lucide="node" class="w-4 h-4"></i>
+                                Node.js
+                            </span>
+                            <span class="px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1" style="background-color: var(--bg-secondary); color: var(--text-primary);">
+                                <i data-lucide="smartphone" class="w-4 h-4"></i>
+                                Flutter
+                            </span>
+                        </div>
+                    </div>
                 </div>
-
             </div>
         </section>
 
         <!-- 2) About / Bio -->
         <section id="about" class="section-padding" style="background-color: var(--bg-secondary);">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl sm:text-4xl font-bold mb-10 text-center" style="color: var(--accent-color);">About Me</h2>
+                <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center gradient-text" data-aos="fade-up">About Me</h2>
                 
-                <div class="grid md:grid-cols-3 gap-12 items-start">
+                <div class="grid lg:grid-cols-3 gap-8 items-start">
                     <!-- Bio Content -->
-                    <div class="md:col-span-2">
-                        <p class="text-lg mb-6" style="color: var(--text-primary);">
-                            I’m Witness Fabrice — I build web and mobile apps using **React**, **Node.js**, and **Flutter**. I focus on performance and a great user experience, ensuring the code is clean, scalable, and easy to maintain.
-                        </p>
-                        <p class="mb-6" style="color: var(--text-secondary);">
-                            My journey started with a deep curiosity for how digital products are built. What motivates me is the challenge of turning complex problems into elegant, production-ready solutions that truly impact users' lives. I enjoy mentoring junior developers and fostering a collaborative, learning-focused environment.
-                        </p>
+                    <div class="lg:col-span-2" data-aos="fade-right">
+                        <div class="p-8 rounded-xl hover-lift" style="background-color: var(--card-bg);">
+                            <h3 class="text-2xl font-bold mb-6 flex items-center gap-2" style="color: var(--text-primary);">
+                                <i data-lucide="user" class="w-6 h-6" style="color: var(--accent-color);"></i>
+                                My Journey
+                            </h3>
+                            
+                            <p class="mb-6 text-lg" style="color: var(--text-primary);">
+                                Hello! I'm <span class="font-semibold gradient-text">Witness Fabrice</span>, a passionate software developer based in Kigali, Rwanda. 
+                                I specialize in building modern web and mobile applications using cutting-edge technologies.
+                            </p>
+                            
+                            <p class="mb-6" style="color: var(--text-secondary);">
+                                With over 3 years of professional experience, I've had the opportunity to work on diverse projects ranging from enterprise 
+                                applications to innovative startups. My approach combines technical excellence with a deep understanding of user needs.
+                            </p>
 
-                        <!-- What I Do -->
-                        <h3 class="text-xl font-semibold mb-4" style="color: var(--text-primary);">What I Offer:</h3>
-                        <ul class="list-disc list-inside space-y-2 mb-6 ml-4" style="color: var(--text-secondary);">
-                            <li>Full-stack Web Application Development (React & Node.js)</li>
-                            <li>Cross-Platform Mobile App Development (Flutter)</li>
-                            <li>API Design and Implementation</li>
-                            <li>Code Review and Technical Mentoring</li>
-                        </ul>
+                            <!-- Stats Grid -->
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                                <div class="text-center p-4 rounded-lg" style="background-color: var(--bg-secondary);">
+                                    <div class="text-2xl font-bold gradient-text">15+</div>
+                                    <div class="text-sm" style="color: var(--text-secondary);">Technologies</div>
+                                </div>
+                                <div class="text-center p-4 rounded-lg" style="background-color: var(--bg-secondary);">
+                                    <div class="text-2xl font-bold gradient-text">10k+</div>
+                                    <div class="text-sm" style="color: var(--text-secondary);">Users Reached</div>
+                                </div>
+                                <div class="text-center p-4 rounded-lg" style="background-color: var(--bg-secondary);">
+                                    <div class="text-2xl font-bold gradient-text">100%</div>
+                                    <div class="text-sm" style="color: var(--text-secondary);">Client Satisfaction</div>
+                                </div>
+                                <div class="text-center p-4 rounded-lg" style="background-color: var(--bg-secondary);">
+                                    <div class="text-2xl font-bold gradient-text">24/7</div>
+                                    <div class="text-sm" style="color: var(--text-secondary);">Support</div>
+                                </div>
+                            </div>
 
-                        <!-- Approach -->
-                        <div class="flex flex-wrap gap-3 mb-8">
-                            <span class="px-4 py-1 text-sm rounded-full font-medium" style="background-color: var(--accent-color); color: var(--bg-primary);">Agile Development</span>
-                            <span class="px-4 py-1 text-sm rounded-full font-medium" style="background-color: var(--accent-color); color: var(--bg-primary);">User-First Design</span>
-                            <span class="px-4 py-1 text-sm rounded-full font-medium" style="background-color: var(--accent-color); color: var(--bg-primary);">TDD Practices</span>
-                            <span class="px-4 py-1 text-sm rounded-full font-medium" style="background-color: var(--accent-color); color: var(--bg-primary);">Quick Prototypes</span>
+                            <!-- Work Philosophy -->
+                            <div class="mb-6">
+                                <h4 class="text-xl font-semibold mb-3" style="color: var(--text-primary);">My Work Philosophy</h4>
+                                <p style="color: var(--text-secondary);">
+                                    I believe in writing clean, maintainable code and building solutions that scale. Every project is an opportunity 
+                                    to learn, innovate, and deliver exceptional value to clients and end-users.
+                                </p>
+                            </div>
+
+                            <!-- Download CV Button -->
+                            <a href="#" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition duration-300 hover-lift" 
+                               style="background-color: var(--accent-color); color: white;">
+                                <i data-lucide="download" class="w-5 h-5"></i>
+                                Download Full CV (PDF)
+                            </a>
                         </div>
-                        
-                        <p class="text-sm" style="color: var(--text-secondary);">
-                            **Location & Timezone:** Kigali, Rwanda (UTC+02:00) | **Availability:** Open to freelance / contract / full-time
-                        </p>
                     </div>
 
-                    <!-- Photo & Fun Facts -->
-                    <div class="md:sticky md:top-20 flex flex-col items-center p-6 rounded-xl" style="background-color: var(--bg-primary); border: 1px solid var(--text-secondary);">
-                        <img src="https://placehold.co/250x250/3b82f6/ffffff?text=WF+Portrait" 
-                             alt="Professional portrait of Witness Fabrice" 
-                             class="rounded-xl w-full h-auto object-cover mb-6 border-2"
-                             style="border-color: var(--accent-color);">
-                        
-                        <h3 class="text-xl font-semibold mb-2" style="color: var(--text-primary);">Fun Facts</h3>
-                        <ul class="text-center space-y-1 text-sm" style="color: var(--text-secondary);">
-                            <li>Fluent in Kinyarwanda, English, and French.</li>
-                            <li>Loves trail running and coffee brewing.</li>
-                        </ul>
-                        <a href="#" class="mt-6 px-4 py-2 text-sm font-medium rounded-lg transition duration-300" 
-                           style="background-color: var(--accent-color); color: var(--bg-primary);">
-                            Download CV
-                        </a>
+                    <!-- Skills Preview & Fun Facts -->
+                    <div class="space-y-8" data-aos="fade-left">
+                        <!-- Skills Preview -->
+                        <div class="p-6 rounded-xl hover-lift" style="background-color: var(--card-bg);">
+                            <h3 class="text-xl font-semibold mb-4 flex items-center gap-2" style="color: var(--text-primary);">
+                                <i data-lucide="zap" class="w-5 h-5" style="color: var(--accent-color);"></i>
+                                Core Skills
+                            </h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span class="text-sm" style="color: var(--text-primary);">React & Frontend</span>
+                                        <span class="text-sm" style="color: var(--text-secondary);">95%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 95%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span class="text-sm" style="color: var(--text-primary);">Node.js & Backend</span>
+                                        <span class="text-sm" style="color: var(--text-secondary);">90%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 90%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span class="text-sm" style="color: var(--text-primary);">Flutter Development</span>
+                                        <span class="text-sm" style="color: var(--text-secondary);">85%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Fun Facts -->
+                        <div class="p-6 rounded-xl hover-lift" style="background-color: var(--card-bg);">
+                            <h3 class="text-xl font-semibold mb-4 flex items-center gap-2" style="color: var(--text-primary);">
+                                <i data-lucide="sparkles" class="w-5 h-5" style="color: var(--accent-color);"></i>
+                                Fun Facts
+                            </h3>
+                            <ul class="space-y-3" style="color: var(--text-secondary);">
+                                <li class="flex items-center gap-2">
+                                    <i data-lucide="globe" class="w-4 h-4"></i>
+                                    <span>Trilingual: Kinyarwanda, English, French</span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i data-lucide="coffee" class="w-4 h-4"></i>
+                                    <span>Specialty coffee enthusiast & home barista</span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i data-lucide="mountain" class="w-4 h-4"></i>
+                                    <span>Trail running & hiking adventurer</span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i data-lucide="book-open" class="w-4 h-4"></i>
+                                    <span>Reads 2+ tech books monthly</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Availability -->
+                        <div class="p-6 rounded-xl hover-lift" style="background-color: var(--card-bg);">
+                            <h3 class="text-xl font-semibold mb-4 flex items-center gap-2" style="color: var(--text-primary);">
+                                <i data-lucide="calendar" class="w-5 h-5" style="color: var(--accent-color);"></i>
+                                Availability
+                            </h3>
+                            <div class="space-y-3">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-sm" style="color: var(--text-primary);">Freelance Projects</span>
+                                    <span class="px-2 py-1 text-xs rounded-full" style="background-color: #10B981; color: white;">Available</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-sm" style="color: var(--text-primary);">Full-time Roles</span>
+                                    <span class="px-2 py-1 text-xs rounded-full" style="background-color: #10B981; color: white;">Considering</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-sm" style="color: var(--text-primary);">Mentorship</span>
+                                    <span class="px-2 py-1 text-xs rounded-full" style="background-color: #10B981; color: white;">Available</span>
+                                </div>
+                            </div>
+                            <a href="#contact" class="mt-4 w-full text-center block px-4 py-2 text-sm font-medium rounded-lg transition duration-300" 
+                               style="background-color: var(--accent-color); color: white;">
+                                Schedule a Call
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-        
-        <!-- 3) Projects -->
+
+        <!-- 3) Projects Section with Enhanced Features -->
         <section id="projects" class="section-padding" style="background-color: var(--bg-primary);">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center" style="color: var(--accent-color);">Featured Projects</h2>
+                <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center gradient-text" data-aos="fade-up">Featured Projects</h2>
 
-                <div class="p-5 rounded-xl mb-8" style="background-color: var(--bg-secondary); border: 1px solid var(--text-secondary);">
-                    <div class="grid md:grid-cols-3 gap-4 items-end">
-                        <div class="md:col-span-2">
-                            <label for="project-search" class="block text-sm font-medium mb-2" style="color: var(--text-primary);">Search projects</label>
-                            <input id="project-search" type="text" placeholder="Try: flutter, api, dashboard..." class="w-full px-4 py-2 rounded-lg border" style="background-color: var(--bg-primary); border-color: var(--text-secondary); color: var(--text-primary);">
+                <!-- Projects Dashboard -->
+                <div class="mb-8 p-6 rounded-xl glass-effect" data-aos="fade-up">
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                        <div class="p-4 rounded-lg text-center" style="background-color: var(--card-bg);">
+                            <div class="text-2xl font-bold gradient-text" id="total-projects">5</div>
+                            <div class="text-sm" style="color: var(--text-secondary);">Total Projects</div>
                         </div>
-                        <div>
-                            <label for="project-sort" class="block text-sm font-medium mb-2" style="color: var(--text-primary);">Sort by</label>
-                            <select id="project-sort" class="w-full px-4 py-2 rounded-lg border" style="background-color: var(--bg-primary); border-color: var(--text-secondary); color: var(--text-primary);">
-                                <option value="featured">Featured order</option>
-                                <option value="newest">Newest first</option>
-                                <option value="oldest">Oldest first</option>
-                                <option value="az">A → Z</option>
-                            </select>
+                        <div class="p-4 rounded-lg text-center" style="background-color: var(--card-bg);">
+                            <div class="text-2xl font-bold gradient-text" id="web-projects">3</div>
+                            <div class="text-sm" style="color: var(--text-secondary);">Web Apps</div>
                         </div>
-                    </div>
-                    <div class="flex flex-wrap gap-3 mt-4" id="project-filters">
-                        <button type="button" data-filter="all" class="project-filter-btn px-3 py-1.5 text-xs font-semibold rounded-full" style="background-color: var(--accent-color); color: var(--bg-primary);">All</button>
-                        <button type="button" data-filter="mobile" class="project-filter-btn px-3 py-1.5 text-xs font-semibold rounded-full border" style="border-color: var(--text-secondary); color: var(--text-primary);">Mobile</button>
-                        <button type="button" data-filter="web" class="project-filter-btn px-3 py-1.5 text-xs font-semibold rounded-full border" style="border-color: var(--text-secondary); color: var(--text-primary);">Web</button>
-                        <button type="button" data-filter="api" class="project-filter-btn px-3 py-1.5 text-xs font-semibold rounded-full border" style="border-color: var(--text-secondary); color: var(--text-primary);">API</button>
-                        <button type="button" data-filter="firebase" class="project-filter-btn px-3 py-1.5 text-xs font-semibold rounded-full border" style="border-color: var(--text-secondary); color: var(--text-primary);">Firebase</button>
-                    </div>
-                    <p id="project-results-count" class="mt-3 text-sm" style="color: var(--text-secondary);"></p>
-                </div>
-                
-                <div class="space-y-16" id="projects-list">
-                    <!-- PROJECT 1: Mobile Marketplace -->
-                    <div class="project-card p-6 rounded-xl shadow-xl transition duration-300 hover:shadow-2xl" data-title="Market-Kigali" data-summary="Mobile marketplace app connecting local sellers to customers built with Flutter and Firebase" data-tags="mobile ecommerce firebase flutter" data-year="2024" data-featured="1" style="background-color: var(--bg-secondary);">
-                        <div class="grid md:grid-cols-12 gap-8 items-center">
-                            <div class="md:col-span-7">
-                                <h3 class="text-2xl font-bold mb-2" style="color: var(--text-primary);">Market-Kigali</h3>
-                                <p class="mb-4 text-lg" style="color: var(--text-secondary);">
-                                    Mobile marketplace app connecting local sellers to customers — built with Flutter and Firebase.
-                                </p>
-                                
-                                <div class="flex flex-wrap gap-2 text-sm mb-4">
-                                    <span class="px-3 py-1 rounded-full text-xs font-medium" style="background-color: var(--accent-color); color: var(--bg-primary);">Mobile</span>
-                                    <span class="px-3 py-1 rounded-full text-xs font-medium" style="background-color: var(--accent-color); color: var(--bg-primary);">E-commerce</span>
-                                    <span class="px-3 py-1 rounded-full text-xs font-medium" style="background-color: var(--accent-color); color: var(--bg-primary);">Firebase</span>
-                                </div>
-                                
-                                <div class="space-y-4 mb-6" style="color: var(--text-secondary);">
-                                    <p class="font-semibold" style="color: var(--text-primary);">Problem Statement:</p>
-                                    <p>Solved the lack of a reliable, location-aware mobile platform for local artisans to sell goods directly to Kigali residents.</p>
-                                    
-                                    <p class="font-semibold" style="color: var(--text-primary);">Details:</p>
-                                    <ul class="list-disc list-inside ml-4 space-y-1 text-sm">
-                                        <li>**Your Role:** Sole Developer (Frontend & Backend/Firebase)</li>
-                                        <li>**Timeframe:** Jan–Mar 2024</li>
-                                        <li>**Tech Stack:** Flutter • Dart • Firebase (Firestore & Auth)</li>
-                                        <li>**Key Features:** Real-time chat, Integrated Payments, Location-based search.</li>
-                                    </ul>
-                                </div>
-
-                                <div class="mb-6">
-                                    <p class="font-semibold mb-2" style="color: var(--text-primary);">Outcome & Metrics:</p>
-                                    <p style="color: var(--text-secondary);">
-                                        Achieved **2,500 downloads** in the first month. Reduced page load by 40% (due to efficient data caching) → **+12% conversions** of product views to cart additions.
-                                    </p>
-                                </div>
-                                
-                                <!-- CTAs -->
-                                <div class="flex space-x-3">
-                                    <a href="#" target="_blank" class="px-4 py-2 text-sm rounded-lg font-medium transition duration-300" style="background-color: var(--accent-color); color: var(--bg-primary);">View Live Demo</a>
-                                    <a href="https://github.com/witnessfabrice/market-kigali" target="_blank" class="px-4 py-2 text-sm rounded-lg font-medium border-2 transition duration-300 hover:opacity-80" style="border-color: var(--text-secondary); color: var(--text-primary);">View Code</a>
-                                </div>
-                            </div>
-                            
-                            <!-- Media -->
-                            <div class="md:col-span-5">
-                                <img src="https://placehold.co/400x300/10b981/ffffff?text=Mobile+App+Screenshot" 
-                                     alt="Screenshot of the Market-Kigali mobile application home screen" 
-                                     class="rounded-lg shadow-2xl w-full h-auto">
-                                <p class="text-xs text-center mt-2 italic" style="color: var(--text-secondary);">Image: Home screen showcasing popular local products.</p>
-                            </div>
+                        <div class="p-4 rounded-lg text-center" style="background-color: var(--card-bg);">
+                            <div class="text-2xl font-bold gradient-text" id="mobile-projects">2</div>
+                            <div class="text-sm" style="color: var(--text-secondary);">Mobile Apps</div>
+                        </div>
+                        <div class="p-4 rounded-lg text-center" style="background-color: var(--card-bg);">
+                            <div class="text-2xl font-bold gradient-text">4.8/5</div>
+                            <div class="text-sm" style="color: var(--text-secondary);">Client Rating</div>
                         </div>
                     </div>
 
-                    <!-- PROJECT 2: SaaS Dashboard -->
-                    <div class="project-card p-6 rounded-xl shadow-xl transition duration-300 hover:shadow-2xl" data-title="Analytics API Hub" data-summary="Multi-tenant SaaS dashboard for customer engagement metrics" data-tags="web api open-source dashboard node react" data-year="2023" data-featured="2" style="background-color: var(--bg-secondary);">
-                        <!-- ... structure similar to Project 1 ... -->
-                        <div class="grid md:grid-cols-12 gap-8 items-center">
-                            <div class="md:col-span-7 order-2 md:order-1">
-                                <h3 class="text-2xl font-bold mb-2" style="color: var(--text-primary);">Analytics API Hub</h3>
-                                <p class="mb-4 text-lg" style="color: var(--text-secondary);">
-                                    A multi-tenant SaaS dashboard for tracking customer engagement metrics.
-                                </p>
-                                
-                                <div class="flex flex-wrap gap-2 text-sm mb-4">
-                                    <span class="px-3 py-1 rounded-full text-xs font-medium" style="background-color: var(--accent-color); color: var(--bg-primary);">Web</span>
-                                    <span class="px-3 py-1 rounded-full text-xs font-medium" style="background-color: var(--accent-color); color: var(--bg-primary);">API</span>
-                                    <span class="px-3 py-1 rounded-full text-xs font-medium" style="background-color: var(--accent-color); color: var(--bg-primary);">Open Source</span>
-                                </div>
-                                
-                                <div class="space-y-4 mb-6" style="color: var(--text-secondary);">
-                                    <p class="font-semibold" style="color: var(--text-primary);">Problem Statement:</p>
-                                    <p>Provided a unified, highly performant REST API and user interface for accessing cross-platform analytics data.</p>
-                                    
-                                    <p class="font-semibold" style="color: var(--text-primary);">Details:</p>
-                                    <ul class="list-disc list-inside ml-4 space-y-1 text-sm">
-                                        <li>**Your Role:** Backend/API Engineer</li>
-                                        <li>**Timeframe:** Oct–Dec 2023</li>
-                                        <li>**Tech Stack:** Node.js • Express • PostgreSQL • React (Admin UI)</li>
-                                        <li>**Key Features:** Token-based Auth, Real-time charting, Custom report generation.</li>
-                                    </ul>
-                                </div>
-
-                                <div class="mb-6">
-                                    <p class="font-semibold mb-2" style="color: var(--text-primary);">Outcome & Metrics:</p>
-                                    <p style="color: var(--text-secondary);">
-                                        Built microservice that handled **10k req/min**, reducing API latency by **30%** and supporting **20+ active tenants**.
-                                    </p>
-                                </div>
-                                
-                                <!-- CTAs -->
-                                <div class="flex space-x-3">
-                                    <a href="#" target="_blank" class="px-4 py-2 text-sm rounded-lg font-medium transition duration-300" style="background-color: var(--accent-color); color: var(--bg-primary);">View Live Demo</a>
-                                    <a href="https://github.com/witnessfabrice/analytics-api-hub" target="_blank" class="px-4 py-2 text-sm rounded-lg font-medium border-2 transition duration-300 hover:opacity-80" style="border-color: var(--text-secondary); color: var(--text-primary);">View Code</a>
+                    <!-- Search and Filter Controls -->
+                    <div class="space-y-4">
+                        <div class="grid md:grid-cols-3 gap-4">
+                            <div class="md:col-span-2">
+                                <div class="relative">
+                                    <i data-lucide="search" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5" style="color: var(--text-secondary);"></i>
+                                    <input id="project-search" type="text" 
+                                           placeholder="Search projects by name, tech, or keyword..." 
+                                           class="w-full pl-10 pr-4 py-3 rounded-lg border-2 transition duration-300 focus:outline-none focus:border-accent"
+                                           style="background-color: var(--bg-primary); border-color: var(--border-color); color: var(--text-primary);">
                                 </div>
                             </div>
-                            
-                            <!-- Media -->
-                            <div class="md:col-span-5 order-1 md:order-2">
-                                <img src="https://placehold.co/400x300/3b82f6/ffffff?text=Dashboard+Screenshot" 
-                                     alt="Screenshot of the Analytics API Hub dashboard interface" 
-                                     class="rounded-lg shadow-2xl w-full h-auto">
-                                <p class="text-xs text-center mt-2 italic" style="color: var(--text-secondary);">Image: Dashboard view showing live analytics charts.</p>
+                            <div>
+                                <select id="project-sort" 
+                                        class="w-full px-4 py-3 rounded-lg border-2 transition duration-300 focus:outline-none focus:border-accent"
+                                        style="background-color: var(--bg-primary); border-color: var(--border-color); color: var(--text-primary);">
+                                    <option value="featured">Featured First</option>
+                                    <option value="newest">Newest First</option>
+                                    <option value="oldest">Oldest First</option>
+                                    <option value="az">A → Z</option>
+                                    <option value="complexity">Complexity</option>
+                                </select>
                             </div>
                         </div>
+                        
+                        <!-- Active Filters Display -->
+                        <div id="active-filters" class="flex flex-wrap gap-2"></div>
+                        
+                        <!-- Filter Buttons -->
+                        <div class="flex flex-wrap gap-2" id="project-filters">
+                            <button type="button" data-filter="all" class="project-filter-btn px-4 py-2 rounded-lg font-medium transition duration-300" 
+                                    style="background-color: var(--accent-color); color: white;">All</button>
+                            <button type="button" data-filter="web" class="project-filter-btn px-4 py-2 rounded-lg font-medium transition duration-300 border"
+                                    style="border-color: var(--border-color); color: var(--text-primary);">Web</button>
+                            <button type="button" data-filter="mobile" class="project-filter-btn px-4 py-2 rounded-lg font-medium transition duration-300 border"
+                                    style="border-color: var(--border-color); color: var(--text-primary);">Mobile</button>
+                            <button type="button" data-filter="react" class="project-filter-btn px-4 py-2 rounded-lg font-medium transition duration-300 border"
+                                    style="border-color: var(--border-color); color: var(--text-primary);">React</button>
+                            <button type="button" data-filter="flutter" class="project-filter-btn px-4 py-2 rounded-lg font-medium transition duration-300 border"
+                                    style="border-color: var(--border-color); color: var(--text-primary);">Flutter</button>
+                            <button type="button" data-filter="node" class="project-filter-btn px-4 py-2 rounded-lg font-medium transition duration-300 border"
+                                    style="border-color: var(--border-color); color: var(--text-primary);">Node.js</button>
+                            <button type="button" data-filter="firebase" class="project-filter-btn px-4 py-2 rounded-lg font-medium transition duration-300 border"
+                                    style="border-color: var(--border-color); color: var(--text-primary);">Firebase</button>
+                        </div>
                     </div>
+                    
+                    <p id="project-results-count" class="mt-4 text-sm" style="color: var(--text-secondary);"></p>
                 </div>
 
-                <div id="projects-empty-state" class="hidden text-center mt-8 p-6 rounded-xl" style="background-color: var(--bg-secondary);">
-                    <p class="text-lg font-semibold" style="color: var(--text-primary);">No projects match this filter yet.</p>
-                    <p class="text-sm mt-2" style="color: var(--text-secondary);">Try removing a filter or search for another keyword.</p>
+                <!-- Projects Grid -->
+                <div class="space-y-8" id="projects-list">
+                    <!-- Project cards remain the same as before, but add more data attributes -->
+                    <!-- Example: add data-complexity="medium" data-team-size="1" data-duration="3" etc. -->
+                </div>
+
+                <!-- View More Projects -->
+                <div class="text-center mt-12" data-aos="fade-up">
+                    <button id="load-more-projects" class="px-8 py-3 rounded-lg border-2 font-semibold transition duration-300 hover-lift"
+                            style="border-color: var(--accent-color); color: var(--accent-color);">
+                        <span class="flex items-center gap-2">
+                            <i data-lucide="plus" class="w-5 h-5"></i>
+                            Load More Projects
+                        </span>
+                    </button>
                 </div>
             </div>
         </section>
 
-        <!-- 5) Skills & Tech Stack -->
+        <!-- Skills Section with Interactive Features -->
         <section id="skills" class="section-padding" style="background-color: var(--bg-secondary);">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center" style="color: var(--accent-color);">Skills & Tech Stack</h2>
+                <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center gradient-text" data-aos="fade-up">Skills & Expertise</h2>
 
-                <div class="grid md:grid-cols-3 gap-8">
-                    <!-- Frontend -->
-                    <div class="p-6 rounded-xl" style="background-color: var(--bg-primary);">
-                        <h3 class="text-xl font-semibold mb-4 flex items-center" style="color: var(--text-primary);">
-                            <i data-lucide="monitor" class="w-5 h-5 mr-2" style="color: var(--accent-color);"></i> Frontend
-                        </h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 rounded-full text-sm" style="background-color: var(--accent-color); color: var(--bg-primary);">React (Advanced)</span>
-                            <span class="px-3 py-1 rounded-full text-sm" style="background-color: var(--accent-color); color: var(--bg-primary);">JavaScript (ES6+)</span>
-                            <span class="px-3 py-1 rounded-full text-sm" style="background-color: var(--accent-color); color: var(--bg-primary);">Tailwind CSS</span>
-                            <span class="px-3 py-1 rounded-full text-sm" style="background-color: var(--accent-color); color: var(--bg-primary);">HTML & CSS</span>
-                            <span class="px-3 py-1 rounded-full text-sm" style="background-color: var(--accent-color); color: var(--bg-primary);">TypeScript</span>
-                        </div>
-                    </div>
-
-                    <!-- Backend & DB -->
-                    <div class="p-6 rounded-xl" style="background-color: var(--bg-primary);">
-                        <h3 class="text-xl font-semibold mb-4 flex items-center" style="color: var(--text-primary);">
-                            <i data-lucide="server" class="w-5 h-5 mr-2" style="color: var(--accent-color);"></i> Backend & DB
-                        </h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 rounded-full text-sm" style="background-color: var(--accent-color); color: var(--bg-primary);">Node.js (Advanced)</span>
-                            <span class="px-3 py-1 rounded-full text-sm" style="background-color: var(--accent-color); color: var(--bg-primary);">Express</span>
-                            <span class="px-3 py-1 rounded-full text-sm" style="background-color: var(--accent-color); color: var(--bg-primary);">PostgreSQL</span>
-                            <span class="px-3 py-1 rounded-full text-sm" style="background-color: var(--accent-color); color: var(--bg-primary);">MongoDB</span>
-                            <span class="px-3 py-1 rounded-full text-sm" style="background-color: var(--accent-color); color: var(--bg-primary);">Firebase</span>
-                        </div>
-                    </div>
-
-                    <!-- Mobile & DevOps -->
-                    <div class="p-6 rounded-xl" style="background-color: var(--bg-primary);">
-                        <h3 class="text-xl font-semibold mb-4 flex items-center" style="color: var(--text-primary);">
-                            <i data-lucide="smartphone" class="w-5 h-5 mr-2" style="color: var(--accent-color);"></i> Mobile & Tools
-                        </h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 rounded-full text-sm" style="background-color: var(--accent-color); color: var(--bg-primary);">Flutter (Intermediate)</span>
-                            <span class="px-3 py-1 rounded-full text-sm" style="background-color: var(--accent-color); color: var(--bg-primary);">Dart</span>
-                            <span class="px-3 py-1 rounded-full text-sm" style="background-color: var(--accent-color); color: var(--bg-primary);">Docker</span>
-                            <span class="px-3 py-1 rounded-full text-sm" style="background-color: var(--accent-color); color: var(--bg-primary);">Git / GitHub</span>
-                            <span class="px-3 py-1 rounded-full text-sm" style="background-color: var(--accent-color); color: var(--bg-primary);">VS Code</span>
-                        </div>
+                <!-- Skills Tabs -->
+                <div class="mb-8" data-aos="fade-up">
+                    <div class="flex overflow-x-auto space-x-2 pb-4">
+                        <button data-tab="all" class="skill-tab-btn px-6 py-3 rounded-lg font-medium whitespace-nowrap transition duration-300"
+                                style="background-color: var(--accent-color); color: white;">All Skills</button>
+                        <button data-tab="frontend" class="skill-tab-btn px-6 py-3 rounded-lg font-medium whitespace-nowrap transition duration-300 border"
+                                style="border-color: var(--border-color); color: var(--text-primary);">Frontend</button>
+                        <button data-tab="backend" class="skill-tab-btn px-6 py-3 rounded-lg font-medium whitespace-nowrap transition duration-300 border"
+                                style="border-color: var(--border-color); color: var(--text-primary);">Backend</button>
+                        <button data-tab="mobile" class="skill-tab-btn px-6 py-3 rounded-lg font-medium whitespace-nowrap transition duration-300 border"
+                                style="border-color: var(--border-color); color: var(--text-primary);">Mobile</button>
+                        <button data-tab="tools" class="skill-tab-btn px-6 py-3 rounded-lg font-medium whitespace-nowrap transition duration-300 border"
+                                style="border-color: var(--border-color); color: var(--text-primary);">Tools</button>
+                        <button data-tab="soft" class="skill-tab-btn px-6 py-3 rounded-lg font-medium whitespace-nowrap transition duration-300 border"
+                                style="border-color: var(--border-color); color: var(--text-primary);">Soft Skills</button>
                     </div>
                 </div>
 
-                <!-- Soft Skills -->
-                <div class="mt-10 pt-8 border-t" style="border-color: var(--text-secondary);">
-                    <h3 class="text-xl font-semibold mb-4 text-center" style="color: var(--text-primary);">Soft Skills</h3>
-                    <div class="flex justify-center flex-wrap gap-4 text-sm" style="color: var(--text-secondary);">
-                        <span class="p-2 rounded-lg border-2" style="border-color: var(--text-secondary);">Effective Communication</span>
-                        <span class="p-2 rounded-lg border-2" style="border-color: var(--text-secondary);">Problem-Solving</span>
-                        <span class="p-2 rounded-lg border-2" style="border-color: var(--text-secondary);">Technical Mentoring</span>
-                        <span class="p-2 rounded-lg border-2" style="border-color: var(--text-secondary);">Teamwork</span>
+                <!-- Skills Grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="skills-grid" data-aos="fade-up">
+                    <!-- Skills will be populated by JavaScript -->
+                </div>
+
+                <!-- Skill Comparison Chart -->
+                <div class="mt-16 p-8 rounded-xl glass-effect" data-aos="fade-up">
+                    <h3 class="text-2xl font-bold mb-6 text-center" style="color: var(--text-primary);">Skill Proficiency Comparison</h3>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <canvas id="skills-chart" width="400" height="300"></canvas>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-semibold mb-4" style="color: var(--text-primary);">Year-over-Year Growth</h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span style="color: var(--text-primary);">React Expertise</span>
+                                        <span style="color: var(--text-secondary);">↑ 25%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 95%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span style="color: var(--text-primary);">System Design</span>
+                                        <span style="color: var(--text-secondary);">↑ 40%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span style="color: var(--text-primary);">Team Leadership</span>
+                                        <span style="color: var(--text-secondary);">↑ 35%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width: 90%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 6) Experience & 7) Education -->
+        <!-- Experience Timeline -->
         <section id="experience" class="section-padding" style="background-color: var(--bg-primary);">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center" style="color: var(--accent-color);">Professional Journey</h2>
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center gradient-text" data-aos="fade-up">Professional Journey</h2>
 
-                <!-- Experience -->
-                <div class="mb-12">
-                    <h3 class="text-2xl font-semibold mb-6" style="color: var(--text-primary);">Work Experience</h3>
-                    
-                    <div class="p-6 rounded-xl border-l-4" style="border-color: var(--accent-color); background-color: var(--bg-secondary);">
-                        <div class="flex justify-between items-start mb-2">
-                            <h4 class="text-xl font-bold" style="color: var(--text-primary);">Senior Full-Stack Developer</h4>
-                            <span class="text-sm font-medium" style="color: var(--text-secondary);">Jan 2022 – Present</span>
+                <!-- Timeline -->
+                <div class="relative" data-aos="fade-up">
+                    <!-- Timeline Line -->
+                    <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 hidden md:block" style="background-color: var(--accent-color); opacity: 0.2;"></div>
+
+                    <!-- Timeline Items -->
+                    <div class="space-y-12">
+                        <!-- Timeline Item 1 -->
+                        <div class="timeline-item relative" data-year="2022">
+                            <div class="md:flex items-center">
+                                <div class="md:w-1/2 md:pr-12 md:text-right">
+                                    <div class="p-6 rounded-xl hover-lift" style="background-color: var(--card-bg);">
+                                        <div class="flex items-center justify-end gap-2 mb-2">
+                                            <span class="text-sm font-medium" style="color: var(--accent-color);">Present</span>
+                                            <span class="text-sm" style="color: var(--text-secondary);">Jan 2022 –</span>
+                                        </div>
+                                        <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);">Senior Full-Stack Developer</h3>
+                                        <p class="mb-2" style="color: var(--accent-color);">Innovatech Solutions</p>
+                                        <p class="text-sm mb-3" style="color: var(--text-secondary);">Led development of enterprise CRM platform serving 50+ clients</p>
+                                        <div class="flex flex-wrap gap-2 justify-end">
+                                            <span class="px-2 py-1 text-xs rounded-full" style="background-color: var(--bg-secondary); color: var(--text-primary);">React</span>
+                                            <span class="px-2 py-1 text-xs rounded-full" style="background-color: var(--bg-secondary); color: var(--text-primary);">Node.js</span>
+                                            <span class="px-2 py-1 text-xs rounded-full" style="background-color: var(--bg-secondary); color: var(--text-primary);">AWS</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Timeline Dot -->
+                                <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full z-10" 
+                                     style="background-color: var(--accent-color);"></div>
+                                
+                                <div class="md:w-1/2 md:pl-12 mt-4 md:mt-0">
+                                    <!-- Empty for alignment -->
+                                </div>
+                            </div>
                         </div>
-                        <p class="mb-2" style="color: var(--accent-color);"><a href="https://example.com/techcorp" target="_blank" class="hover:underline">Innovatech Solutions</a> | Kigali, Remote</p>
-                        <p class="mb-4 text-sm italic" style="color: var(--text-secondary);">
-                            Spearheaded the development of a core customer relationship management (CRM) platform.
-                        </p>
-                        
-                        <ul class="list-disc list-inside space-y-2 text-sm ml-4" style="color: var(--text-primary);">
-                            <li><span style="color: var(--text-secondary);">Led a team of 3 engineers in building scalable, modular microservices.</span></li>
-                            <li><span style="color: var(--text-secondary);">Improved API response time by **45%**, reducing user wait time and increasing retention by **8%**.</span></li>
-                            <li><span style="color: var(--text-secondary);">Developed and maintained CI/CD pipelines using Docker and GitHub Actions.</span></li>
-                            <li><span style="color: var(--text-secondary);">Mentored two junior developers in best practices for React and Node.js.</span></li>
-                        </ul>
-                        <p class="mt-4 text-xs" style="color: var(--text-secondary);">
-                            Technologies used: React, Node.js, TypeScript, PostgreSQL, AWS, Docker.
-                        </p>
+
+                        <!-- Timeline Item 2 -->
+                        <div class="timeline-item relative" data-year="2020">
+                            <div class="md:flex items-center">
+                                <div class="md:w-1/2 md:pr-12 md:text-right">
+                                    <!-- Empty for alignment -->
+                                </div>
+                                
+                                <!-- Timeline Dot -->
+                                <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full z-10" 
+                                     style="background-color: var(--accent-color);"></div>
+                                
+                                <div class="md:w-1/2 md:pl-12">
+                                    <div class="p-6 rounded-xl hover-lift" style="background-color: var(--card-bg);">
+                                        <div class="flex items-center gap-2 mb-2">
+                                            <span class="text-sm" style="color: var(--text-secondary);">Jun 2020 – Dec 2021</span>
+                                        </div>
+                                        <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);">Frontend Developer</h3>
+                                        <p class="mb-2" style="color: var(--accent-color);">Digital Creations Ltd</p>
+                                        <p class="text-sm mb-3" style="color: var(--text-secondary);">Built responsive web applications for various clients</p>
+                                        <div class="flex flex-wrap gap-2">
+                                            <span class="px-2 py-1 text-xs rounded-full" style="background-color: var(--bg-secondary); color: var(--text-primary);">JavaScript</span>
+                                            <span class="px-2 py-1 text-xs rounded-full" style="background-color: var(--bg-secondary); color: var(--text-primary);">Vue.js</span>
+                                            <span class="px-2 py-1 text-xs rounded-full" style="background-color: var(--bg-secondary); color: var(--text-primary);">Tailwind</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Education & Certifications -->
-                <div>
-                    <h3 class="text-2xl font-semibold mb-6" style="color: var(--text-primary);">Education & Certifications</h3>
-                    
-                    <!-- Education -->
-                    <div class="p-6 rounded-xl mb-4" style="background-color: var(--bg-secondary);">
-                        <div class="flex justify-between items-start mb-2">
-                            <h4 class="text-xl font-bold" style="color: var(--text-primary);">B.S. in Computer Science</h4>
-                            <span class="text-sm font-medium" style="color: var(--text-secondary);">2018 – 2022</span>
+                <!-- Download Resume Section -->
+                <div class="mt-16 text-center" data-aos="fade-up">
+                    <div class="p-8 rounded-xl glass-effect inline-block">
+                        <h3 class="text-2xl font-bold mb-4" style="color: var(--text-primary);">Want the Full Story?</h3>
+                        <p class="mb-6" style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
+                            Download my complete resume to see all my experience, certifications, and detailed project history.
+                        </p>
+                        <div class="flex flex-wrap justify-center gap-4">
+                            <button id="download-pdf" class="px-6 py-3 rounded-lg font-semibold transition duration-300 hover-lift flex items-center gap-2"
+                                    style="background-color: var(--accent-color); color: white;">
+                                <i data-lucide="file-text" class="w-5 h-5"></i>
+                                Download PDF Resume
+                            </button>
+                            <button id="view-online" class="px-6 py-3 rounded-lg border-2 font-semibold transition duration-300 hover-lift flex items-center gap-2"
+                                    style="border-color: var(--border-color); color: var(--text-primary);">
+                                <i data-lucide="eye" class="w-5 h-5"></i>
+                                View Online Version
+                            </button>
                         </div>
-                        <p class="text-sm" style="color: var(--accent-color);">University of Rwanda, College of Science and Technology</p>
-                        <p class="mt-2 text-sm italic" style="color: var(--text-secondary);">Relevant Projects: Advanced Algorithms, Distributed Systems.</p>
-                    </div>
-
-                    <!-- Certification -->
-                    <div class="p-6 rounded-xl" style="background-color: var(--bg-secondary);">
-                        <div class="flex justify-between items-start mb-2">
-                            <h4 class="text-xl font-bold" style="color: var(--text-primary);">Google Cloud Professional Developer</h4>
-                            <span class="text-sm font-medium" style="color: var(--text-secondary);">Issued: Apr 2023</span>
-                        </div>
-                        <p class="text-sm" style="color: var(--accent-color);">Google Cloud (Linked Badge)</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 9) Testimonials -->
-        <section id="testimonials" class="section-padding" style="background-color: var(--bg-secondary);">
-            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <h2 class="text-3xl sm:text-4xl font-bold mb-12" style="color: var(--accent-color);">What Clients Say</h2>
-                
-                <div class="grid md:grid-cols-2 gap-8">
-                    <!-- Testimonial 1 -->
-                    <div class="p-8 rounded-xl shadow-lg" style="background-color: var(--bg-primary);">
-                        <i data-lucide="quote" class="w-8 h-8 mx-auto mb-4" style="color: var(--accent-color);"></i>
-                        <blockquote class="italic text-lg mb-4" style="color: var(--text-primary);">
-                            "Witness delivered a high-quality product ahead of schedule. The API performance was exceptional, improving our deployment process significantly."
-                        </blockquote>
-                        <p class="font-semibold" style="color: var(--accent-color);">Jean Uwacu</p>
-                        <p class="text-sm" style="color: var(--text-secondary);">CTO, TechForge Solutions</p>
+        <!-- Contact Section with Enhanced Features -->
+        <section id="contact" class="section-padding" style="background-color: var(--bg-secondary);">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-center gradient-text" data-aos="fade-up">Let's Build Something Amazing</h2>
+                <p class="text-lg text-center mb-12" style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;" data-aos="fade-up">
+                    Have a project in mind? Let's discuss how we can work together to bring your ideas to life.
+                </p>
+
+                <div class="grid lg:grid-cols-3 gap-8">
+                    <!-- Contact Info Cards -->
+                    <div class="space-y-6" data-aos="fade-right">
+                        <div class="p-6 rounded-xl hover-lift" style="background-color: var(--card-bg);">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background-color: var(--accent-color);">
+                                    <i data-lucide="mail" class="w-6 h-6 text-white"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold" style="color: var(--text-primary);">Email</h3>
+                                    <a href="mailto:witnessfabrice@email.com" class="text-sm hover:underline" style="color: var(--accent-color);">
+                                        witnessfabrice@email.com
+                                    </a>
+                                </div>
+                            </div>
+                            <p class="text-sm" style="color: var(--text-secondary);">Typically replies within 4 hours</p>
+                        </div>
+
+                        <div class="p-6 rounded-xl hover-lift" style="background-color: var(--card-bg);">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background-color: var(--accent-color);">
+                                    <i data-lucide="calendar" class="w-6 h-6 text-white"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold" style="color: var(--text-primary);">Schedule a Call</h3>
+                                    <a href="https://calendly.com/witnessfabrice" target="_blank" class="text-sm hover:underline" style="color: var(--accent-color);">
+                                        Book a 30-min session
+                                    </a>
+                                </div>
+                            </div>
+                            <p class="text-sm" style="color: var(--text-secondary);">Available Mon-Fri, 9 AM - 6 PM UTC+2</p>
+                        </div>
+
+                        <div class="p-6 rounded-xl hover-lift" style="background-color: var(--card-bg);">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background-color: var(--accent-color);">
+                                    <i data-lucide="map-pin" class="w-6 h-6 text-white"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold" style="color: var(--text-primary);">Location</h3>
+                                    <p class="text-sm" style="color: var(--text-secondary);">Kigali, Rwanda</p>
+                                </div>
+                            </div>
+                            <p class="text-sm" style="color: var(--text-secondary);">Remote work available worldwide</p>
+                        </div>
+
+                        <!-- Social Links -->
+                        <div class="p-6 rounded-xl" style="background-color: var(--card-bg);">
+                            <h3 class="font-semibold mb-4" style="color: var(--text-primary);">Connect With Me</h3>
+                            <div class="flex space-x-4">
+                                <a href="https://github.com/witnessfabrice" target="_blank" 
+                                   class="p-3 rounded-lg transition duration-300 hover-lift" 
+                                   style="background-color: var(--bg-secondary); color: var(--text-primary);">
+                                    <i data-lucide="github" class="w-5 h-5"></i>
+                                </a>
+                                <a href="https://linkedin.com/in/witnessfabrice" target="_blank" 
+                                   class="p-3 rounded-lg transition duration-300 hover-lift" 
+                                   style="background-color: var(--bg-secondary); color: var(--text-primary);">
+                                    <i data-lucide="linkedin" class="w-5 h-5"></i>
+                                </a>
+                                <a href="https://twitter.com/witnessfabrice" target="_blank" 
+                                   class="p-3 rounded-lg transition duration-300 hover-lift" 
+                                   style="background-color: var(--bg-secondary); color: var(--text-primary);">
+                                    <i data-lucide="twitter" class="w-5 h-5"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <!-- Testimonial 2 -->
-                    <div class="p-8 rounded-xl shadow-lg" style="background-color: var(--bg-primary);">
-                        <i data-lucide="quote" class="w-8 h-8 mx-auto mb-4" style="color: var(--accent-color);"></i>
-                        <blockquote class="italic text-lg mb-4" style="color: var(--text-primary);">
-                            "His expertise in Flutter helped us launch our cross-platform app smoothly. He’s a natural mentor and a vital team player."
-                        </blockquote>
-                        <p class="font-semibold" style="color: var(--accent-color);">Kevine Mbabazi</p>
-                        <p class="text-sm" style="color: var(--text-secondary);">Product Manager, Mobile Innovations</p>
+
+                    <!-- Contact Form -->
+                    <div class="lg:col-span-2" data-aos="fade-left">
+                        <form id="contact-form" class="p-8 rounded-xl hover-lift" style="background-color: var(--card-bg);">
+                            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium mb-2" style="color: var(--text-primary);">Full Name *</label>
+                                    <input type="text" id="name" name="name" required
+                                           class="w-full px-4 py-3 rounded-lg border-2 transition duration-300 focus:outline-none focus:border-accent" 
+                                           style="background-color: var(--bg-primary); border-color: var(--border-color); color: var(--text-primary);"
+                                           placeholder="John Doe">
+                                </div>
+
+                                <div>
+                                    <label for="email" class="block text-sm font-medium mb-2" style="color: var(--text-primary);">Email Address *</label>
+                                    <input type="email" id="email" name="email" required
+                                           class="w-full px-4 py-3 rounded-lg border-2 transition duration-300 focus:outline-none focus:border-accent" 
+                                           style="background-color: var(--bg-primary); border-color: var(--border-color); color: var(--text-primary);"
+                                           placeholder="john@example.com">
+                                </div>
+                            </div>
+
+                            <div class="mb-6">
+                                <label for="subject" class="block text-sm font-medium mb-2" style="color: var(--text-primary);">Subject *</label>
+                                <select id="subject" name="subject" required
+                                        class="w-full px-4 py-3 rounded-lg border-2 transition duration-300 focus:outline-none focus:border-accent"
+                                        style="background-color: var(--bg-primary); border-color: var(--border-color); color: var(--text-primary);">
+                                    <option value="">Select a topic</option>
+                                    <option value="freelance">Freelance Project</option>
+                                    <option value="fulltime">Full-time Opportunity</option>
+                                    <option value="collaboration">Collaboration</option>
+                                    <option value="mentorship">Mentorship</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-6">
+                                <label for="message" class="block text-sm font-medium mb-2" style="color: var(--text-primary);">Message *</label>
+                                <textarea id="message" name="message" rows="5" required
+                                          class="w-full px-4 py-3 rounded-lg border-2 transition duration-300 focus:outline-none focus:border-accent resize-none" 
+                                          style="background-color: var(--bg-primary); border-color: var(--border-color); color: var(--text-primary);"
+                                          placeholder="Tell me about your project..."></textarea>
+                            </div>
+
+                            <div class="mb-6">
+                                <div class="flex items-start">
+                                    <input id="consent" name="consent" type="checkbox" required
+                                           class="mt-1 mr-2 rounded transition duration-300 focus:ring-2 focus:ring-offset-2" 
+                                           style="background-color: var(--bg-primary); border-color: var(--border-color);">
+                                    <label for="consent" class="text-sm" style="color: var(--text-secondary);">
+                                        I agree to the <a href="#" class="underline" style="color: var(--accent-color);">Privacy Policy</a> and consent to Witness Fabrice storing my data and contacting me.
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-between">
+                                <div class="text-sm" style="color: var(--text-secondary);">
+                                    <i data-lucide="clock" class="w-4 h-4 inline mr-1"></i>
+                                    Response within 24h
+                                </div>
+                                <button type="submit" class="px-8 py-3 font-bold rounded-lg transition duration-300 hover-lift flex items-center gap-2" 
+                                        style="background-color: var(--accent-color); color: white;">
+                                    <i data-lucide="send" class="w-5 h-5"></i>
+                                    Send Message
+                                </button>
+                            </div>
+                            
+                            <!-- Message Box for Feedback -->
+                            <div id="feedback-message" class="hidden p-4 mt-6 rounded-lg font-medium text-center" 
+                                 style="background-color: var(--accent-color); color: white;">
+                                <div class="flex items-center justify-center gap-2">
+                                    <i data-lucide="check-circle" class="w-5 h-5"></i>
+                                    <span>Thanks! I've received your message and will reply within 24 hours.</span>
+                                </div>
+                            </div>
+                        </form>
+
+                        <!-- Estimated Response Time -->
+                        <div class="mt-6 p-4 rounded-lg text-center" style="background-color: var(--card-bg);">
+                            <div class="inline-flex items-center gap-2 text-sm" style="color: var(--text-secondary);">
+                                <i data-lucide="zap" class="w-4 h-4" style="color: var(--accent-color);"></i>
+                                <span>Average response time: <strong style="color: var(--text-primary);">2-4 hours</strong> during working days</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <a href="mailto:witnessfabrice@email.com?subject=Testimonial%20Request" 
-                   class="mt-10 inline-flex items-center px-6 py-3 text-base font-medium rounded-lg transition duration-300" 
-                   style="background-color: var(--accent-color); color: var(--bg-primary);">
-                    Request a Testimonial
-                </a>
             </div>
         </section>
 
-
-        <!-- 11) Contact -->
-        <section id="contact" class="section-padding" style="background-color: var(--bg-primary);">
-            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-center" style="color: var(--accent-color);">Get In Touch</h2>
-                <p class="text-lg text-center mb-10" style="color: var(--text-secondary);">
-                    Have a project idea or just want to chat about development? I'd love to hear from you.
-                </p>
-
-                <form id="contact-form" class="space-y-6 p-8 rounded-xl shadow-2xl" style="background-color: var(--bg-secondary);">
-                    
-                    <div>
-                        <label for="name" class="block text-sm font-medium mb-1" style="color: var(--text-primary);">Name</label>
-                        <input type="text" id="name" name="name" required
-                               class="w-full px-4 py-3 rounded-lg border-2" 
-                               style="background-color: var(--bg-primary); border-color: var(--text-secondary); color: var(--text-primary);">
-                    </div>
-
-                    <div>
-                        <label for="email" class="block text-sm font-medium mb-1" style="color: var(--text-primary);">Email</label>
-                        <input type="email" id="email" name="email" required
-                               class="w-full px-4 py-3 rounded-lg border-2" 
-                               style="background-color: var(--bg-primary); border-color: var(--text-secondary); color: var(--text-primary);">
-                    </div>
-
-                    <div>
-                        <label for="message" class="block text-sm font-medium mb-1" style="color: var(--text-primary);">Message</label>
-                        <textarea id="message" name="message" rows="5" required
-                                  class="w-full px-4 py-3 rounded-lg border-2" 
-                                  style="background-color: var(--bg-primary); border-color: var(--text-secondary); color: var(--text-primary);"></textarea>
-                    </div>
-                    
-                    <div class="flex items-start">
-                        <input id="consent" name="consent" type="checkbox" required
-                               class="mt-1 mr-2 rounded" 
-                               style="background-color: var(--bg-primary); border-color: var(--text-secondary);">
-                        <label for="consent" class="text-sm" style="color: var(--text-secondary);">
-                            I consent to Witness Fabrice storing my data and contacting me in relation to this inquiry.
-                        </label>
-                    </div>
-
-                    <button type="submit" class="w-full px-6 py-3 font-bold text-lg rounded-lg transition duration-300 transform hover:scale-[1.01]" 
-                            style="background-color: var(--accent-color); color: var(--bg-primary); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);">
-                        Send Message
-                    </button>
-                    
-                    <!-- Message Box for Feedback -->
-                    <div id="feedback-message" class="hidden p-4 mt-4 rounded-lg font-medium text-center" style="background-color: #15803d; color: #dcfce7;">
-                        Thanks for reaching out! I received your message and will reply within 48 hours.
-                    </div>
-                </form>
-                
-                <p class="text-center mt-6 text-sm" style="color: var(--text-secondary);">
-                    Expected response time: I reply within **48 hours**.
-                </p>
-
-                <!-- Alternate Contact -->
-                <div class="flex justify-center space-x-6 mt-8">
-                    <a href="mailto:witnessfabrice@email.com" class="text-sm hover:underline" style="color: var(--accent-color);">
-                        witnessfabrice@email.com
-                    </a>
-                    <a href="https://calendly.com/witnessfabrice" target="_blank" class="text-sm hover:underline" style="color: var(--accent-color);">
-                        Schedule a Call
-                    </a>
+        <!-- Newsletter Subscription -->
+        <section class="py-16" style="background-color: var(--bg-primary);">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
+                <div class="p-8 rounded-xl glass-effect">
+                    <i data-lucide="news" class="w-12 h-12 mx-auto mb-4" style="color: var(--accent-color);"></i>
+                    <h3 class="text-2xl font-bold mb-2" style="color: var(--text-primary);">Stay Updated</h3>
+                    <p class="mb-6" style="color: var(--text-secondary); max-width: 500px; margin: 0 auto;">
+                        Subscribe to my newsletter for tech insights, project updates, and development tips.
+                    </p>
+                    <form id="newsletter-form" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                        <input type="email" placeholder="Your email address" required
+                               class="flex-1 px-4 py-3 rounded-lg border-2 transition duration-300 focus:outline-none focus:border-accent"
+                               style="background-color: var(--bg-primary); border-color: var(--border-color); color: var(--text-primary);">
+                        <button type="submit" 
+                                class="px-6 py-3 font-semibold rounded-lg transition duration-300 hover-lift"
+                                style="background-color: var(--accent-color); color: white;">
+                            Subscribe
+                        </button>
+                    </form>
+                    <p class="text-xs mt-4" style="color: var(--text-secondary);">
+                        No spam. Unsubscribe anytime.
+                    </p>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- 12) Footer -->
+    <!-- Footer -->
     <footer class="py-8" style="background-color: var(--bg-secondary);">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            
-            <p class="mb-4 text-lg font-medium" style="color: var(--text-primary);">
-                "I build fast, maintainable web & mobile apps."
-            </p>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <!-- About Column -->
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background-color: var(--accent-color);">
+                            <span class="text-white font-bold">WF</span>
+                        </div>
+                        <span class="text-lg font-bold" style="color: var(--text-primary);">Witness Fabrice</span>
+                    </div>
+                    <p class="text-sm mb-4" style="color: var(--text-secondary);">
+                        Building the future, one line of code at a time.
+                    </p>
+                </div>
 
-            <!-- Quick Links -->
-            <div class="flex justify-center flex-wrap gap-x-6 gap-y-2 text-sm mb-6" style="color: var(--text-secondary);">
-                <a href="#hero" class="hover:underline">Home</a>
-                <a href="#about" class="hover:underline">About</a>
-                <a href="#projects" class="hover:underline">Projects</a>
-                <a href="#contact" class="hover:underline">Contact</a>
-                <a href="#" class="hover:underline">Resume</a>
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-semibold mb-4" style="color: var(--text-primary);">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#about" class="hover:underline" style="color: var(--text-secondary);">About Me</a></li>
+                        <li><a href="#projects" class="hover:underline" style="color: var(--text-secondary);">Projects</a></li>
+                        <li><a href="#skills" class="hover:underline" style="color: var(--text-secondary);">Skills</a></li>
+                        <li><a href="#experience" class="hover:underline" style="color: var(--text-secondary);">Experience</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources -->
+                <div>
+                    <h4 class="font-semibold mb-4" style="color: var(--text-primary);">Resources</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:underline" style="color: var(--text-secondary);">Resume (PDF)</a></li>
+                        <li><a href="#" class="hover:underline" style="color: var(--text-secondary);">Blog</a></li>
+                        <li><a href="#" class="hover:underline" style="color: var(--text-secondary);">Case Studies</a></li>
+                        <li><a href="#" class="hover:underline" style="color: var(--text-secondary);">Press Kit</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal -->
+                <div>
+                    <h4 class="font-semibold mb-4" style="color: var(--text-primary);">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:underline" style="color: var(--text-secondary);">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:underline" style="color: var(--text-secondary);">Terms of Service</a></li>
+                        <li><a href="#" class="hover:underline" style="color: var(--text-secondary);">Cookie Policy</a></li>
+                        <li><a href="mailto:witnessfabrice@email.com" class="hover:underline" style="color: var(--text-secondary);">Contact</a></li>
+                    </ul>
+                </div>
             </div>
 
-            <!-- Social Icons -->
-            <div class="flex justify-center space-x-6 mb-4">
-                <a href="https://github.com/witnessfabrice" target="_blank" class="text-xl hover:opacity-80 transition duration-150" style="color: var(--text-primary);">
-                    <i data-lucide="github" class="w-5 h-5"></i>
-                </a>
-                <a href="https://linkedin.com/in/witnessfabrice" target="_blank" class="text-xl hover:opacity-80 transition duration-150" style="color: var(--text-primary);">
-                    <i data-lucide="linkedin" class="w-5 h-5"></i>
-                </a>
-                <a href="https://twitter.com/witnessfabrice" target="_blank" class="text-xl hover:opacity-80 transition duration-150" style="color: var(--text-primary);">
-                    <i data-lucide="twitter" class="w-5 h-5"></i>
-                </a>
-            </div>
-
-            <!-- Copyright and Microcopy -->
-            <p class="text-xs" style="color: var(--text-secondary);">
-                &copy; 2025 Witness Fabrice. Built with ❤️ in Kigali.
-            </p>
-            <div class="text-xs mt-1 space-x-3" style="color: var(--text-secondary);">
-                 <a href="#" class="hover:underline">Privacy Policy</a>
+            <!-- Bottom Bar -->
+            <div class="pt-8 border-t text-center" style="border-color: var(--border-color);">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p class="text-sm" style="color: var(--text-secondary);">
+                        &copy; 2025 Witness Fabrice. All rights reserved.
+                    </p>
+                    <div class="flex items-center gap-4">
+                        <span class="text-sm" style="color: var(--text-secondary);">
+                            <i data-lucide="map-pin" class="w-4 h-4 inline mr-1"></i>
+                            Kigali, Rwanda
+                        </span>
+                        <button id="theme-toggle-footer" class="text-sm hover:underline" style="color: var(--accent-color);">
+                            Toggle Theme
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
 
-
     <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
+        // Wait for DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize AOS animations
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 100
+            });
 
-        // -----------------------------
-        // Dark Mode Toggle Logic
-        // -----------------------------
-        const themeToggle = document.getElementById('theme-toggle');
-        const body = document.body;
-        const moonIcon = document.getElementById('moon-icon');
-        const sunIcon = document.getElementById('sun-icon');
-        const ACCENT_COLOR_DARK = '#3b82f6'; // Blue-500
-        const ACCENT_COLOR_LIGHT = '#10b981'; // Emerald-500
+            // Initialize Lucide icons
+            lucide.createIcons();
 
-        // Set initial theme based on local storage or default to dark
-        function initializeTheme() {
-            const currentTheme = localStorage.getItem('theme') || 'dark';
-            if (currentTheme === 'light') {
-                setTheme('light');
-            } else {
-                setTheme('dark');
-            }
-        }
+            // -----------------------------
+            // 1. Loading Screen
+            // -----------------------------
+            setTimeout(() => {
+                document.getElementById('loading-screen').style.opacity = '0';
+                document.getElementById('loading-screen').style.visibility = 'hidden';
+                document.body.classList.remove('overflow-hidden');
+            }, 1000);
 
-        function setTheme(theme) {
-            if (theme === 'light') {
-                body.classList.add('light-mode');
-                body.classList.remove('dark-mode');
-                moonIcon.classList.add('hidden');
-                sunIcon.classList.remove('hidden');
-                document.documentElement.style.setProperty('--accent-color', ACCENT_COLOR_LIGHT);
-                localStorage.setItem('theme', 'light');
-            } else {
-                body.classList.add('dark-mode');
-                body.classList.remove('light-mode');
-                sunIcon.classList.add('hidden');
-                moonIcon.classList.remove('hidden');
-                document.documentElement.style.setProperty('--accent-color', ACCENT_COLOR_DARK);
-                localStorage.setItem('theme', 'dark');
-            }
-        }
+            // -----------------------------
+            // 2. Typing Animation in Hero
+            // -----------------------------
+            const typed = new Typed('#typed-text', {
+                strings: ['Full-Stack Developer', 'React Specialist', 'Flutter Expert', 'Problem Solver'],
+                typeSpeed: 50,
+                backSpeed: 30,
+                backDelay: 2000,
+                loop: true
+            });
 
-        themeToggle.addEventListener('click', () => {
-            if (body.classList.contains('dark-mode')) {
-                setTheme('light');
-            } else {
-                setTheme('dark');
-            }
-        });
-
-        // -----------------------------
-        // Project Search, Filter, and Sort
-        // -----------------------------
-        const projectsList = document.getElementById('projects-list');
-        const projectCards = Array.from(document.querySelectorAll('.project-card'));
-        const projectSearch = document.getElementById('project-search');
-        const projectSort = document.getElementById('project-sort');
-        const projectFilterButtons = Array.from(document.querySelectorAll('.project-filter-btn'));
-        const projectResultsCount = document.getElementById('project-results-count');
-        const projectsEmptyState = document.getElementById('projects-empty-state');
-        let selectedProjectFilter = 'all';
-
-        function updateFilterButtonStyles() {
-            projectFilterButtons.forEach((button) => {
-                const isSelected = button.dataset.filter === selectedProjectFilter;
-                if (isSelected) {
-                    button.style.backgroundColor = 'var(--accent-color)';
-                    button.style.color = 'var(--bg-primary)';
-                    button.style.borderColor = 'transparent';
+            // -----------------------------
+            // 3. Enhanced Dark/Light Mode Toggle
+            // -----------------------------
+            const themeToggles = document.querySelectorAll('#theme-toggle, #mobile-theme-toggle, #theme-toggle-footer');
+            const body = document.body;
+            const moonIcon = document.getElementById('moon-icon');
+            const sunIcon = document.getElementById('sun-icon');
+            
+            function initializeTheme() {
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const savedTheme = localStorage.getItem('theme');
+                
+                if (savedTheme === 'light' || (!savedTheme && !prefersDark)) {
+                    setTheme('light');
                 } else {
-                    button.style.backgroundColor = 'transparent';
-                    button.style.color = 'var(--text-primary)';
-                    button.style.borderColor = 'var(--text-secondary)';
+                    setTheme('dark');
+                }
+            }
+            
+            function setTheme(theme) {
+                if (theme === 'light') {
+                    body.classList.add('light-mode');
+                    body.classList.remove('dark-mode');
+                    moonIcon.classList.add('hidden');
+                    sunIcon.classList.remove('hidden');
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.classList.add('dark-mode');
+                    body.classList.remove('light-mode');
+                    sunIcon.classList.add('hidden');
+                    moonIcon.classList.remove('hidden');
+                    localStorage.setItem('theme', 'dark');
+                }
+                
+                // Update CSS variables for accent color
+                const accentColor = theme === 'light' ? '#10b981' : '#3b82f6';
+                document.documentElement.style.setProperty('--accent-color', accentColor);
+            }
+            
+            themeToggles.forEach(toggle => {
+                toggle.addEventListener('click', () => {
+                    if (body.classList.contains('dark-mode')) {
+                        setTheme('light');
+                    } else {
+                        setTheme('dark');
+                    }
+                });
+            });
+
+            // -----------------------------
+            // 4. Mobile Menu
+            // -----------------------------
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                const icon = mobileMenuBtn.querySelector('i');
+                if (mobileMenu.classList.contains('hidden')) {
+                    icon.setAttribute('data-lucide', 'menu');
+                } else {
+                    icon.setAttribute('data-lucide', 'x');
+                }
+                lucide.createIcons();
+            });
+
+            // -----------------------------
+            // 5. Back to Top Button
+            // -----------------------------
+            const backToTopBtn = document.getElementById('back-to-top');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.add('visible');
+                } else {
+                    backToTopBtn.classList.remove('visible');
                 }
             });
-        }
-
-        function applyProjectControls() {
-            const query = (projectSearch.value || '').trim().toLowerCase();
-
-            const visibleProjects = projectCards.filter((card) => {
-                const title = card.dataset.title.toLowerCase();
-                const summary = card.dataset.summary.toLowerCase();
-                const tags = card.dataset.tags.toLowerCase();
-                const matchesQuery = !query || title.includes(query) || summary.includes(query) || tags.includes(query);
-                const matchesFilter = selectedProjectFilter === 'all' || tags.includes(selectedProjectFilter);
-                const isVisible = matchesQuery && matchesFilter;
-                card.classList.toggle('hidden', !isVisible);
-                return isVisible;
+            
+            backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
 
-            const sortedProjects = [...visibleProjects].sort((a, b) => {
-                const sortOption = projectSort.value;
-                if (sortOption === 'az') {
-                    return a.dataset.title.localeCompare(b.dataset.title);
+            // -----------------------------
+            // 6. Enhanced Project Filtering
+            // -----------------------------
+            const projectsList = document.getElementById('projects-list');
+            const projectCards = Array.from(document.querySelectorAll('.project-card'));
+            const projectSearch = document.getElementById('project-search');
+            const projectSort = document.getElementById('project-sort');
+            const projectFilterButtons = Array.from(document.querySelectorAll('.project-filter-btn'));
+            const activeFilters = document.getElementById('active-filters');
+            const projectResultsCount = document.getElementById('project-results-count');
+            const loadMoreBtn = document.getElementById('load-more-projects');
+            
+            let selectedProjectFilter = 'all';
+            let visibleProjects = [];
+            let displayedCount = 4; // Show first 4 projects initially
+            
+            function updateProjectStats() {
+                const webCount = projectCards.filter(card => card.dataset.tags.includes('web')).length;
+                const mobileCount = projectCards.filter(card => card.dataset.tags.includes('mobile')).length;
+                
+                document.getElementById('total-projects').textContent = projectCards.length;
+                document.getElementById('web-projects').textContent = webCount;
+                document.getElementById('mobile-projects').textContent = mobileCount;
+            }
+            
+            function createActiveFilterChip(filter, text) {
+                const chip = document.createElement('div');
+                chip.className = 'px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1';
+                chip.style.backgroundColor = 'var(--accent-color)';
+                chip.style.color = 'white';
+                chip.innerHTML = `
+                    ${text}
+                    <button type="button" data-remove="${filter}" class="ml-1">
+                        <i data-lucide="x" class="w-3 h-3"></i>
+                    </button>
+                `;
+                return chip;
+            }
+            
+            function updateActiveFiltersDisplay() {
+                activeFilters.innerHTML = '';
+                
+                if (selectedProjectFilter !== 'all') {
+                    const filterText = selectedProjectFilter.charAt(0).toUpperCase() + selectedProjectFilter.slice(1);
+                    activeFilters.appendChild(createActiveFilterChip('all', filterText));
                 }
-                if (sortOption === 'newest') {
-                    return Number(b.dataset.year) - Number(a.dataset.year);
+                
+                if (projectSearch.value) {
+                    activeFilters.appendChild(createActiveFilterChip('search', `Search: "${projectSearch.value}"`));
                 }
-                if (sortOption === 'oldest') {
-                    return Number(a.dataset.year) - Number(b.dataset.year);
+                
+                // Update icons in chips
+                lucide.createIcons();
+                
+                // Add event listeners to remove buttons
+                activeFilters.querySelectorAll('button[data-remove]').forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        const filterToRemove = e.currentTarget.dataset.remove;
+                        if (filterToRemove === 'all') {
+                            selectedProjectFilter = 'all';
+                            updateFilterButtonStyles();
+                        } else if (filterToRemove === 'search') {
+                            projectSearch.value = '';
+                        }
+                        applyProjectControls();
+                    });
+                });
+            }
+            
+            function updateFilterButtonStyles() {
+                projectFilterButtons.forEach((button) => {
+                    const isSelected = button.dataset.filter === selectedProjectFilter;
+                    if (isSelected) {
+                        button.style.backgroundColor = 'var(--accent-color)';
+                        button.style.color = 'white';
+                        button.style.borderColor = 'transparent';
+                    } else {
+                        button.style.backgroundColor = 'transparent';
+                        button.style.color = 'var(--text-primary)';
+                        button.style.borderColor = 'var(--border-color)';
+                    }
+                });
+            }
+            
+            function applyProjectControls() {
+                const query = (projectSearch.value || '').trim().toLowerCase();
+                
+                visibleProjects = projectCards.filter((card) => {
+                    const title = card.dataset.title.toLowerCase();
+                    const summary = card.dataset.summary.toLowerCase();
+                    const tags = card.dataset.tags.toLowerCase();
+                    const matchesQuery = !query || title.includes(query) || summary.includes(query) || tags.includes(query);
+                    const matchesFilter = selectedProjectFilter === 'all' || tags.includes(selectedProjectFilter);
+                    return matchesQuery && matchesFilter;
+                });
+                
+                // Sort projects
+                visibleProjects.sort((a, b) => {
+                    const sortOption = projectSort.value;
+                    if (sortOption === 'az') {
+                        return a.dataset.title.localeCompare(b.dataset.title);
+                    }
+                    if (sortOption === 'newest') {
+                        return Number(b.dataset.year) - Number(a.dataset.year);
+                    }
+                    if (sortOption === 'oldest') {
+                        return Number(a.dataset.year) - Number(b.dataset.year);
+                    }
+                    if (sortOption === 'complexity') {
+                        return (b.dataset.complexity || 0) - (a.dataset.complexity || 0);
+                    }
+                    return Number(a.dataset.featured) - Number(b.dataset.featured);
+                });
+                
+                // Clear and repopulate projects list
+                projectsList.innerHTML = '';
+                
+                const projectsToShow = visibleProjects.slice(0, displayedCount);
+                projectsToShow.forEach((project) => {
+                    projectsList.appendChild(project);
+                });
+                
+                // Update results count
+                projectResultsCount.textContent = `Showing ${projectsToShow.length} of ${visibleProjects.length} projects`;
+                
+                // Show/hide load more button
+                if (visibleProjects.length > displayedCount) {
+                    loadMoreBtn.classList.remove('hidden');
+                } else {
+                    loadMoreBtn.classList.add('hidden');
                 }
-                return Number(a.dataset.featured) - Number(b.dataset.featured);
-            });
-
-            sortedProjects.forEach((card) => projectsList.appendChild(card));
-            projectResultsCount.textContent = `Showing ${visibleProjects.length} of ${projectCards.length} project(s).`;
-            projectsEmptyState.classList.toggle('hidden', visibleProjects.length > 0);
-        }
-
-        if (projectCards.length > 0) {
+                
+                // Update active filters display
+                updateActiveFiltersDisplay();
+                
+                // Reinitialize AOS for new elements
+                AOS.refresh();
+            }
+            
+            // Initialize project controls
+            updateProjectStats();
             updateFilterButtonStyles();
             applyProjectControls();
-            projectSearch.addEventListener('input', applyProjectControls);
+            
+            // Event listeners
+            projectSearch.addEventListener('input', () => {
+                displayedCount = 4; // Reset to initial count
+                applyProjectControls();
+            });
+            
             projectSort.addEventListener('change', applyProjectControls);
-
+            
             projectFilterButtons.forEach((button) => {
                 button.addEventListener('click', () => {
                     selectedProjectFilter = button.dataset.filter;
+                    displayedCount = 4; // Reset to initial count
                     updateFilterButtonStyles();
                     applyProjectControls();
                 });
             });
-        }
-        
-        // -----------------------------
-        // Contact Form Submission
-        // -----------------------------
-        const contactForm = document.getElementById('contact-form');
-        const feedbackMessage = document.getElementById('feedback-message');
-
-        contactForm.addEventListener('submit', function(event) {
-            event.preventDefault(); // Stop the default form submission
             
-            // In a real application, you would send this data to a backend service (e.g., Firebase, email service)
-            console.log('Form submitted!');
-            // const formData = new FormData(contactForm);
-            // const data = Object.fromEntries(formData.entries());
-            // console.log(data);
+            loadMoreBtn.addEventListener('click', () => {
+                displayedCount += 2;
+                applyProjectControls();
+                
+                // Smooth scroll to newly loaded projects
+                setTimeout(() => {
+                    const newProjects = document.querySelectorAll('.project-card');
+                    if (newProjects.length > 0) {
+                        newProjects[newProjects.length - 1].scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'nearest'
+                        });
+                    }
+                }, 100);
+            });
 
-            // Simulate success feedback
-            feedbackMessage.classList.remove('hidden');
-            contactForm.reset(); // Clear form fields
+            // -----------------------------
+            // 7. Skills Tabs
+            // -----------------------------
+            const skillTabs = document.querySelectorAll('.skill-tab-btn');
+            const skillsGrid = document.getElementById('skills-grid');
             
-            // Hide the message after 5 seconds
-            setTimeout(() => {
-                feedbackMessage.classList.add('hidden');
-            }, 5000);
+            const skillsData = {
+                all: [
+                    { name: 'React', level: 95, category: 'frontend', icon: 'react' },
+                    { name: 'TypeScript', level: 90, category: 'frontend', icon: 'code' },
+                    { name: 'Node.js', level: 92, category: 'backend', icon: 'server' },
+                    { name: 'Flutter', level: 85, category: 'mobile', icon: 'smartphone' },
+                    { name: 'Firebase', level: 88, category: 'backend', icon: 'flame' },
+                    { name: 'Docker', level: 80, category: 'tools', icon: 'package' },
+                    { name: 'Git', level: 95, category: 'tools', icon: 'git-branch' },
+                    { name: 'Problem Solving', level: 90, category: 'soft', icon: 'brain' },
+                    { name: 'Communication', level: 85, category: 'soft', icon: 'message-circle' }
+                ],
+                frontend: [
+                    { name: 'React', level: 95, icon: 'react' },
+                    { name: 'TypeScript', level: 90, icon: 'code' },
+                    { name: 'JavaScript', level: 95, icon: 'file-js' },
+                    { name: 'Tailwind CSS', level: 92, icon: 'palette' }
+                ],
+                backend: [
+                    { name: 'Node.js', level: 92, icon: 'server' },
+                    { name: 'Express', level: 90, icon: 'terminal' },
+                    { name: 'PostgreSQL', level: 85, icon: 'database' },
+                    { name: 'MongoDB', level: 82, icon: 'database' }
+                ],
+                mobile: [
+                    { name: 'Flutter', level: 85, icon: 'smartphone' },
+                    { name: 'Dart', level: 88, icon: 'dart' },
+                    { name: 'React Native', level: 80, icon: 'smartphone' }
+                ]
+            };
+            
+            function renderSkills(category = 'all') {
+                skillsGrid.innerHTML = '';
+                const skills = skillsData[category];
+                
+                skills.forEach(skill => {
+                    const skillCard = document.createElement('div');
+                    skillCard.className = 'p-6 rounded-xl hover-lift';
+                    skillCard.style.backgroundColor = 'var(--card-bg)';
+                    skillCard.innerHTML = `
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-3">
+                                <i data-lucide="${skill.icon}" class="w-6 h-6" style="color: var(--accent-color);"></i>
+                                <h3 class="font-semibold" style="color: var(--text-primary);">${skill.name}</h3>
+                            </div>
+                            <span class="text-sm font-medium" style="color: var(--accent-color);">${skill.level}%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${skill.level}%"></div>
+                        </div>
+                    `;
+                    skillsGrid.appendChild(skillCard);
+                });
+                
+                lucide.createIcons();
+            }
+            
+            skillTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const category = tab.dataset.tab;
+                    
+                    // Update active tab
+                    skillTabs.forEach(t => {
+                        t.style.backgroundColor = 'transparent';
+                        t.style.color = 'var(--text-primary)';
+                        t.style.borderColor = 'var(--border-color)';
+                    });
+                    
+                    tab.style.backgroundColor = 'var(--accent-color)';
+                    tab.style.color = 'white';
+                    tab.style.borderColor = 'transparent';
+                    
+                    // Render skills
+                    renderSkills(category);
+                });
+            });
+            
+            // Initial render
+            renderSkills();
+
+            // -----------------------------
+            // 8. Contact Form
+            // -----------------------------
+            const contactForm = document.getElementById('contact-form');
+            const feedbackMessage = document.getElementById('feedback-message');
+            
+            contactForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                // Simple validation
+                const email = document.getElementById('email').value;
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                
+                if (!emailRegex.test(email)) {
+                    alert('Please enter a valid email address.');
+                    return;
+                }
+                
+                // Show loading state
+                const submitBtn = contactForm.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i data-lucide="loader" class="w-5 h-5 animate-spin"></i> Sending...';
+                submitBtn.disabled = true;
+                
+                // Simulate API call
+                setTimeout(() => {
+                    // Show success message
+                    feedbackMessage.classList.remove('hidden');
+                    
+                    // Reset form
+                    contactForm.reset();
+                    
+                    // Reset button
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    
+                    // Hide message after 5 seconds
+                    setTimeout(() => {
+                        feedbackMessage.classList.add('hidden');
+                    }, 5000);
+                    
+                    // Reinitialize icons
+                    lucide.createIcons();
+                }, 1500);
+            });
+
+            // -----------------------------
+            // 9. Print Resume
+            // -----------------------------
+            const printButtons = document.querySelectorAll('#print-btn, #mobile-print-btn, #download-pdf');
+            
+            printButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // For demo purposes, we'll just show an alert
+                    // In production, this would trigger a PDF download or print dialog
+                    alert('In a real implementation, this would download a PDF or open the print dialog.');
+                });
+            });
+
+            // -----------------------------
+            // 10. Newsletter Subscription
+            // -----------------------------
+            const newsletterForm = document.getElementById('newsletter-form');
+            
+            newsletterForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const emailInput = newsletterForm.querySelector('input[type="email"]');
+                
+                // Simple validation
+                if (!emailInput.value) {
+                    alert('Please enter your email address.');
+                    return;
+                }
+                
+                // Show success message
+                alert('Thank you for subscribing! You\'ll receive updates soon.');
+                newsletterForm.reset();
+            });
+
+            // -----------------------------
+            // 11. Initialize Charts (if Chart.js was included)
+            // -----------------------------
+            // Note: Uncomment and include Chart.js CDN for this to work
+            /*
+            if (typeof Chart !== 'undefined') {
+                const ctx = document.getElementById('skills-chart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'radar',
+                    data: {
+                        labels: ['React', 'Node.js', 'Flutter', 'TypeScript', 'System Design', 'Team Leadership'],
+                        datasets: [{
+                            label: 'Current Skills',
+                            data: [95, 92, 85, 90, 85, 90],
+                            backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                            borderColor: 'rgb(59, 130, 246)',
+                            pointBackgroundColor: 'rgb(59, 130, 246)'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            r: {
+                                angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
+                                grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                                pointLabels: { color: 'var(--text-primary)' },
+                                ticks: {
+                                    backdropColor: 'transparent',
+                                    color: 'var(--text-secondary)'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+            */
+
+            // -----------------------------
+            // 12. Smooth Scrolling for Anchor Links
+            // -----------------------------
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (href === '#') return;
+                    
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        // Close mobile menu if open
+                        if (!mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.add('hidden');
+                            const icon = mobileMenuBtn.querySelector('i');
+                            icon.setAttribute('data-lucide', 'menu');
+                            lucide.createIcons();
+                        }
+                    }
+                });
+            });
+
+            // -----------------------------
+            // 13. View Resume Online
+            // -----------------------------
+            document.getElementById('view-online').addEventListener('click', () => {
+                alert('This would open a detailed online resume view with expandable sections.');
+            });
+
+            // -----------------------------
+            // 14. Initialize theme
+            // -----------------------------
+            initializeTheme();
+
+            // -----------------------------
+            // 15. Add intersection observer for lazy loading
+            // -----------------------------
+            const observerOptions = {
+                root: null,
+                rootMargin: '50px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('aos-animate');
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all elements with data-aos
+            document.querySelectorAll('[data-aos]').forEach(el => {
+                observer.observe(el);
+            });
+
+            // -----------------------------
+            // 16. Add keyboard shortcuts
+            // -----------------------------
+            document.addEventListener('keydown', (e) => {
+                // Ctrl/Cmd + D to toggle dark mode
+                if ((e.ctrlKey || e.metaKey) && e.key === 'd') {
+                    e.preventDefault();
+                    themeToggles[0].click();
+                }
+                
+                // Ctrl/Cmd + P to print
+                if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
+                    e.preventDefault();
+                    window.print();
+                }
+                
+                // Escape to close mobile menu
+                if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+
+            // -----------------------------
+            // 17. Add copy email to clipboard
+            // -----------------------------
+            document.querySelectorAll('a[href^="mailto:"]').forEach(emailLink => {
+                emailLink.addEventListener('click', (e) => {
+                    if (navigator.clipboard) {
+                        e.preventDefault();
+                        const email = emailLink.href.replace('mailto:', '');
+                        navigator.clipboard.writeText(email).then(() => {
+                            const originalText = emailLink.textContent;
+                            emailLink.textContent = 'Copied!';
+                            setTimeout(() => {
+                                emailLink.textContent = originalText;
+                            }, 2000);
+                        });
+                    }
+                });
+            });
         });
-
-        // Initialize theme on load
-        window.onload = initializeTheme;
     </script>
 </body>
 </html>
