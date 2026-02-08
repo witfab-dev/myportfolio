@@ -141,6 +141,7 @@
                         <i data-lucide="twitter" class="w-6 h-6"></i>
                     </a>
                 </div>
+
             </div>
         </section>
 
@@ -206,10 +207,36 @@
         <section id="projects" class="section-padding" style="background-color: var(--bg-primary);">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center" style="color: var(--accent-color);">Featured Projects</h2>
+
+                <div class="p-5 rounded-xl mb-8" style="background-color: var(--bg-secondary); border: 1px solid var(--text-secondary);">
+                    <div class="grid md:grid-cols-3 gap-4 items-end">
+                        <div class="md:col-span-2">
+                            <label for="project-search" class="block text-sm font-medium mb-2" style="color: var(--text-primary);">Search projects</label>
+                            <input id="project-search" type="text" placeholder="Try: flutter, api, dashboard..." class="w-full px-4 py-2 rounded-lg border" style="background-color: var(--bg-primary); border-color: var(--text-secondary); color: var(--text-primary);">
+                        </div>
+                        <div>
+                            <label for="project-sort" class="block text-sm font-medium mb-2" style="color: var(--text-primary);">Sort by</label>
+                            <select id="project-sort" class="w-full px-4 py-2 rounded-lg border" style="background-color: var(--bg-primary); border-color: var(--text-secondary); color: var(--text-primary);">
+                                <option value="featured">Featured order</option>
+                                <option value="newest">Newest first</option>
+                                <option value="oldest">Oldest first</option>
+                                <option value="az">A → Z</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-3 mt-4" id="project-filters">
+                        <button type="button" data-filter="all" class="project-filter-btn px-3 py-1.5 text-xs font-semibold rounded-full" style="background-color: var(--accent-color); color: var(--bg-primary);">All</button>
+                        <button type="button" data-filter="mobile" class="project-filter-btn px-3 py-1.5 text-xs font-semibold rounded-full border" style="border-color: var(--text-secondary); color: var(--text-primary);">Mobile</button>
+                        <button type="button" data-filter="web" class="project-filter-btn px-3 py-1.5 text-xs font-semibold rounded-full border" style="border-color: var(--text-secondary); color: var(--text-primary);">Web</button>
+                        <button type="button" data-filter="api" class="project-filter-btn px-3 py-1.5 text-xs font-semibold rounded-full border" style="border-color: var(--text-secondary); color: var(--text-primary);">API</button>
+                        <button type="button" data-filter="firebase" class="project-filter-btn px-3 py-1.5 text-xs font-semibold rounded-full border" style="border-color: var(--text-secondary); color: var(--text-primary);">Firebase</button>
+                    </div>
+                    <p id="project-results-count" class="mt-3 text-sm" style="color: var(--text-secondary);"></p>
+                </div>
                 
-                <div class="space-y-16">
+                <div class="space-y-16" id="projects-list">
                     <!-- PROJECT 1: Mobile Marketplace -->
-                    <div class="p-6 rounded-xl shadow-xl transition duration-300 hover:shadow-2xl" style="background-color: var(--bg-secondary);">
+                    <div class="project-card p-6 rounded-xl shadow-xl transition duration-300 hover:shadow-2xl" data-title="Market-Kigali" data-summary="Mobile marketplace app connecting local sellers to customers built with Flutter and Firebase" data-tags="mobile ecommerce firebase flutter" data-year="2024" data-featured="1" style="background-color: var(--bg-secondary);">
                         <div class="grid md:grid-cols-12 gap-8 items-center">
                             <div class="md:col-span-7">
                                 <h3 class="text-2xl font-bold mb-2" style="color: var(--text-primary);">Market-Kigali</h3>
@@ -261,7 +288,7 @@
                     </div>
 
                     <!-- PROJECT 2: SaaS Dashboard -->
-                    <div class="p-6 rounded-xl shadow-xl transition duration-300 hover:shadow-2xl" style="background-color: var(--bg-secondary);">
+                    <div class="project-card p-6 rounded-xl shadow-xl transition duration-300 hover:shadow-2xl" data-title="Analytics API Hub" data-summary="Multi-tenant SaaS dashboard for customer engagement metrics" data-tags="web api open-source dashboard node react" data-year="2023" data-featured="2" style="background-color: var(--bg-secondary);">
                         <!-- ... structure similar to Project 1 ... -->
                         <div class="grid md:grid-cols-12 gap-8 items-center">
                             <div class="md:col-span-7 order-2 md:order-1">
@@ -312,6 +339,11 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div id="projects-empty-state" class="hidden text-center mt-8 p-6 rounded-xl" style="background-color: var(--bg-secondary);">
+                    <p class="text-lg font-semibold" style="color: var(--text-primary);">No projects match this filter yet.</p>
+                    <p class="text-sm mt-2" style="color: var(--text-secondary);">Try removing a filter or search for another keyword.</p>
                 </div>
             </div>
         </section>
@@ -629,6 +661,81 @@
                 setTheme('dark');
             }
         });
+
+        // -----------------------------
+        // Project Search, Filter, and Sort
+        // -----------------------------
+        const projectsList = document.getElementById('projects-list');
+        const projectCards = Array.from(document.querySelectorAll('.project-card'));
+        const projectSearch = document.getElementById('project-search');
+        const projectSort = document.getElementById('project-sort');
+        const projectFilterButtons = Array.from(document.querySelectorAll('.project-filter-btn'));
+        const projectResultsCount = document.getElementById('project-results-count');
+        const projectsEmptyState = document.getElementById('projects-empty-state');
+        let selectedProjectFilter = 'all';
+
+        function updateFilterButtonStyles() {
+            projectFilterButtons.forEach((button) => {
+                const isSelected = button.dataset.filter === selectedProjectFilter;
+                if (isSelected) {
+                    button.style.backgroundColor = 'var(--accent-color)';
+                    button.style.color = 'var(--bg-primary)';
+                    button.style.borderColor = 'transparent';
+                } else {
+                    button.style.backgroundColor = 'transparent';
+                    button.style.color = 'var(--text-primary)';
+                    button.style.borderColor = 'var(--text-secondary)';
+                }
+            });
+        }
+
+        function applyProjectControls() {
+            const query = (projectSearch.value || '').trim().toLowerCase();
+
+            const visibleProjects = projectCards.filter((card) => {
+                const title = card.dataset.title.toLowerCase();
+                const summary = card.dataset.summary.toLowerCase();
+                const tags = card.dataset.tags.toLowerCase();
+                const matchesQuery = !query || title.includes(query) || summary.includes(query) || tags.includes(query);
+                const matchesFilter = selectedProjectFilter === 'all' || tags.includes(selectedProjectFilter);
+                const isVisible = matchesQuery && matchesFilter;
+                card.classList.toggle('hidden', !isVisible);
+                return isVisible;
+            });
+
+            const sortedProjects = [...visibleProjects].sort((a, b) => {
+                const sortOption = projectSort.value;
+                if (sortOption === 'az') {
+                    return a.dataset.title.localeCompare(b.dataset.title);
+                }
+                if (sortOption === 'newest') {
+                    return Number(b.dataset.year) - Number(a.dataset.year);
+                }
+                if (sortOption === 'oldest') {
+                    return Number(a.dataset.year) - Number(b.dataset.year);
+                }
+                return Number(a.dataset.featured) - Number(b.dataset.featured);
+            });
+
+            sortedProjects.forEach((card) => projectsList.appendChild(card));
+            projectResultsCount.textContent = `Showing ${visibleProjects.length} of ${projectCards.length} project(s).`;
+            projectsEmptyState.classList.toggle('hidden', visibleProjects.length > 0);
+        }
+
+        if (projectCards.length > 0) {
+            updateFilterButtonStyles();
+            applyProjectControls();
+            projectSearch.addEventListener('input', applyProjectControls);
+            projectSort.addEventListener('change', applyProjectControls);
+
+            projectFilterButtons.forEach((button) => {
+                button.addEventListener('click', () => {
+                    selectedProjectFilter = button.dataset.filter;
+                    updateFilterButtonStyles();
+                    applyProjectControls();
+                });
+            });
+        }
         
         // -----------------------------
         // Contact Form Submission
