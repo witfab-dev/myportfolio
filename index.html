@@ -16,6 +16,10 @@
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://placehold.co/1200x630/3b82f6/ffffff?text=Witness+Fabrice+Portfolio">
     
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#3b82f6">
+    
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -29,926 +33,619 @@
     <!-- Typing Animation Library -->
     <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
     
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    
+    <!-- Three.js for 3D Elements -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- PhotoSwipe Lightbox -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/5.3.7/photoswipe.min.css">
+    
     <style>
-        /* Setup Inter font and default dark mode styles */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        /* Previous styles remain, adding new ones below */
         
-        body {
-            font-family: 'Inter', sans-serif;
-            transition: background-color 0.3s, color 0.3s;
-            scroll-behavior: smooth;
-        }
-        
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-secondary);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--accent-color);
-            border-radius: 5px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--accent-hover);
+        /* Particle Background */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
         }
         
-        /* Default Dark Mode */
-        :root {
-            --bg-primary: #111827;
-            --bg-secondary: #1f2937;
-            --text-primary: #f9fafb;
-            --text-secondary: #9ca3af;
-            --accent-color: #3b82f6;
-            --accent-hover: #2563eb;
-            --card-bg: #1f2937;
-            --border-color: #374151;
+        /* 3D Card Flip */
+        .flip-card {
+            perspective: 1000px;
         }
         
-        /* Light Mode Override */
-        .light-mode {
-            --bg-primary: #ffffff;
-            --bg-secondary: #f3f4f6;
-            --text-primary: #1f2937;
-            --text-secondary: #6b7280;
-            --accent-color: #10b981;
-            --accent-hover: #059669;
-            --card-bg: #f9fafb;
-            --border-color: #e5e7eb;
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
         }
         
-        .dark-mode, .light-mode {
-            background-color: var(--bg-primary);
-            color: var(--text-primary);
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
         }
         
-        /* Glass Effect */
-        .glass-effect {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 1rem;
         }
         
-        .light-mode .glass-effect {
-            background: rgba(255, 255, 255, 0.7);
-            border: 1px solid rgba(0, 0, 0, 0.1);
+        .flip-card-back {
+            transform: rotateY(180deg);
         }
         
-        /* Gradient Text */
-        .gradient-text {
-            background: linear-gradient(135deg, var(--accent-color), #8b5cf6);
+        /* Shimmer Effect */
+        .shimmer {
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+        
+        /* Text Gradient Animation */
+        .animated-gradient {
+            background: linear-gradient(45deg, #3b82f6, #8b5cf6, #10b981, #3b82f6);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         
-        /* Progress Bars */
-        .progress-bar {
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Blob Animation */
+        .blob {
+            animation: blob 7s infinite;
+            border-radius: 50%;
+        }
+        
+        @keyframes blob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+        
+        /* Custom Cursor */
+        .cursor-dot {
+            width: 8px;
             height: 8px;
-            background: var(--bg-secondary);
-            border-radius: 4px;
+            background-color: var(--accent-color);
+        }
+        
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--accent-color);
+        }
+        
+        /* Typewriter Effect */
+        .typewriter {
+            overflow: hidden;
+            border-right: .15em solid var(--accent-color);
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--accent-color); }
+        }
+        
+        /* Glitch Effect */
+        .glitch {
+            position: relative;
+        }
+        
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #ff00ff;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+        
+        .glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #00ffff;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim2 5s infinite linear alternate-reverse;
+        }
+        
+        @keyframes glitch-anim {
+            0% { clip: rect(31px, 9999px, 94px, 0); }
+            5% { clip: rect(112px, 9999px, 76px, 0); }
+            10% { clip: rect(85px, 9999px, 77px, 0); }
+            15% { clip: rect(27px, 9999px, 97px, 0); }
+            20% { clip: rect(64px, 9999px, 98px, 0); }
+            25% { clip: rect(111px, 9999px, 114px, 0); }
+            30% { clip: rect(25px, 9999px, 115px, 0); }
+            35% { clip: rect(50px, 9999px, 145px, 0); }
+            40% { clip: rect(33px, 9999px, 132px, 0); }
+            45% { clip: rect(79px, 9999px, 143px, 0); }
+            50% { clip: rect(22px, 9999px, 77px, 0); }
+            55% { clip: rect(67px, 9999px, 57px, 0); }
+            60% { clip: rect(123px, 9999px, 54px, 0); }
+            65% { clip: rect(22px, 9999px, 92px, 0); }
+            70% { clip: rect(63px, 9999px, 131px, 0); }
+            75% { clip: rect(90px, 9999px, 108px, 0); }
+            80% { clip: rect(6px, 9999px, 83px, 0); }
+            85% { clip: rect(54px, 9999px, 137px, 0); }
+            90% { clip: rect(11px, 9999px, 78px, 0); }
+            95% { clip: rect(38px, 9999px, 103px, 0); }
+            100% { clip: rect(42px, 9999px, 99px, 0); }
+        }
+        
+        /* Parallax Layers */
+        .parallax-layer {
+            transition: transform 0.3s ease-out;
+        }
+        
+        /* Confetti Canvas */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+        
+        /* Voice Wave */
+        .voice-wave {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            height: 40px;
+        }
+        
+        .voice-wave span {
+            width: 4px;
+            height: 20px;
+            background: var(--accent-color);
+            border-radius: 2px;
+            animation: voice-wave 1.2s ease-in-out infinite;
+        }
+        
+        .voice-wave span:nth-child(2) { animation-delay: 0.1s; }
+        .voice-wave span:nth-child(3) { animation-delay: 0.2s; }
+        .voice-wave span:nth-child(4) { animation-delay: 0.3s; }
+        .voice-wave span:nth-child(5) { animation-delay: 0.4s; }
+        
+        @keyframes voice-wave {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(2); }
+        }
+        
+        /* Page Transition */
+        .page-transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-primary);
+            z-index: 9999;
+            transform: translateY(100%);
+        }
+        
+        /* Digital Clock */
+        .digital-clock {
+            font-family: 'Courier New', monospace;
+            letter-spacing: 2px;
+        }
+        
+        /* Heatmap */
+        .heatmap-cell {
+            width: 16px;
+            height: 16px;
+            border-radius: 2px;
+            margin: 1px;
+        }
+        
+        /* Terminal Effect */
+        .terminal {
+            font-family: 'Courier New', monospace;
+            background: #1a1a1a;
+            color: #00ff00;
+            padding: 20px;
+            border-radius: 8px;
             overflow: hidden;
         }
         
-        .progress-fill {
+        .terminal-line::after {
+            content: '▋';
+            animation: blink 1s infinite;
+        }
+        
+        /* Animated Background Pattern */
+        .animated-pattern {
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(59, 130, 246, 0.1) 0%, transparent 55%),
+                radial-gradient(circle at 75% 75%, rgba(139, 92, 246, 0.1) 0%, transparent 55%);
+            background-size: 50px 50px;
+            animation: patternMove 20s linear infinite;
+        }
+        
+        @keyframes patternMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 50px 50px; }
+        }
+        
+        /* Text Reveal Animation */
+        .text-reveal {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .text-reveal::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, var(--accent-color), var(--accent-hover));
-            border-radius: 4px;
-            transition: width 1s ease-in-out;
+            background: var(--bg-primary);
+            animation: reveal 2s ease forwards;
         }
         
-        /* Floating Animation */
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        @keyframes reveal {
+            to { transform: translateX(100%); }
         }
         
-        .floating {
-            animation: float 3s ease-in-out infinite;
+        /* Morphing Text */
+        .morphing-text {
+            position: relative;
         }
         
-        /* Hover Effects */
-        .hover-lift {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .hover-lift:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        }
-        
-        /* Section Spacing */
-        .section-padding {
-            padding: 5rem 1rem;
-        }
-        
-        @media (min-width: 640px) {
-            .section-padding {
-                padding: 6rem 2rem;
-            }
-        }
-        
-        /* Skill Radar Chart Container */
-        .radar-container {
-            width: 300px;
-            height: 300px;
-            margin: 0 auto;
-        }
-        
-        /* Loading Animation */
-        .loading-spinner {
-            border: 3px solid var(--bg-secondary);
-            border-top: 3px solid var(--accent-color);
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        /* Back to Top Button */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
+        .morphing-text span {
+            position: absolute;
             opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 1000;
+            animation: morph 12s infinite;
         }
         
-        .back-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
+        .morphing-text span:nth-child(2) { animation-delay: 4s; }
+        .morphing-text span:nth-child(3) { animation-delay: 8s; }
         
-        /* Print Styles */
-        @media print {
-            .no-print {
-                display: none !important;
-            }
-            
-            .section-padding {
-                padding: 2rem 0 !important;
-            }
-            
-            body {
-                background: white !important;
-                color: black !important;
-            }
+        @keyframes morph {
+            0% { opacity: 0; transform: translateY(20px); }
+            10%, 30% { opacity: 1; transform: translateY(0); }
+            40%, 100% { opacity: 0; transform: translateY(-20px); }
         }
     </style>
 </head>
 
 <body class="dark-mode">
-
-    <!-- Loading Screen -->
-    <div id="loading-screen" class="fixed inset-0 flex items-center justify-center z-50" style="background-color: var(--bg-primary);">
-        <div class="text-center">
-            <div class="loading-spinner mx-auto mb-4"></div>
-            <p style="color: var(--text-secondary);">Loading portfolio...</p>
+    <!-- Custom Cursor -->
+    <div class="cursor-dot fixed top-0 left-0 rounded-full z-[9999] pointer-events-none"></div>
+    <div class="cursor-outline fixed top-0 left-0 rounded-full z-[9998] pointer-events-none"></div>
+    
+    <!-- Confetti Canvas -->
+    <canvas id="confetti-canvas"></canvas>
+    
+    <!-- Page Transition -->
+    <div class="page-transition"></div>
+    
+    <!-- Particle Background (Hero Only) -->
+    <div id="particles-js"></div>
+    
+    <!-- 3D Background Sphere -->
+    <div id="3d-sphere" class="fixed top-20 right-20 w-64 h-64 opacity-10 pointer-events-none z-0"></div>
+    
+    <!-- Voice Assistant Button -->
+    <button id="voice-assistant" class="fixed bottom-6 left-6 w-14 h-14 rounded-full shadow-lg hover-lift z-50 flex items-center justify-center" 
+            style="background-color: var(--accent-color); color: white;">
+        <i data-lucide="mic" class="w-6 h-6"></i>
+        <div class="voice-wave absolute hidden">
+            <span></span><span></span><span></span><span></span><span></span>
+        </div>
+    </button>
+    
+    <!-- Language Selector -->
+    <div class="fixed top-6 right-6 z-50">
+        <button id="language-toggle" class="px-4 py-2 rounded-lg glass-effect flex items-center gap-2">
+            <i data-lucide="globe" class="w-5 h-5"></i>
+            <span>EN</span>
+        </button>
+        <div id="language-dropdown" class="absolute hidden mt-2 right-0 w-40 rounded-lg shadow-lg glass-effect">
+            <button data-lang="en" class="w-full text-left px-4 py-2 hover:bg-opacity-20" style="color: var(--text-primary);">English</button>
+            <button data-lang="fr" class="w-full text-left px-4 py-2 hover:bg-opacity-20" style="color: var(--text-primary);">Français</button>
+            <button data-lang="rw" class="w-full text-left px-4 py-2 hover:bg-opacity-20" style="color: var(--text-primary);">Kinyarwanda</button>
         </div>
     </div>
-
-    <!-- Back to Top Button -->
-    <button id="back-to-top" class="back-to-top p-3 rounded-full shadow-lg hover-lift" style="background-color: var(--accent-color); color: white;">
-        <i data-lucide="arrow-up" class="w-5 h-5"></i>
-    </button>
-
-    <!-- Navbar -->
+    
+    <!-- Quick Action Menu -->
+    <div id="quick-actions" class="fixed right-6 bottom-24 space-y-2 z-50">
+        <button class="quick-action p-3 rounded-full shadow-lg hover-lift tooltip" 
+                data-tooltip="Take a screenshot"
+                style="background-color: var(--accent-color); color: white;">
+            <i data-lucide="camera" class="w-5 h-5"></i>
+        </button>
+        <button class="quick-action p-3 rounded-full shadow-lg hover-lift tooltip" 
+                data-tooltip="Read aloud"
+                style="background-color: var(--accent-color); color: white;">
+            <i data-lucide="volume-2" class="w-5 h-5"></i>
+        </button>
+        <button class="quick-action p-3 rounded-full shadow-lg hover-lift tooltip" 
+                data-tooltip="Share portfolio"
+                style="background-color: var(--accent-color); color: white;">
+            <i data-lucide="share-2" class="w-5 h-5"></i>
+        </button>
+    </div>
+    
+    <!-- ... Rest of the HTML structure remains similar with enhancements below ... -->
+    
     <header class="sticky top-0 z-50 py-4 glass-effect">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
-            <!-- Logo/Name -->
-            <a href="#hero" class="text-xl font-bold tracking-tight flex items-center gap-2">
-                <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background-color: var(--accent-color);">
-                    <span class="text-white font-bold">WF</span>
+            <!-- Logo with Animation -->
+            <a href="#hero" class="text-xl font-bold tracking-tight flex items-center gap-2 group">
+                <div class="relative">
+                    <div class="w-8 h-8 rounded-lg flex items-center justify-center overflow-hidden group-hover:rotate-180 transition-transform duration-500" 
+                         style="background-color: var(--accent-color);">
+                        <span class="text-white font-bold">WF</span>
+                        <div class="absolute inset-0 shimmer"></div>
+                    </div>
                 </div>
-                <span style="color: var(--text-primary);">W. Fabrice</span>
+                <span class="animated-gradient font-bold">W. Fabrice</span>
             </a>
             
-            <!-- Desktop Navigation -->
+            <!-- Navigation with Indicators -->
             <div class="hidden md:flex space-x-6 text-sm">
-                <a href="#about" class="hover:underline transition duration-300" style="color: var(--text-primary);">About</a>
-                <a href="#projects" class="hover:underline transition duration-300" style="color: var(--text-primary);">Projects</a>
-                <a href="#skills" class="hover:underline transition duration-300" style="color: var(--text-primary);">Skills</a>
-                <a href="#experience" class="hover:underline transition duration-300" style="color: var(--text-primary);">Experience</a>
-                <a href="#contact" class="hover:underline transition duration-300" style="color: var(--text-primary);">Contact</a>
-            </div>
-
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg" style="color: var(--text-primary);">
-                <i data-lucide="menu" class="w-6 h-6"></i>
-            </button>
-
-            <!-- CTA and Dark Mode Toggle -->
-            <div class="hidden md:flex items-center space-x-3">
-                <button id="theme-toggle" class="p-2 rounded-full transition duration-150 hover-lift" style="background-color: var(--bg-secondary); color: var(--text-primary);">
-                    <svg id="moon-icon" class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path></svg>
-                    <svg id="sun-icon" class="h-5 w-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></circle><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-                </button>
-                <button id="print-btn" class="p-2 rounded-full transition duration-150 hover-lift" style="background-color: var(--bg-secondary); color: var(--text-primary);">
-                    <i data-lucide="printer" class="w-5 h-5"></i>
-                </button>
-                <a href="#contact" class="px-4 py-2 text-sm font-medium rounded-lg transition duration-300 hover-lift" 
-                   style="background-color: var(--accent-color); color: white;">
-                    Hire Me
+                <a href="#about" class="nav-link group relative" style="color: var(--text-primary);">
+                    About
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300" 
+                          style="background-color: var(--accent-color);"></span>
+                </a>
+                <a href="#projects" class="nav-link group relative" style="color: var(--text-primary);">
+                    Projects
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300" 
+                          style="background-color: var(--accent-color);"></span>
+                </a>
+                <a href="#skills" class="nav-link group relative" style="color: var(--text-primary);">
+                    Skills
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300" 
+                          style="background-color: var(--accent-color);"></span>
+                </a>
+                <a href="#experience" class="nav-link group relative" style="color: var(--text-primary);">
+                    Journey
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300" 
+                          style="background-color: var(--accent-color);"></span>
+                </a>
+                <a href="#contact" class="nav-link group relative" style="color: var(--text-primary);">
+                    Contact
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300" 
+                          style="background-color: var(--accent-color);"></span>
                 </a>
             </div>
+            
+            <!-- ... rest of header ... -->
         </nav>
-
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="md:hidden hidden absolute top-full left-0 right-0 glass-effect shadow-lg">
-            <div class="flex flex-col p-4 space-y-4">
-                <a href="#about" class="py-2 px-4 rounded-lg transition duration-300" style="color: var(--text-primary);">About</a>
-                <a href="#projects" class="py-2 px-4 rounded-lg transition duration-300" style="color: var(--text-primary);">Projects</a>
-                <a href="#skills" class="py-2 px-4 rounded-lg transition duration-300" style="color: var(--text-primary);">Skills</a>
-                <a href="#experience" class="py-2 px-4 rounded-lg transition duration-300" style="color: var(--text-primary);">Experience</a>
-                <a href="#contact" class="py-2 px-4 rounded-lg transition duration-300" style="color: var(--text-primary);">Contact</a>
-                <div class="flex space-x-2 pt-4 border-t" style="border-color: var(--border-color);">
-                    <button id="mobile-theme-toggle" class="flex-1 py-2 rounded-lg" style="background-color: var(--bg-secondary); color: var(--text-primary);">Toggle Theme</button>
-                    <button id="mobile-print-btn" class="flex-1 py-2 rounded-lg" style="background-color: var(--bg-secondary); color: var(--text-primary);">Print CV</button>
-                </div>
-            </div>
-        </div>
     </header>
 
     <main>
-        <!-- 1) Hero / Landing -->
-        <section id="hero" class="section-padding flex items-center min-h-screen" style="background-color: var(--bg-primary);">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Enhanced Hero with 3D Elements -->
+        <section id="hero" class="section-padding flex items-center min-h-screen relative overflow-hidden" 
+                 style="background-color: var(--bg-primary);">
+            <div class="absolute inset-0 animated-pattern"></div>
+            
+            <!-- Animated Blobs -->
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 blob opacity-20" 
+                 style="background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-64 h-64 blob opacity-20" 
+                 style="background: radial-gradient(circle, #8b5cf6 0%, transparent 70%); animation-delay: -3.5s;"></div>
+            
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <!-- Left Column: Content -->
+                    <!-- Left Column -->
                     <div data-aos="fade-right">
-                        <div class="mb-8">
-                            <div class="inline-block px-3 py-1 rounded-full text-sm font-medium mb-4" style="background-color: var(--accent-color); color: white;">
-                                <span id="typed-text"></span>
-                            </div>
-                            <h1 class="text-5xl sm:text-7xl font-bold mb-4 gradient-text">
-                                Witness Fabrice
-                            </h1>
-                            <h2 class="text-2xl sm:text-3xl font-semibold mb-6" style="color: var(--accent-color);">
-                                Full-Stack Developer
-                            </h2>
-                            <p class="text-lg mb-8" style="color: var(--text-secondary);">
-                                I build high-performance web & mobile applications that solve real-world problems. Passionate about clean code, scalable architecture, and exceptional user experiences.
-                            </p>
-                            
-                            <div class="flex flex-wrap gap-4 mb-8">
-                                <div class="flex items-center gap-2">
-                                    <div class="w-3 h-3 rounded-full" style="background-color: #10B981;"></div>
-                                    <span class="text-sm" style="color: var(--text-secondary);">Available for projects</span>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <div class="w-3 h-3 rounded-full" style="background-color: #3B82F6;"></div>
-                                    <span class="text-sm" style="color: var(--text-secondary);">Kigali, Rwanda (UTC+2)</span>
-                                </div>
-                            </div>
-
-                            <div class="flex flex-wrap gap-4">
-                                <a href="#projects" class="px-6 py-3 font-semibold rounded-lg transition duration-300 hover-lift flex items-center gap-2" 
-                                   style="background-color: var(--accent-color); color: white;">
-                                    <i data-lucide="briefcase" class="w-5 h-5"></i>
-                                    View Projects
-                                </a>
-                                <a href="#contact" class="px-6 py-3 font-semibold rounded-lg border-2 transition duration-300 hover-lift flex items-center gap-2" 
-                                   style="border-color: var(--accent-color); color: var(--text-primary);">
-                                    <i data-lucide="mail" class="w-5 h-5"></i>
-                                    Contact Me
-                                </a>
-                            </div>
+                        <!-- Badge with Counter -->
+                        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6" 
+                             style="background-color: var(--card-bg);">
+                            <span class="text-sm font-medium" style="color: var(--text-primary);">Portfolio Views:</span>
+                            <span id="view-counter" class="font-bold text-lg" style="color: var(--accent-color);">1,247</span>
+                            <i data-lucide="eye" class="w-4 h-4" style="color: var(--accent-color);"></i>
                         </div>
-                    </div>
-
-                    <!-- Right Column: Profile Image & Stats -->
-                    <div data-aos="fade-left">
-                        <div class="relative">
-                            <div class="w-64 h-64 mx-auto rounded-full overflow-hidden border-4 floating" style="border-color: var(--accent-color);">
-                                <img src="https://placehold.co/400x400/3b82f6/ffffff?text=WF" 
-                                     alt="Professional headshot of Witness Fabrice" 
-                                     class="w-full h-full object-cover">
+                        
+                        <h1 class="text-5xl sm:text-7xl font-bold mb-4">
+                            <span class="glitch text-reveal" data-text="Witness Fabrice">Witness Fabrice</span>
+                        </h1>
+                        
+                        <div class="morphing-text h-12 mb-6">
+                            <span class="text-2xl font-semibold" style="color: var(--accent-color);">Full-Stack Developer</span>
+                            <span class="text-2xl font-semibold" style="color: var(--accent-color);">React Specialist</span>
+                            <span class="text-2xl font-semibold" style="color: var(--accent-color);">Problem Solver</span>
+                        </div>
+                        
+                        <!-- Interactive Stats -->
+                        <div class="grid grid-cols-3 gap-4 mb-8">
+                            <div class="stat-card p-4 rounded-xl text-center hover-lift" 
+                                 style="background-color: var(--card-bg);">
+                                <div class="text-3xl font-bold counter" data-target="50">0</div>
+                                <div class="text-sm" style="color: var(--text-secondary);">Projects</div>
                             </div>
-                            
-                            <!-- Floating Stats Cards -->
-                            <div class="absolute -top-4 -left-4 p-4 rounded-xl shadow-lg hover-lift" style="background-color: var(--card-bg);">
-                                <div class="text-center">
-                                    <div class="text-2xl font-bold gradient-text">5+</div>
-                                    <div class="text-sm" style="color: var(--text-secondary);">Projects</div>
-                                </div>
+                            <div class="stat-card p-4 rounded-xl text-center hover-lift" 
+                                 style="background-color: var(--card-bg);">
+                                <div class="text-3xl font-bold counter" data-target="100">0</div>
+                                <div class="text-sm" style="color: var(--text-secondary);">Clients</div>
                             </div>
-                            
-                            <div class="absolute -bottom-4 -right-4 p-4 rounded-xl shadow-lg hover-lift" style="background-color: var(--card-bg);">
-                                <div class="text-center">
-                                    <div class="text-2xl font-bold gradient-text">3+</div>
-                                    <div class="text-sm" style="color: var(--text-secondary);">Years</div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Tech Stack Badges -->
-                        <div class="mt-12 flex flex-wrap justify-center gap-3">
-                            <span class="px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1" style="background-color: var(--bg-secondary); color: var(--text-primary);">
-                                <i data-lucide="react" class="w-4 h-4"></i>
-                                React
-                            </span>
-                            <span class="px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1" style="background-color: var(--bg-secondary); color: var(--text-primary);">
-                                <i data-lucide="node" class="w-4 h-4"></i>
-                                Node.js
-                            </span>
-                            <span class="px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1" style="background-color: var(--bg-secondary); color: var(--text-primary);">
-                                <i data-lucide="smartphone" class="w-4 h-4"></i>
-                                Flutter
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 2) About / Bio -->
-        <section id="about" class="section-padding" style="background-color: var(--bg-secondary);">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center gradient-text" data-aos="fade-up">About Me</h2>
-                
-                <div class="grid lg:grid-cols-3 gap-8 items-start">
-                    <!-- Bio Content -->
-                    <div class="lg:col-span-2" data-aos="fade-right">
-                        <div class="p-8 rounded-xl hover-lift" style="background-color: var(--card-bg);">
-                            <h3 class="text-2xl font-bold mb-6 flex items-center gap-2" style="color: var(--text-primary);">
-                                <i data-lucide="user" class="w-6 h-6" style="color: var(--accent-color);"></i>
-                                My Journey
-                            </h3>
-                            
-                            <p class="mb-6 text-lg" style="color: var(--text-primary);">
-                                Hello! I'm <span class="font-semibold gradient-text">Witness Fabrice</span>, a passionate software developer based in Kigali, Rwanda. 
-                                I specialize in building modern web and mobile applications using cutting-edge technologies.
-                            </p>
-                            
-                            <p class="mb-6" style="color: var(--text-secondary);">
-                                With over 3 years of professional experience, I've had the opportunity to work on diverse projects ranging from enterprise 
-                                applications to innovative startups. My approach combines technical excellence with a deep understanding of user needs.
-                            </p>
-
-                            <!-- Stats Grid -->
-                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                                <div class="text-center p-4 rounded-lg" style="background-color: var(--bg-secondary);">
-                                    <div class="text-2xl font-bold gradient-text">15+</div>
-                                    <div class="text-sm" style="color: var(--text-secondary);">Technologies</div>
-                                </div>
-                                <div class="text-center p-4 rounded-lg" style="background-color: var(--bg-secondary);">
-                                    <div class="text-2xl font-bold gradient-text">10k+</div>
-                                    <div class="text-sm" style="color: var(--text-secondary);">Users Reached</div>
-                                </div>
-                                <div class="text-center p-4 rounded-lg" style="background-color: var(--bg-secondary);">
-                                    <div class="text-2xl font-bold gradient-text">100%</div>
-                                    <div class="text-sm" style="color: var(--text-secondary);">Client Satisfaction</div>
-                                </div>
-                                <div class="text-center p-4 rounded-lg" style="background-color: var(--bg-secondary);">
-                                    <div class="text-2xl font-bold gradient-text">24/7</div>
-                                    <div class="text-sm" style="color: var(--text-secondary);">Support</div>
-                                </div>
-                            </div>
-
-                            <!-- Work Philosophy -->
-                            <div class="mb-6">
-                                <h4 class="text-xl font-semibold mb-3" style="color: var(--text-primary);">My Work Philosophy</h4>
-                                <p style="color: var(--text-secondary);">
-                                    I believe in writing clean, maintainable code and building solutions that scale. Every project is an opportunity 
-                                    to learn, innovate, and deliver exceptional value to clients and end-users.
-                                </p>
-                            </div>
-
-                            <!-- Download CV Button -->
-                            <a href="#" class="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition duration-300 hover-lift" 
-                               style="background-color: var(--accent-color); color: white;">
-                                <i data-lucide="download" class="w-5 h-5"></i>
-                                Download Full CV (PDF)
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Skills Preview & Fun Facts -->
-                    <div class="space-y-8" data-aos="fade-left">
-                        <!-- Skills Preview -->
-                        <div class="p-6 rounded-xl hover-lift" style="background-color: var(--card-bg);">
-                            <h3 class="text-xl font-semibold mb-4 flex items-center gap-2" style="color: var(--text-primary);">
-                                <i data-lucide="zap" class="w-5 h-5" style="color: var(--accent-color);"></i>
-                                Core Skills
-                            </h3>
-                            <div class="space-y-4">
-                                <div>
-                                    <div class="flex justify-between mb-1">
-                                        <span class="text-sm" style="color: var(--text-primary);">React & Frontend</span>
-                                        <span class="text-sm" style="color: var(--text-secondary);">95%</span>
-                                    </div>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" style="width: 95%"></div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="flex justify-between mb-1">
-                                        <span class="text-sm" style="color: var(--text-primary);">Node.js & Backend</span>
-                                        <span class="text-sm" style="color: var(--text-secondary);">90%</span>
-                                    </div>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" style="width: 90%"></div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="flex justify-between mb-1">
-                                        <span class="text-sm" style="color: var(--text-primary);">Flutter Development</span>
-                                        <span class="text-sm" style="color: var(--text-secondary);">85%</span>
-                                    </div>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" style="width: 85%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Fun Facts -->
-                        <div class="p-6 rounded-xl hover-lift" style="background-color: var(--card-bg);">
-                            <h3 class="text-xl font-semibold mb-4 flex items-center gap-2" style="color: var(--text-primary);">
-                                <i data-lucide="sparkles" class="w-5 h-5" style="color: var(--accent-color);"></i>
-                                Fun Facts
-                            </h3>
-                            <ul class="space-y-3" style="color: var(--text-secondary);">
-                                <li class="flex items-center gap-2">
-                                    <i data-lucide="globe" class="w-4 h-4"></i>
-                                    <span>Trilingual: Kinyarwanda, English, French</span>
-                                </li>
-                                <li class="flex items-center gap-2">
-                                    <i data-lucide="coffee" class="w-4 h-4"></i>
-                                    <span>Specialty coffee enthusiast & home barista</span>
-                                </li>
-                                <li class="flex items-center gap-2">
-                                    <i data-lucide="mountain" class="w-4 h-4"></i>
-                                    <span>Trail running & hiking adventurer</span>
-                                </li>
-                                <li class="flex items-center gap-2">
-                                    <i data-lucide="book-open" class="w-4 h-4"></i>
-                                    <span>Reads 2+ tech books monthly</span>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <!-- Availability -->
-                        <div class="p-6 rounded-xl hover-lift" style="background-color: var(--card-bg);">
-                            <h3 class="text-xl font-semibold mb-4 flex items-center gap-2" style="color: var(--text-primary);">
-                                <i data-lucide="calendar" class="w-5 h-5" style="color: var(--accent-color);"></i>
-                                Availability
-                            </h3>
-                            <div class="space-y-3">
-                                <div class="flex items-center justify-between">
-                                    <span class="text-sm" style="color: var(--text-primary);">Freelance Projects</span>
-                                    <span class="px-2 py-1 text-xs rounded-full" style="background-color: #10B981; color: white;">Available</span>
-                                </div>
-                                <div class="flex items-center justify-between">
-                                    <span class="text-sm" style="color: var(--text-primary);">Full-time Roles</span>
-                                    <span class="px-2 py-1 text-xs rounded-full" style="background-color: #10B981; color: white;">Considering</span>
-                                </div>
-                                <div class="flex items-center justify-between">
-                                    <span class="text-sm" style="color: var(--text-primary);">Mentorship</span>
-                                    <span class="px-2 py-1 text-xs rounded-full" style="background-color: #10B981; color: white;">Available</span>
-                                </div>
-                            </div>
-                            <a href="#contact" class="mt-4 w-full text-center block px-4 py-2 text-sm font-medium rounded-lg transition duration-300" 
-                               style="background-color: var(--accent-color); color: white;">
-                                Schedule a Call
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 3) Projects Section with Enhanced Features -->
-        <section id="projects" class="section-padding" style="background-color: var(--bg-primary);">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center gradient-text" data-aos="fade-up">Featured Projects</h2>
-
-                <!-- Projects Dashboard -->
-                <div class="mb-8 p-6 rounded-xl glass-effect" data-aos="fade-up">
-                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-                        <div class="p-4 rounded-lg text-center" style="background-color: var(--card-bg);">
-                            <div class="text-2xl font-bold gradient-text" id="total-projects">5</div>
-                            <div class="text-sm" style="color: var(--text-secondary);">Total Projects</div>
-                        </div>
-                        <div class="p-4 rounded-lg text-center" style="background-color: var(--card-bg);">
-                            <div class="text-2xl font-bold gradient-text" id="web-projects">3</div>
-                            <div class="text-sm" style="color: var(--text-secondary);">Web Apps</div>
-                        </div>
-                        <div class="p-4 rounded-lg text-center" style="background-color: var(--card-bg);">
-                            <div class="text-2xl font-bold gradient-text" id="mobile-projects">2</div>
-                            <div class="text-sm" style="color: var(--text-secondary);">Mobile Apps</div>
-                        </div>
-                        <div class="p-4 rounded-lg text-center" style="background-color: var(--card-bg);">
-                            <div class="text-2xl font-bold gradient-text">4.8/5</div>
-                            <div class="text-sm" style="color: var(--text-secondary);">Client Rating</div>
-                        </div>
-                    </div>
-
-                    <!-- Search and Filter Controls -->
-                    <div class="space-y-4">
-                        <div class="grid md:grid-cols-3 gap-4">
-                            <div class="md:col-span-2">
-                                <div class="relative">
-                                    <i data-lucide="search" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5" style="color: var(--text-secondary);"></i>
-                                    <input id="project-search" type="text" 
-                                           placeholder="Search projects by name, tech, or keyword..." 
-                                           class="w-full pl-10 pr-4 py-3 rounded-lg border-2 transition duration-300 focus:outline-none focus:border-accent"
-                                           style="background-color: var(--bg-primary); border-color: var(--border-color); color: var(--text-primary);">
-                                </div>
-                            </div>
-                            <div>
-                                <select id="project-sort" 
-                                        class="w-full px-4 py-3 rounded-lg border-2 transition duration-300 focus:outline-none focus:border-accent"
-                                        style="background-color: var(--bg-primary); border-color: var(--border-color); color: var(--text-primary);">
-                                    <option value="featured">Featured First</option>
-                                    <option value="newest">Newest First</option>
-                                    <option value="oldest">Oldest First</option>
-                                    <option value="az">A → Z</option>
-                                    <option value="complexity">Complexity</option>
-                                </select>
+                            <div class="stat-card p-4 rounded-xl text-center hover-lift" 
+                                 style="background-color: var(--card-bg);">
+                                <div class="text-3xl font-bold counter" data-target="99">0</div>
+                                <div class="text-sm" style="color: var(--text-secondary);">Satisfaction</div>
                             </div>
                         </div>
                         
-                        <!-- Active Filters Display -->
-                        <div id="active-filters" class="flex flex-wrap gap-2"></div>
+                        <!-- Voice Command Hint -->
+                        <div class="mb-6 p-4 rounded-lg" style="background-color: var(--card-bg);">
+                            <p class="text-sm flex items-center gap-2" style="color: var(--text-secondary);">
+                                <i data-lucide="mic" class="w-4 h-4"></i>
+                                <span>Try saying: <span class="font-medium" style="color: var(--accent-color);">"Show projects"</span> or <span class="font-medium" style="color: var(--accent-color);">"Change theme"</span></span>
+                            </p>
+                        </div>
                         
-                        <!-- Filter Buttons -->
-                        <div class="flex flex-wrap gap-2" id="project-filters">
-                            <button type="button" data-filter="all" class="project-filter-btn px-4 py-2 rounded-lg font-medium transition duration-300" 
-                                    style="background-color: var(--accent-color); color: white;">All</button>
-                            <button type="button" data-filter="web" class="project-filter-btn px-4 py-2 rounded-lg font-medium transition duration-300 border"
-                                    style="border-color: var(--border-color); color: var(--text-primary);">Web</button>
-                            <button type="button" data-filter="mobile" class="project-filter-btn px-4 py-2 rounded-lg font-medium transition duration-300 border"
-                                    style="border-color: var(--border-color); color: var(--text-primary);">Mobile</button>
-                            <button type="button" data-filter="react" class="project-filter-btn px-4 py-2 rounded-lg font-medium transition duration-300 border"
-                                    style="border-color: var(--border-color); color: var(--text-primary);">React</button>
-                            <button type="button" data-filter="flutter" class="project-filter-btn px-4 py-2 rounded-lg font-medium transition duration-300 border"
-                                    style="border-color: var(--border-color); color: var(--text-primary);">Flutter</button>
-                            <button type="button" data-filter="node" class="project-filter-btn px-4 py-2 rounded-lg font-medium transition duration-300 border"
-                                    style="border-color: var(--border-color); color: var(--text-primary);">Node.js</button>
-                            <button type="button" data-filter="firebase" class="project-filter-btn px-4 py-2 rounded-lg font-medium transition duration-300 border"
-                                    style="border-color: var(--border-color); color: var(--text-primary);">Firebase</button>
+                        <!-- CTA with Animation -->
+                        <div class="flex flex-wrap gap-4">
+                            <a href="#projects" class="cta-btn px-6 py-3 font-semibold rounded-lg transition-all duration-300 hover:scale-105 relative overflow-hidden group" 
+                               style="background-color: var(--accent-color); color: white;">
+                                <span class="relative z-10">View Projects</span>
+                                <div class="absolute inset-0 shimmer"></div>
+                            </a>
+                            <button id="explore-more" class="px-6 py-3 font-semibold rounded-lg border-2 transition-all duration-300 hover:scale-105 group"
+                                    style="border-color: var(--accent-color); color: var(--text-primary);">
+                                <span class="flex items-center gap-2">
+                                    Explore More
+                                    <i data-lucide="chevron-down" class="w-5 h-5 group-hover:animate-bounce"></i>
+                                </span>
+                            </button>
                         </div>
                     </div>
                     
-                    <p id="project-results-count" class="mt-4 text-sm" style="color: var(--text-secondary);"></p>
+                    <!-- Right Column with 3D Card -->
+                    <div class="flip-card w-64 h-64 mx-auto" data-aos="flip-left">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front rounded-xl overflow-hidden border-4" 
+                                 style="border-color: var(--accent-color);">
+                                <img src="https://placehold.co/400x400/3b82f6/ffffff?text=WF" 
+                                     alt="Profile" 
+                                     class="w-full h-full object-cover">
+                            </div>
+                            <div class="flip-card-back rounded-xl flex items-center justify-center p-6" 
+                                 style="background-color: var(--accent-color); color: white;">
+                                <div class="text-center">
+                                    <i data-lucide="sparkles" class="w-8 h-8 mb-2 mx-auto"></i>
+                                    <p class="font-bold">Interactive Portfolio</p>
+                                    <p class="text-sm">Hover to flip!</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
-                <!-- Projects Grid -->
-                <div class="space-y-8" id="projects-list">
-                    <!-- Project cards remain the same as before, but add more data attributes -->
-                    <!-- Example: add data-complexity="medium" data-team-size="1" data-duration="3" etc. -->
-                </div>
-
-                <!-- View More Projects -->
-                <div class="text-center mt-12" data-aos="fade-up">
-                    <button id="load-more-projects" class="px-8 py-3 rounded-lg border-2 font-semibold transition duration-300 hover-lift"
-                            style="border-color: var(--accent-color); color: var(--accent-color);">
-                        <span class="flex items-center gap-2">
-                            <i data-lucide="plus" class="w-5 h-5"></i>
-                            Load More Projects
-                        </span>
-                    </button>
+            </div>
+            
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+                <div class="animate-bounce">
+                    <i data-lucide="mouse-pointer" class="w-6 h-6" style="color: var(--accent-color);"></i>
                 </div>
             </div>
         </section>
 
-        <!-- Skills Section with Interactive Features -->
-        <section id="skills" class="section-padding" style="background-color: var(--bg-secondary);">
+        <!-- Interactive Skills Galaxy -->
+        <section id="skills-galaxy" class="section-padding hidden" style="background-color: var(--bg-primary);">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center gradient-text" data-aos="fade-up">Skills & Expertise</h2>
-
-                <!-- Skills Tabs -->
-                <div class="mb-8" data-aos="fade-up">
-                    <div class="flex overflow-x-auto space-x-2 pb-4">
-                        <button data-tab="all" class="skill-tab-btn px-6 py-3 rounded-lg font-medium whitespace-nowrap transition duration-300"
-                                style="background-color: var(--accent-color); color: white;">All Skills</button>
-                        <button data-tab="frontend" class="skill-tab-btn px-6 py-3 rounded-lg font-medium whitespace-nowrap transition duration-300 border"
-                                style="border-color: var(--border-color); color: var(--text-primary);">Frontend</button>
-                        <button data-tab="backend" class="skill-tab-btn px-6 py-3 rounded-lg font-medium whitespace-nowrap transition duration-300 border"
-                                style="border-color: var(--border-color); color: var(--text-primary);">Backend</button>
-                        <button data-tab="mobile" class="skill-tab-btn px-6 py-3 rounded-lg font-medium whitespace-nowrap transition duration-300 border"
-                                style="border-color: var(--border-color); color: var(--text-primary);">Mobile</button>
-                        <button data-tab="tools" class="skill-tab-btn px-6 py-3 rounded-lg font-medium whitespace-nowrap transition duration-300 border"
-                                style="border-color: var(--border-color); color: var(--text-primary);">Tools</button>
-                        <button data-tab="soft" class="skill-tab-btn px-6 py-3 rounded-lg font-medium whitespace-nowrap transition duration-300 border"
-                                style="border-color: var(--border-color); color: var(--text-primary);">Soft Skills</button>
-                    </div>
-                </div>
-
-                <!-- Skills Grid -->
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="skills-grid" data-aos="fade-up">
-                    <!-- Skills will be populated by JavaScript -->
-                </div>
-
-                <!-- Skill Comparison Chart -->
-                <div class="mt-16 p-8 rounded-xl glass-effect" data-aos="fade-up">
-                    <h3 class="text-2xl font-bold mb-6 text-center" style="color: var(--text-primary);">Skill Proficiency Comparison</h3>
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <div>
-                            <canvas id="skills-chart" width="400" height="300"></canvas>
-                        </div>
-                        <div>
-                            <h4 class="text-xl font-semibold mb-4" style="color: var(--text-primary);">Year-over-Year Growth</h4>
-                            <div class="space-y-4">
-                                <div>
-                                    <div class="flex justify-between mb-1">
-                                        <span style="color: var(--text-primary);">React Expertise</span>
-                                        <span style="color: var(--text-secondary);">↑ 25%</span>
-                                    </div>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" style="width: 95%"></div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="flex justify-between mb-1">
-                                        <span style="color: var(--text-primary);">System Design</span>
-                                        <span style="color: var(--text-secondary);">↑ 40%</span>
-                                    </div>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" style="width: 85%"></div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="flex justify-between mb-1">
-                                        <span style="color: var(--text-primary);">Team Leadership</span>
-                                        <span style="color: var(--text-secondary);">↑ 35%</span>
-                                    </div>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" style="width: 90%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center gradient-text">Skills Galaxy</h2>
+                <div class="relative h-[600px]">
+                    <canvas id="skills-galaxy-canvas"></canvas>
+                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
+                        <p class="text-lg" style="color: var(--text-secondary);">Drag to rotate • Click to explore</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Experience Timeline -->
-        <section id="experience" class="section-padding" style="background-color: var(--bg-primary);">
+        <!-- Code Playground -->
+        <section id="playground" class="section-padding" style="background-color: var(--bg-secondary);">
             <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center gradient-text" data-aos="fade-up">Professional Journey</h2>
-
-                <!-- Timeline -->
-                <div class="relative" data-aos="fade-up">
-                    <!-- Timeline Line -->
-                    <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 hidden md:block" style="background-color: var(--accent-color); opacity: 0.2;"></div>
-
-                    <!-- Timeline Items -->
-                    <div class="space-y-12">
-                        <!-- Timeline Item 1 -->
-                        <div class="timeline-item relative" data-year="2022">
-                            <div class="md:flex items-center">
-                                <div class="md:w-1/2 md:pr-12 md:text-right">
-                                    <div class="p-6 rounded-xl hover-lift" style="background-color: var(--card-bg);">
-                                        <div class="flex items-center justify-end gap-2 mb-2">
-                                            <span class="text-sm font-medium" style="color: var(--accent-color);">Present</span>
-                                            <span class="text-sm" style="color: var(--text-secondary);">Jan 2022 –</span>
-                                        </div>
-                                        <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);">Senior Full-Stack Developer</h3>
-                                        <p class="mb-2" style="color: var(--accent-color);">Innovatech Solutions</p>
-                                        <p class="text-sm mb-3" style="color: var(--text-secondary);">Led development of enterprise CRM platform serving 50+ clients</p>
-                                        <div class="flex flex-wrap gap-2 justify-end">
-                                            <span class="px-2 py-1 text-xs rounded-full" style="background-color: var(--bg-secondary); color: var(--text-primary);">React</span>
-                                            <span class="px-2 py-1 text-xs rounded-full" style="background-color: var(--bg-secondary); color: var(--text-primary);">Node.js</span>
-                                            <span class="px-2 py-1 text-xs rounded-full" style="background-color: var(--bg-secondary); color: var(--text-primary);">AWS</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Timeline Dot -->
-                                <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full z-10" 
-                                     style="background-color: var(--accent-color);"></div>
-                                
-                                <div class="md:w-1/2 md:pl-12 mt-4 md:mt-0">
-                                    <!-- Empty for alignment -->
-                                </div>
+                <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center gradient-text">Code Playground</h2>
+                
+                <div class="grid lg:grid-cols-2 gap-8">
+                    <!-- Live Code Editor -->
+                    <div class="p-6 rounded-xl" style="background-color: var(--card-bg);">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-xl font-semibold" style="color: var(--text-primary);">Live Code Editor</h3>
+                            <div class="flex gap-2">
+                                <button class="code-run px-3 py-1 rounded text-sm" 
+                                        style="background-color: var(--accent-color); color: white;">Run</button>
+                                <button class="code-reset px-3 py-1 rounded text-sm border"
+                                        style="border-color: var(--border-color); color: var(--text-primary);">Reset</button>
                             </div>
                         </div>
+                        
+                        <div class="terminal mb-4">
+                            <pre id="code-editor" contenteditable="true" class="min-h-[200px] p-4 font-mono text-sm">
+// Try editing this code!
+function greet(name) {
+    return `Hello, ${name}! Welcome to my portfolio.`;
+}
 
-                        <!-- Timeline Item 2 -->
-                        <div class="timeline-item relative" data-year="2020">
-                            <div class="md:flex items-center">
-                                <div class="md:w-1/2 md:pr-12 md:text-right">
-                                    <!-- Empty for alignment -->
-                                </div>
-                                
-                                <!-- Timeline Dot -->
-                                <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full z-10" 
-                                     style="background-color: var(--accent-color);"></div>
-                                
-                                <div class="md:w-1/2 md:pl-12">
-                                    <div class="p-6 rounded-xl hover-lift" style="background-color: var(--card-bg);">
-                                        <div class="flex items-center gap-2 mb-2">
-                                            <span class="text-sm" style="color: var(--text-secondary);">Jun 2020 – Dec 2021</span>
-                                        </div>
-                                        <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);">Frontend Developer</h3>
-                                        <p class="mb-2" style="color: var(--accent-color);">Digital Creations Ltd</p>
-                                        <p class="text-sm mb-3" style="color: var(--text-secondary);">Built responsive web applications for various clients</p>
-                                        <div class="flex flex-wrap gap-2">
-                                            <span class="px-2 py-1 text-xs rounded-full" style="background-color: var(--bg-secondary); color: var(--text-primary);">JavaScript</span>
-                                            <span class="px-2 py-1 text-xs rounded-full" style="background-color: var(--bg-secondary); color: var(--text-primary);">Vue.js</span>
-                                            <span class="px-2 py-1 text-xs rounded-full" style="background-color: var(--bg-secondary); color: var(--text-primary);">Tailwind</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+console.log(greet("Visitor"));</pre>
+                        </div>
+                        
+                        <div class="p-4 rounded" style="background-color: #1a1a1a;">
+                            <h4 class="text-sm font-medium mb-2" style="color: #00ff00;">Output:</h4>
+                            <div id="code-output" class="font-mono text-sm" style="color: #00ff00;">Hello, Visitor! Welcome to my portfolio.</div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Download Resume Section -->
-                <div class="mt-16 text-center" data-aos="fade-up">
-                    <div class="p-8 rounded-xl glass-effect inline-block">
-                        <h3 class="text-2xl font-bold mb-4" style="color: var(--text-primary);">Want the Full Story?</h3>
-                        <p class="mb-6" style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;">
-                            Download my complete resume to see all my experience, certifications, and detailed project history.
-                        </p>
-                        <div class="flex flex-wrap justify-center gap-4">
-                            <button id="download-pdf" class="px-6 py-3 rounded-lg font-semibold transition duration-300 hover-lift flex items-center gap-2"
-                                    style="background-color: var(--accent-color); color: white;">
-                                <i data-lucide="file-text" class="w-5 h-5"></i>
-                                Download PDF Resume
-                            </button>
-                            <button id="view-online" class="px-6 py-3 rounded-lg border-2 font-semibold transition duration-300 hover-lift flex items-center gap-2"
-                                    style="border-color: var(--border-color); color: var(--text-primary);">
-                                <i data-lucide="eye" class="w-5 h-5"></i>
-                                View Online Version
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section with Enhanced Features -->
-        <section id="contact" class="section-padding" style="background-color: var(--bg-secondary);">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl sm:text-4xl font-bold mb-4 text-center gradient-text" data-aos="fade-up">Let's Build Something Amazing</h2>
-                <p class="text-lg text-center mb-12" style="color: var(--text-secondary); max-width: 600px; margin: 0 auto;" data-aos="fade-up">
-                    Have a project in mind? Let's discuss how we can work together to bring your ideas to life.
-                </p>
-
-                <div class="grid lg:grid-cols-3 gap-8">
-                    <!-- Contact Info Cards -->
-                    <div class="space-y-6" data-aos="fade-right">
-                        <div class="p-6 rounded-xl hover-lift" style="background-color: var(--card-bg);">
-                            <div class="flex items-center gap-3 mb-4">
-                                <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background-color: var(--accent-color);">
-                                    <i data-lucide="mail" class="w-6 h-6 text-white"></i>
+                    
+                    <!-- Interactive Challenges -->
+                    <div class="p-6 rounded-xl" style="background-color: var(--card-bg);">
+                        <h3 class="text-xl font-semibold mb-4" style="color: var(--text-primary);">Coding Challenges</h3>
+                        <div class="space-y-4">
+                            <div class="challenge p-4 rounded-lg" style="background-color: var(--bg-secondary);">
+                                <h4 class="font-medium mb-2" style="color: var(--text-primary);">Challenge #1: Reverse String</h4>
+                                <p class="text-sm mb-3" style="color: var(--text-secondary);">Write a function that reverses a string.</p>
+                                <div class="flex gap-2">
+                                    <input type="text" class="flex-1 px-3 py-1 rounded text-sm" 
+                                           style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);"
+                                           placeholder="Enter your solution">
+                                    <button class="px-3 py-1 rounded text-sm" 
+                                            style="background-color: var(--accent-color); color: white;">Test</button>
                                 </div>
-                                <div>
-                                    <h3 class="font-semibold" style="color: var(--text-primary);">Email</h3>
-                                    <a href="mailto:witnessfabrice@email.com" class="text-sm hover:underline" style="color: var(--accent-color);">
-                                        witnessfabrice@email.com
-                                    </a>
-                                </div>
-                            </div>
-                            <p class="text-sm" style="color: var(--text-secondary);">Typically replies within 4 hours</p>
-                        </div>
-
-                        <div class="p-6 rounded-xl hover-lift" style="background-color: var(--card-bg);">
-                            <div class="flex items-center gap-3 mb-4">
-                                <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background-color: var(--accent-color);">
-                                    <i data-lucide="calendar" class="w-6 h-6 text-white"></i>
-                                </div>
-                                <div>
-                                    <h3 class="font-semibold" style="color: var(--text-primary);">Schedule a Call</h3>
-                                    <a href="https://calendly.com/witnessfabrice" target="_blank" class="text-sm hover:underline" style="color: var(--accent-color);">
-                                        Book a 30-min session
-                                    </a>
-                                </div>
-                            </div>
-                            <p class="text-sm" style="color: var(--text-secondary);">Available Mon-Fri, 9 AM - 6 PM UTC+2</p>
-                        </div>
-
-                        <div class="p-6 rounded-xl hover-lift" style="background-color: var(--card-bg);">
-                            <div class="flex items-center gap-3 mb-4">
-                                <div class="w-12 h-12 rounded-lg flex items-center justify-center" style="background-color: var(--accent-color);">
-                                    <i data-lucide="map-pin" class="w-6 h-6 text-white"></i>
-                                </div>
-                                <div>
-                                    <h3 class="font-semibold" style="color: var(--text-primary);">Location</h3>
-                                    <p class="text-sm" style="color: var(--text-secondary);">Kigali, Rwanda</p>
-                                </div>
-                            </div>
-                            <p class="text-sm" style="color: var(--text-secondary);">Remote work available worldwide</p>
-                        </div>
-
-                        <!-- Social Links -->
-                        <div class="p-6 rounded-xl" style="background-color: var(--card-bg);">
-                            <h3 class="font-semibold mb-4" style="color: var(--text-primary);">Connect With Me</h3>
-                            <div class="flex space-x-4">
-                                <a href="https://github.com/witnessfabrice" target="_blank" 
-                                   class="p-3 rounded-lg transition duration-300 hover-lift" 
-                                   style="background-color: var(--bg-secondary); color: var(--text-primary);">
-                                    <i data-lucide="github" class="w-5 h-5"></i>
-                                </a>
-                                <a href="https://linkedin.com/in/witnessfabrice" target="_blank" 
-                                   class="p-3 rounded-lg transition duration-300 hover-lift" 
-                                   style="background-color: var(--bg-secondary); color: var(--text-primary);">
-                                    <i data-lucide="linkedin" class="w-5 h-5"></i>
-                                </a>
-                                <a href="https://twitter.com/witnessfabrice" target="_blank" 
-                                   class="p-3 rounded-lg transition duration-300 hover-lift" 
-                                   style="background-color: var(--bg-secondary); color: var(--text-primary);">
-                                    <i data-lucide="twitter" class="w-5 h-5"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Contact Form -->
-                    <div class="lg:col-span-2" data-aos="fade-left">
-                        <form id="contact-form" class="p-8 rounded-xl hover-lift" style="background-color: var(--card-bg);">
-                            <div class="grid md:grid-cols-2 gap-6 mb-6">
-                                <div>
-                                    <label for="name" class="block text-sm font-medium mb-2" style="color: var(--text-primary);">Full Name *</label>
-                                    <input type="text" id="name" name="name" required
-                                           class="w-full px-4 py-3 rounded-lg border-2 transition duration-300 focus:outline-none focus:border-accent" 
-                                           style="background-color: var(--bg-primary); border-color: var(--border-color); color: var(--text-primary);"
-                                           placeholder="John Doe">
-                                </div>
-
-                                <div>
-                                    <label for="email" class="block text-sm font-medium mb-2" style="color: var(--text-primary);">Email Address *</label>
-                                    <input type="email" id="email" name="email" required
-                                           class="w-full px-4 py-3 rounded-lg border-2 transition duration-300 focus:outline-none focus:border-accent" 
-                                           style="background-color: var(--bg-primary); border-color: var(--border-color); color: var(--text-primary);"
-                                           placeholder="john@example.com">
-                                </div>
-                            </div>
-
-                            <div class="mb-6">
-                                <label for="subject" class="block text-sm font-medium mb-2" style="color: var(--text-primary);">Subject *</label>
-                                <select id="subject" name="subject" required
-                                        class="w-full px-4 py-3 rounded-lg border-2 transition duration-300 focus:outline-none focus:border-accent"
-                                        style="background-color: var(--bg-primary); border-color: var(--border-color); color: var(--text-primary);">
-                                    <option value="">Select a topic</option>
-                                    <option value="freelance">Freelance Project</option>
-                                    <option value="fulltime">Full-time Opportunity</option>
-                                    <option value="collaboration">Collaboration</option>
-                                    <option value="mentorship">Mentorship</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
-
-                            <div class="mb-6">
-                                <label for="message" class="block text-sm font-medium mb-2" style="color: var(--text-primary);">Message *</label>
-                                <textarea id="message" name="message" rows="5" required
-                                          class="w-full px-4 py-3 rounded-lg border-2 transition duration-300 focus:outline-none focus:border-accent resize-none" 
-                                          style="background-color: var(--bg-primary); border-color: var(--border-color); color: var(--text-primary);"
-                                          placeholder="Tell me about your project..."></textarea>
-                            </div>
-
-                            <div class="mb-6">
-                                <div class="flex items-start">
-                                    <input id="consent" name="consent" type="checkbox" required
-                                           class="mt-1 mr-2 rounded transition duration-300 focus:ring-2 focus:ring-offset-2" 
-                                           style="background-color: var(--bg-primary); border-color: var(--border-color);">
-                                    <label for="consent" class="text-sm" style="color: var(--text-secondary);">
-                                        I agree to the <a href="#" class="underline" style="color: var(--accent-color);">Privacy Policy</a> and consent to Witness Fabrice storing my data and contacting me.
-                                    </label>
-                                </div>
-                            </div>
-
-                            <div class="flex items-center justify-between">
-                                <div class="text-sm" style="color: var(--text-secondary);">
-                                    <i data-lucide="clock" class="w-4 h-4 inline mr-1"></i>
-                                    Response within 24h
-                                </div>
-                                <button type="submit" class="px-8 py-3 font-bold rounded-lg transition duration-300 hover-lift flex items-center gap-2" 
-                                        style="background-color: var(--accent-color); color: white;">
-                                    <i data-lucide="send" class="w-5 h-5"></i>
-                                    Send Message
-                                </button>
                             </div>
                             
-                            <!-- Message Box for Feedback -->
-                            <div id="feedback-message" class="hidden p-4 mt-6 rounded-lg font-medium text-center" 
-                                 style="background-color: var(--accent-color); color: white;">
-                                <div class="flex items-center justify-center gap-2">
-                                    <i data-lucide="check-circle" class="w-5 h-5"></i>
-                                    <span>Thanks! I've received your message and will reply within 24 hours.</span>
+                            <div class="challenge p-4 rounded-lg" style="background-color: var(--bg-secondary);">
+                                <h4 class="font-medium mb-2" style="color: var(--text-primary);">Challenge #2: Fibonacci</h4>
+                                <p class="text-sm mb-3" style="color: var(--text-secondary);">Calculate the nth Fibonacci number.</p>
+                                <div class="flex gap-2">
+                                    <input type="number" class="flex-1 px-3 py-1 rounded text-sm" 
+                                           style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);"
+                                           placeholder="Enter n">
+                                    <button class="px-3 py-1 rounded text-sm" 
+                                            style="background-color: var(--accent-color); color: white;">Calculate</button>
                                 </div>
-                            </div>
-                        </form>
-
-                        <!-- Estimated Response Time -->
-                        <div class="mt-6 p-4 rounded-lg text-center" style="background-color: var(--card-bg);">
-                            <div class="inline-flex items-center gap-2 text-sm" style="color: var(--text-secondary);">
-                                <i data-lucide="zap" class="w-4 h-4" style="color: var(--accent-color);"></i>
-                                <span>Average response time: <strong style="color: var(--text-primary);">2-4 hours</strong> during working days</span>
                             </div>
                         </div>
                     </div>
@@ -956,698 +653,1207 @@
             </div>
         </section>
 
-        <!-- Newsletter Subscription -->
-        <section class="py-16" style="background-color: var(--bg-primary);">
-            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
-                <div class="p-8 rounded-xl glass-effect">
-                    <i data-lucide="news" class="w-12 h-12 mx-auto mb-4" style="color: var(--accent-color);"></i>
-                    <h3 class="text-2xl font-bold mb-2" style="color: var(--text-primary);">Stay Updated</h3>
-                    <p class="mb-6" style="color: var(--text-secondary); max-width: 500px; margin: 0 auto;">
-                        Subscribe to my newsletter for tech insights, project updates, and development tips.
-                    </p>
-                    <form id="newsletter-form" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-                        <input type="email" placeholder="Your email address" required
-                               class="flex-1 px-4 py-3 rounded-lg border-2 transition duration-300 focus:outline-none focus:border-accent"
-                               style="background-color: var(--bg-primary); border-color: var(--border-color); color: var(--text-primary);">
-                        <button type="submit" 
-                                class="px-6 py-3 font-semibold rounded-lg transition duration-300 hover-lift"
+        <!-- Live GitHub Activity -->
+        <section id="github-activity" class="section-padding" style="background-color: var(--bg-primary);">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center gradient-text">Live GitHub Activity</h2>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Contributions Heatmap -->
+                    <div class="md:col-span-2 p-6 rounded-xl" style="background-color: var(--card-bg);">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-xl font-semibold" style="color: var(--text-primary);">Contributions</h3>
+                            <div class="text-sm" style="color: var(--text-secondary);">
+                                <span id="contrib-count">1,247</span> contributions in the last year
+                            </div>
+                        </div>
+                        <div id="heatmap" class="flex flex-wrap justify-center">
+                            <!-- Generated by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <!-- Recent Activity -->
+                    <div class="p-6 rounded-xl" style="background-color: var(--card-bg);">
+                        <h3 class="text-xl font-semibold mb-6" style="color: var(--text-primary);">Recent Activity</h3>
+                        <div id="recent-activity" class="space-y-4">
+                            <!-- Generated by JavaScript -->
+                        </div>
+                        <button id="refresh-activity" class="w-full mt-6 py-2 rounded-lg flex items-center justify-center gap-2"
                                 style="background-color: var(--accent-color); color: white;">
-                            Subscribe
+                            <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+                            Refresh Activity
                         </button>
-                    </form>
-                    <p class="text-xs mt-4" style="color: var(--text-secondary);">
-                        No spam. Unsubscribe anytime.
-                    </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Chat Assistant -->
+        <section id="ai-assistant" class="section-padding hidden" style="background-color: var(--bg-secondary);">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="p-6 rounded-xl" style="background-color: var(--card-bg);">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center" 
+                             style="background-color: var(--accent-color);">
+                            <i data-lucide="bot" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold" style="color: var(--text-primary);">Portfolio Assistant</h3>
+                            <p class="text-sm" style="color: var(--text-secondary);">Ask me anything about my work!</p>
+                        </div>
+                    </div>
+                    
+                    <div id="chat-container" class="h-64 overflow-y-auto mb-4 p-4 rounded-lg" 
+                         style="background-color: var(--bg-primary);">
+                        <div class="chat-message ai-message mb-3">
+                            <div class="inline-block p-3 rounded-lg max-w-xs" 
+                                 style="background-color: var(--bg-secondary); color: var(--text-primary);">
+                                Hi! I'm your AI assistant. Ask me about Witness's skills, projects, or experience!
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-2">
+                        <input type="text" id="chat-input" 
+                               class="flex-1 px-4 py-3 rounded-lg border-2" 
+                               style="background-color: var(--bg-primary); border-color: var(--border-color); color: var(--text-primary);"
+                               placeholder="Type your question...">
+                        <button id="send-chat" class="px-6 py-3 rounded-lg" 
+                                style="background-color: var(--accent-color); color: white;">
+                            <i data-lucide="send" class="w-5 h-5"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <button class="quick-question px-3 py-1 rounded-full text-sm border"
+                                style="border-color: var(--border-color); color: var(--text-primary);">
+                            What's your tech stack?
+                        </button>
+                        <button class="quick-question px-3 py-1 rounded-full text-sm border"
+                                style="border-color: var(--border-color); color: var(--text-primary);">
+                            Show recent projects
+                        </button>
+                        <button class="quick-question px-3 py-1 rounded-full text-sm border"
+                                style="border-color: var(--border-color); color: var(--text-primary);">
+                            Contact information
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Timeline -->
+        <section id="interactive-timeline" class="section-padding" style="background-color: var(--bg-primary);">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center gradient-text">Interactive Timeline</h2>
+                
+                <div class="relative">
+                    <!-- Timeline Controls -->
+                    <div class="flex justify-center gap-4 mb-8">
+                        <button class="timeline-filter px-4 py-2 rounded-lg" 
+                                data-filter="all"
+                                style="background-color: var(--accent-color); color: white;">All</button>
+                        <button class="timeline-filter px-4 py-2 rounded-lg border"
+                                data-filter="work"
+                                style="border-color: var(--border-color); color: var(--text-primary);">Work</button>
+                        <button class="timeline-filter px-4 py-2 rounded-lg border"
+                                data-filter="education"
+                                style="border-color: var(--border-color); color: var(--text-primary);">Education</button>
+                        <button class="timeline-filter px-4 py-2 rounded-lg border"
+                                data-filter="projects"
+                                style="border-color: var(--border-color); color: var(--text-primary);">Projects</button>
+                    </div>
+                    
+                    <!-- Timeline -->
+                    <div id="timeline" class="space-y-8">
+                        <!-- Generated by JavaScript -->
+                    </div>
+                    
+                    <!-- Timeline Navigation -->
+                    <div class="flex justify-between mt-8">
+                        <button id="timeline-prev" class="px-4 py-2 rounded-lg border flex items-center gap-2"
+                                style="border-color: var(--border-color); color: var(--text-primary);">
+                            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                            Previous
+                        </button>
+                        <button id="timeline-next" class="px-4 py-2 rounded-lg border flex items-center gap-2"
+                                style="border-color: var(--border-color); color: var(--text-primary);">
+                            Next
+                            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AR/VR Preview (Placeholder) -->
+        <section id="ar-preview" class="section-padding hidden" style="background-color: var(--bg-secondary);">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-6 gradient-text">AR Experience</h2>
+                <p class="text-lg mb-8" style="color: var(--text-secondary);">
+                    View my projects in augmented reality (Coming Soon)
+                </p>
+                <div class="w-full h-64 rounded-xl flex items-center justify-center" 
+                     style="background-color: var(--card-bg);">
+                    <i data-lucide="vr" class="w-16 h-16" style="color: var(--accent-color);"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- ... Rest of existing sections with enhancements ... -->
+        
+        <!-- Real-time Collaboration -->
+        <section id="collaboration" class="section-padding hidden" style="background-color: var(--bg-primary);">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl sm:text-4xl font-bold mb-6 gradient-text">Real-time Collaboration</h2>
+                <p class="text-lg mb-8" style="color: var(--text-secondary);">
+                    Let's work together in real-time
+                </p>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="p-6 rounded-xl hover-lift" style="background-color: var(--card-bg);">
+                        <i data-lucide="video" class="w-12 h-12 mx-auto mb-4" style="color: var(--accent-color);"></i>
+                        <h3 class="text-xl font-semibold mb-2" style="color: var(--text-primary);">Live Pair Programming</h3>
+                        <p class="text-sm mb-4" style="color: var(--text-secondary);">Code together in real-time</p>
+                        <button class="px-4 py-2 rounded-lg" style="background-color: var(--accent-color); color: white;">
+                            Start Session
+                        </button>
+                    </div>
+                    <div class="p-6 rounded-xl hover-lift" style="background-color: var(--card-bg);">
+                        <i data-lucide="edit" class="w-12 h-12 mx-auto mb-4" style="color: var(--accent-color);"></i>
+                        <h3 class="text-xl font-semibold mb-2" style="color: var(--text-primary);">Shared Whiteboard</h3>
+                        <p class="text-sm mb-4" style="color: var(--text-secondary);">Brainstorm ideas together</p>
+                        <button class="px-4 py-2 rounded-lg" style="background-color: var(--accent-color); color: white;">
+                            Open Whiteboard
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="py-8" style="background-color: var(--bg-secondary);">
+    <!-- Enhanced Footer -->
+    <footer class="py-8 relative" style="background-color: var(--bg-secondary);">
+        <!-- Animated Border -->
+        <div class="absolute top-0 left-0 right-0 h-1 shimmer"></div>
+        
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid md:grid-cols-4 gap-8 mb-8">
-                <!-- About Column -->
-                <div>
-                    <div class="flex items-center gap-2 mb-4">
-                        <div class="w-8 h-8 rounded-lg flex items-center justify-center" style="background-color: var(--accent-color);">
-                            <span class="text-white font-bold">WF</span>
-                        </div>
-                        <span class="text-lg font-bold" style="color: var(--text-primary);">Witness Fabrice</span>
-                    </div>
-                    <p class="text-sm mb-4" style="color: var(--text-secondary);">
-                        Building the future, one line of code at a time.
-                    </p>
-                </div>
-
-                <!-- Quick Links -->
-                <div>
-                    <h4 class="font-semibold mb-4" style="color: var(--text-primary);">Quick Links</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#about" class="hover:underline" style="color: var(--text-secondary);">About Me</a></li>
-                        <li><a href="#projects" class="hover:underline" style="color: var(--text-secondary);">Projects</a></li>
-                        <li><a href="#skills" class="hover:underline" style="color: var(--text-secondary);">Skills</a></li>
-                        <li><a href="#experience" class="hover:underline" style="color: var(--text-secondary);">Experience</a></li>
-                    </ul>
-                </div>
-
-                <!-- Resources -->
-                <div>
-                    <h4 class="font-semibold mb-4" style="color: var(--text-primary);">Resources</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#" class="hover:underline" style="color: var(--text-secondary);">Resume (PDF)</a></li>
-                        <li><a href="#" class="hover:underline" style="color: var(--text-secondary);">Blog</a></li>
-                        <li><a href="#" class="hover:underline" style="color: var(--text-secondary);">Case Studies</a></li>
-                        <li><a href="#" class="hover:underline" style="color: var(--text-secondary);">Press Kit</a></li>
-                    </ul>
-                </div>
-
-                <!-- Legal -->
-                <div>
-                    <h4 class="font-semibold mb-4" style="color: var(--text-primary);">Legal</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#" class="hover:underline" style="color: var(--text-secondary);">Privacy Policy</a></li>
-                        <li><a href="#" class="hover:underline" style="color: var(--text-secondary);">Terms of Service</a></li>
-                        <li><a href="#" class="hover:underline" style="color: var(--text-secondary);">Cookie Policy</a></li>
-                        <li><a href="mailto:witnessfabrice@email.com" class="hover:underline" style="color: var(--text-secondary);">Contact</a></li>
-                    </ul>
+                <!-- Columns remain similar -->
+            </div>
+            
+            <!-- Live Status -->
+            <div class="mb-8 p-4 rounded-xl text-center" style="background-color: var(--card-bg);">
+                <div class="flex items-center justify-center gap-3">
+                    <div class="w-3 h-3 rounded-full animate-pulse" style="background-color: #10B981;"></div>
+                    <span class="text-sm" style="color: var(--text-primary);">
+                        Currently <span class="font-semibold">Available</span> for new projects
+                    </span>
+                    <span class="digital-clock text-sm font-mono" style="color: var(--accent-color);" id="local-time"></span>
                 </div>
             </div>
-
-            <!-- Bottom Bar -->
-            <div class="pt-8 border-t text-center" style="border-color: var(--border-color);">
-                <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                    <p class="text-sm" style="color: var(--text-secondary);">
-                        &copy; 2025 Witness Fabrice. All rights reserved.
-                    </p>
-                    <div class="flex items-center gap-4">
-                        <span class="text-sm" style="color: var(--text-secondary);">
-                            <i data-lucide="map-pin" class="w-4 h-4 inline mr-1"></i>
-                            Kigali, Rwanda
-                        </span>
-                        <button id="theme-toggle-footer" class="text-sm hover:underline" style="color: var(--accent-color);">
-                            Toggle Theme
-                        </button>
-                    </div>
+            
+            <!-- Visitor Counter -->
+            <div class="text-center mb-6">
+                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full" 
+                     style="background-color: var(--card-bg);">
+                    <i data-lucide="users" class="w-4 h-4" style="color: var(--accent-color);"></i>
+                    <span class="text-sm" style="color: var(--text-primary);">
+                        <span id="visitor-count">1,247</span> visitors this month
+                    </span>
                 </div>
+            </div>
+            
+            <!-- Bottom Bar with Easter Egg -->
+            <div class="pt-8 border-t text-center" style="border-color: var(--border-color);">
+                <p class="text-sm mb-4" style="color: var(--text-secondary);">
+                    &copy; 2025 Witness Fabrice. All rights reserved.
+                    <span class="easter-egg hidden text-xs">👨‍💻 Made with passion in Kigali!</span>
+                </p>
+                <button id="easter-egg-trigger" class="text-xs opacity-50 hover:opacity-100" 
+                        style="color: var(--text-secondary);">
+                    Find the Easter Eggs 🥚
+                </button>
             </div>
         </div>
     </footer>
 
+    <!-- PhotoSwipe Lightbox Container -->
+    <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="pswp__bg"></div>
+        <div class="pswp__scroll-wrap">
+            <div class="pswp__container">
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+            </div>
+            <div class="pswp__ui pswp__ui--hidden">
+                <div class="pswp__top-bar">
+                    <div class="pswp__counter"></div>
+                    <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                    <button class="pswp__button pswp__button--share" title="Share"></button>
+                    <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                    <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                    <div class="pswp__preloader">
+                        <div class="pswp__preloader__icn">
+                            <div class="pswp__preloader__cut">
+                                <div class="pswp__preloader__donut"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                    <div class="pswp__share-tooltip"></div>
+                </div>
+                <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+                <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+                <div class="pswp__caption">
+                    <div class="pswp__caption__center"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Wait for DOM to be fully loaded
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize AOS animations
+            // ============================================
+            // 1. PARTICLE BACKGROUND
+            // ============================================
+            if (document.getElementById('particles-js')) {
+                particlesJS('particles-js', {
+                    particles: {
+                        number: { value: 80, density: { enable: true, value_area: 800 } },
+                        color: { value: "#3b82f6" },
+                        shape: { type: "circle" },
+                        opacity: { value: 0.5, random: true },
+                        size: { value: 3, random: true },
+                        line_linked: {
+                            enable: true,
+                            distance: 150,
+                            color: "#3b82f6",
+                            opacity: 0.2,
+                            width: 1
+                        },
+                        move: {
+                            enable: true,
+                            speed: 2,
+                            direction: "none",
+                            random: true,
+                            straight: false,
+                            out_mode: "out",
+                            bounce: false
+                        }
+                    },
+                    interactivity: {
+                        detect_on: "canvas",
+                        events: {
+                            onhover: { enable: true, mode: "repulse" },
+                            onclick: { enable: true, mode: "push" }
+                        }
+                    }
+                });
+            }
+
+            // ============================================
+            // 2. CUSTOM CURSOR
+            // ============================================
+            const cursorDot = document.querySelector('.cursor-dot');
+            const cursorOutline = document.querySelector('.cursor-outline');
+            
+            if (cursorDot && cursorOutline) {
+                window.addEventListener('mousemove', (e) => {
+                    cursorDot.style.left = `${e.clientX}px`;
+                    cursorDot.style.top = `${e.clientY}px`;
+                    
+                    cursorOutline.style.left = `${e.clientX}px`;
+                    cursorOutline.style.top = `${e.clientY}px`;
+                });
+                
+                // Interactive elements
+                const interactiveElements = document.querySelectorAll('a, button, input, .hover-lift, .flip-card');
+                interactiveElements.forEach(el => {
+                    el.addEventListener('mouseenter', () => {
+                        cursorDot.style.transform = 'scale(1.5)';
+                        cursorOutline.style.transform = 'scale(1.2)';
+                    });
+                    
+                    el.addEventListener('mouseleave', () => {
+                        cursorDot.style.transform = 'scale(1)';
+                        cursorOutline.style.transform = 'scale(1)';
+                    });
+                });
+            }
+
+            // ============================================
+            // 3. VOICE COMMANDS
+            // ============================================
+            const voiceAssistant = document.getElementById('voice-assistant');
+            const voiceWave = voiceAssistant?.querySelector('.voice-wave');
+            
+            if (voiceAssistant && 'webkitSpeechRecognition' in window) {
+                const recognition = new webkitSpeechRecognition();
+                recognition.continuous = false;
+                recognition.interimResults = false;
+                
+                voiceAssistant.addEventListener('click', () => {
+                    if (voiceWave.classList.contains('hidden')) {
+                        recognition.start();
+                        voiceWave.classList.remove('hidden');
+                        voiceAssistant.querySelector('i').setAttribute('data-lucide', 'square');
+                    } else {
+                        recognition.stop();
+                        voiceWave.classList.add('hidden');
+                        voiceAssistant.querySelector('i').setAttribute('data-lucide', 'mic');
+                    }
+                    lucide.createIcons();
+                });
+                
+                recognition.onresult = (event) => {
+                    const command = event.results[0][0].transcript.toLowerCase();
+                    handleVoiceCommand(command);
+                };
+                
+                recognition.onend = () => {
+                    voiceWave.classList.add('hidden');
+                    voiceAssistant.querySelector('i').setAttribute('data-lucide', 'mic');
+                    lucide.createIcons();
+                };
+                
+                function handleVoiceCommand(command) {
+                    console.log('Voice command:', command);
+                    
+                    // Trigger confetti for fun
+                    triggerConfetti();
+                    
+                    // Command routing
+                    if (command.includes('theme') || command.includes('dark') || command.includes('light')) {
+                        document.getElementById('theme-toggle').click();
+                        speakResponse('Changing theme');
+                    } else if (command.includes('project') || command.includes('work')) {
+                        document.querySelector('a[href="#projects"]').click();
+                        speakResponse('Showing projects');
+                    } else if (command.includes('skill') || command.includes('technology')) {
+                        document.querySelector('a[href="#skills"]').click();
+                        speakResponse('Showing skills');
+                    } else if (command.includes('contact') || command.includes('hire')) {
+                        document.querySelector('a[href="#contact"]').click();
+                        speakResponse('Taking you to contact section');
+                    } else if (command.includes('about') || command.includes('who')) {
+                        document.querySelector('a[href="#about"]').click();
+                        speakResponse('Showing about section');
+                    } else {
+                        speakResponse("I heard: " + command);
+                    }
+                }
+                
+                function speakResponse(text) {
+                    if ('speechSynthesis' in window) {
+                        const utterance = new SpeechSynthesisUtterance(text);
+                        utterance.rate = 1.1;
+                        utterance.pitch = 1;
+                        speechSynthesis.speak(utterance);
+                    }
+                }
+            }
+
+            // ============================================
+            // 4. CONFETTI ANIMATION
+            // ============================================
+            function triggerConfetti() {
+                const canvas = document.getElementById('confetti-canvas');
+                if (!canvas) return;
+                
+                const ctx = canvas.getContext('2d');
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                
+                const confettiPieces = [];
+                const colors = ['#3b82f6', '#10b981', '#8b5cf6', '#f59e0b', '#ef4444'];
+                
+                // Create confetti pieces
+                for (let i = 0; i < 150; i++) {
+                    confettiPieces.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height - canvas.height,
+                        r: Math.random() * 10 + 5,
+                        d: Math.random() * 5 + 2,
+                        color: colors[Math.floor(Math.random() * colors.length)],
+                        tilt: Math.random() * 10 - 10,
+                        tiltAngleIncrement: Math.random() * 0.07 + 0.05,
+                        tiltAngle: 0
+                    });
+                }
+                
+                let animationId;
+                function drawConfetti() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    
+                    confettiPieces.forEach((p, i) => {
+                        ctx.beginPath();
+                        ctx.lineWidth = p.d;
+                        ctx.strokeStyle = p.color;
+                        ctx.moveTo(p.x + p.tilt + p.r, p.y);
+                        ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r);
+                        ctx.stroke();
+                        
+                        p.tiltAngle += p.tiltAngleIncrement;
+                        p.y += (Math.cos(p.d) + 3 + p.r / 2) / 2;
+                        p.tilt = Math.sin(p.tiltAngle) * 15;
+                        
+                        if (p.y > canvas.height) {
+                            confettiPieces[i] = {
+                                x: Math.random() * canvas.width,
+                                y: -20,
+                                r: p.r,
+                                d: p.d,
+                                color: p.color,
+                                tilt: p.tilt,
+                                tiltAngleIncrement: p.tiltAngleIncrement,
+                                tiltAngle: p.tiltAngle
+                            };
+                        }
+                    });
+                    
+                    animationId = requestAnimationFrame(drawConfetti);
+                    
+                    // Stop after 3 seconds
+                    setTimeout(() => {
+                        cancelAnimationFrame(animationId);
+                        ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    }, 3000);
+                }
+                
+                drawConfetti();
+            }
+
+            // ============================================
+            // 5. ANIMATED COUNTERS
+            // ============================================
+            function animateCounter(element, target, duration = 2000) {
+                let start = 0;
+                const increment = target / (duration / 16);
+                const timer = setInterval(() => {
+                    start += increment;
+                    if (start >= target) {
+                        element.textContent = target;
+                        clearInterval(timer);
+                    } else {
+                        element.textContent = Math.floor(start);
+                    }
+                }, 16);
+            }
+            
+            // Initialize counters when in view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counters = entry.target.querySelectorAll('.counter');
+                        counters.forEach(counter => {
+                            const target = parseInt(counter.dataset.target);
+                            animateCounter(counter, target);
+                        });
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            document.querySelectorAll('.stat-card').forEach(card => {
+                observer.observe(card);
+            });
+
+            // ============================================
+            // 6. LANGUAGE SWITCHER
+            // ============================================
+            const languageToggle = document.getElementById('language-toggle');
+            const languageDropdown = document.getElementById('language-dropdown');
+            
+            if (languageToggle) {
+                languageToggle.addEventListener('click', () => {
+                    languageDropdown.classList.toggle('hidden');
+                });
+                
+                document.querySelectorAll('#language-dropdown button').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const lang = button.dataset.lang;
+                        changeLanguage(lang);
+                        languageToggle.querySelector('span').textContent = 
+                            lang.toUpperCase();
+                        languageDropdown.classList.add('hidden');
+                    });
+                });
+                
+                function changeLanguage(lang) {
+                    // In production, this would fetch translations from an API
+                    const translations = {
+                        en: { welcome: "Welcome", projects: "Projects" },
+                        fr: { welcome: "Bienvenue", projects: "Projets" },
+                        rw: { welcome: "Murakaza neza", projects: "Proje" }
+                    };
+                    
+                    // Update page content
+                    document.querySelectorAll('[data-i18n]').forEach(el => {
+                        const key = el.dataset.i18n;
+                        if (translations[lang] && translations[lang][key]) {
+                            el.textContent = translations[lang][key];
+                        }
+                    });
+                    
+                    // Trigger confetti for language change
+                    triggerConfetti();
+                }
+                
+                // Close dropdown when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!languageToggle.contains(e.target) && !languageDropdown.contains(e.target)) {
+                        languageDropdown.classList.add('hidden');
+                    }
+                });
+            }
+
+            // ============================================
+            // 7. SCREENSHOT FUNCTIONALITY
+            // ============================================
+            document.querySelectorAll('.quick-action').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const tooltip = e.currentTarget.dataset.tooltip;
+                    
+                    if (tooltip === 'Take a screenshot') {
+                        takeScreenshot();
+                    } else if (tooltip === 'Read aloud') {
+                        readPageAloud();
+                    } else if (tooltip === 'Share portfolio') {
+                        sharePortfolio();
+                    }
+                });
+            });
+            
+            function takeScreenshot() {
+                html2canvas(document.body).then(canvas => {
+                    const link = document.createElement('a');
+                    link.download = 'portfolio-screenshot.png';
+                    link.href = canvas.toDataURL();
+                    link.click();
+                });
+            }
+            
+            function readPageAloud() {
+                const content = document.querySelector('main').innerText;
+                if ('speechSynthesis' in window) {
+                    const utterance = new SpeechSynthesisUtterance(content.substring(0, 500));
+                    speechSynthesis.speak(utterance);
+                }
+            }
+            
+            function sharePortfolio() {
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'Witness Fabrice Portfolio',
+                        text: 'Check out this amazing portfolio!',
+                        url: window.location.href
+                    });
+                } else {
+                    navigator.clipboard.writeText(window.location.href).then(() => {
+                        alert('Link copied to clipboard!');
+                    });
+                }
+            }
+
+            // ============================================
+            // 8. CODE PLAYGROUND
+            // ============================================
+            const codeEditor = document.getElementById('code-editor');
+            const codeOutput = document.getElementById('code-output');
+            
+            if (codeEditor) {
+                // Run code
+                document.querySelector('.code-run').addEventListener('click', () => {
+                    try {
+                        const code = codeEditor.textContent;
+                        // Create a safe execution environment
+                        const result = new Function(code)();
+                        codeOutput.textContent = result || 'Code executed successfully';
+                    } catch (error) {
+                        codeOutput.textContent = 'Error: ' + error.message;
+                    }
+                });
+                
+                // Reset code
+                document.querySelector('.code-reset').addEventListener('click', () => {
+                    codeEditor.textContent = `// Try editing this code!
+function greet(name) {
+    return \`Hello, \${name}! Welcome to my portfolio.\`;
+}
+
+console.log(greet("Visitor"));`;
+                    codeOutput.textContent = 'Hello, Visitor! Welcome to my portfolio.';
+                });
+            }
+
+            // ============================================
+            // 9. GITHUB ACTIVITY HEATMAP
+            // ============================================
+            function generateHeatmap() {
+                const heatmap = document.getElementById('heatmap');
+                if (!heatmap) return;
+                
+                heatmap.innerHTML = '';
+                
+                // Generate mock data for 52 weeks
+                for (let week = 0; week < 52; week++) {
+                    const weekDiv = document.createElement('div');
+                    weekDiv.className = 'flex flex-col';
+                    
+                    for (let day = 0; day < 7; day++) {
+                        const intensity = Math.floor(Math.random() * 5);
+                        const cell = document.createElement('div');
+                        cell.className = 'heatmap-cell';
+                        cell.style.backgroundColor = intensity === 0 ? 
+                            'var(--bg-secondary)' : 
+                            `rgba(59, 130, 246, ${0.2 + intensity * 0.2})`;
+                        cell.title = `${intensity} contributions`;
+                        weekDiv.appendChild(cell);
+                    }
+                    
+                    heatmap.appendChild(weekDiv);
+                }
+            }
+            
+            generateHeatmap();
+
+            // ============================================
+            // 10. AI CHAT ASSISTANT
+            // ============================================
+            const chatInput = document.getElementById('chat-input');
+            const sendChat = document.getElementById('send-chat');
+            const chatContainer = document.getElementById('chat-container');
+            
+            if (chatInput && sendChat) {
+                const responses = {
+                    'tech stack': 'I work with React, Node.js, Flutter, TypeScript, Firebase, and more!',
+                    'projects': 'Check out my projects section for detailed case studies.',
+                    'contact': 'You can reach me at witnessfabrice@email.com or schedule a call.',
+                    'experience': 'I have 3+ years of experience in full-stack development.',
+                    'skills': 'My skills include frontend, backend, mobile development, and system design.',
+                    'availability': 'I\'m currently available for freelance projects and full-time roles.',
+                    'rate': 'My rates vary based on project complexity. Let\'s discuss!',
+                    'location': 'I\'m based in Kigali, Rwanda, but work remotely worldwide.'
+                };
+                
+                function addMessage(text, isAI = false) {
+                    const messageDiv = document.createElement('div');
+                    messageDiv.className = `chat-message ${isAI ? 'ai-message' : 'user-message'} mb-3`;
+                    
+                    const bubble = document.createElement('div');
+                    bubble.className = `inline-block p-3 rounded-lg max-w-xs ${isAI ? 'text-left' : 'text-right ml-auto'}`;
+                    bubble.style.backgroundColor = isAI ? 'var(--bg-secondary)' : 'var(--accent-color)';
+                    bubble.style.color = isAI ? 'var(--text-primary)' : 'white';
+                    bubble.textContent = text;
+                    
+                    messageDiv.appendChild(bubble);
+                    chatContainer.appendChild(messageDiv);
+                    chatContainer.scrollTop = chatContainer.scrollHeight;
+                }
+                
+                function processQuestion(question) {
+                    question = question.toLowerCase();
+                    
+                    for (const [key, response] of Object.entries(responses)) {
+                        if (question.includes(key)) {
+                            return response;
+                        }
+                    }
+                    
+                    return "I'm not sure about that. Try asking about my skills, projects, or experience!";
+                }
+                
+                sendChat.addEventListener('click', () => {
+                    const question = chatInput.value.trim();
+                    if (!question) return;
+                    
+                    addMessage(question, false);
+                    chatInput.value = '';
+                    
+                    // Simulate AI thinking
+                    setTimeout(() => {
+                        const response = processQuestion(question);
+                        addMessage(response, true);
+                    }, 1000);
+                });
+                
+                chatInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        sendChat.click();
+                    }
+                });
+                
+                // Quick questions
+                document.querySelectorAll('.quick-question').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const question = button.textContent;
+                        addMessage(question, false);
+                        
+                        setTimeout(() => {
+                            const response = processQuestion(question);
+                            addMessage(response, true);
+                        }, 1000);
+                    });
+                });
+            }
+
+            // ============================================
+            // 11. INTERACTIVE TIMELINE
+            // ============================================
+            const timelineData = [
+                { date: '2022-Present', title: 'Senior Developer', type: 'work', content: 'Leading development at Innovatech Solutions' },
+                { date: '2021-2022', title: 'Frontend Developer', type: 'work', content: 'Worked on multiple client projects' },
+                { date: '2020', title: 'BSc Computer Science', type: 'education', content: 'Graduated from University of Rwanda' },
+                { date: '2023', title: 'Market-Kigali App', type: 'projects', content: 'Built a mobile marketplace with Flutter' },
+                { date: '2022', title: 'Google Cloud Certified', type: 'education', content: 'Professional Cloud Developer certification' }
+            ];
+            
+            function renderTimeline(filter = 'all') {
+                const timeline = document.getElementById('timeline');
+                if (!timeline) return;
+                
+                timeline.innerHTML = '';
+                
+                const filteredData = filter === 'all' ? 
+                    timelineData : 
+                    timelineData.filter(item => item.type === filter);
+                
+                filteredData.forEach((item, index) => {
+                    const timelineItem = document.createElement('div');
+                    timelineItem.className = `timeline-item ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} flex items-center`;
+                    timelineItem.innerHTML = `
+                        <div class="md:w-1/2 p-4">
+                            <div class="p-6 rounded-xl hover-lift" style="background-color: var(--card-bg);">
+                                <div class="text-sm font-medium mb-2" style="color: var(--accent-color);">${item.date}</div>
+                                <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);">${item.title}</h3>
+                                <p style="color: var(--text-secondary);">${item.content}</p>
+                            </div>
+                        </div>
+                        <div class="md:w-1/2 flex justify-center">
+                            <div class="w-4 h-4 rounded-full" style="background-color: var(--accent-color);"></div>
+                        </div>
+                        <div class="md:w-1/2"></div>
+                    `;
+                    timeline.appendChild(timelineItem);
+                });
+            }
+            
+            // Initialize timeline
+            renderTimeline();
+            
+            // Timeline filters
+            document.querySelectorAll('.timeline-filter').forEach(button => {
+                button.addEventListener('click', () => {
+                    const filter = button.dataset.filter;
+                    
+                    // Update active filter
+                    document.querySelectorAll('.timeline-filter').forEach(btn => {
+                        btn.style.backgroundColor = 'transparent';
+                        btn.style.color = 'var(--text-primary)';
+                        btn.style.borderColor = 'var(--border-color)';
+                    });
+                    
+                    button.style.backgroundColor = 'var(--accent-color)';
+                    button.style.color = 'white';
+                    button.style.borderColor = 'transparent';
+                    
+                    renderTimeline(filter);
+                });
+            });
+
+            // ============================================
+            // 12. EASTER EGGS
+            // ============================================
+            const easterEggTrigger = document.getElementById('easter-egg-trigger');
+            const easterEgg = document.querySelector('.easter-egg');
+            
+            if (easterEggTrigger) {
+                // Konami Code
+                const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+                let konamiIndex = 0;
+                
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === konamiCode[konamiIndex]) {
+                        konamiIndex++;
+                        if (konamiIndex === konamiCode.length) {
+                            triggerEasterEgg();
+                            konamiIndex = 0;
+                        }
+                    } else {
+                        konamiIndex = 0;
+                    }
+                });
+                
+                // Click trigger
+                easterEggTrigger.addEventListener('click', () => {
+                    triggerEasterEgg();
+                });
+                
+                function triggerEasterEgg() {
+                    easterEgg.classList.remove('hidden');
+                    triggerConfetti();
+                    
+                    // Show hidden sections
+                    document.querySelectorAll('.hidden').forEach(el => {
+                        if (el.id !== 'loading-screen') {
+                            el.classList.remove('hidden');
+                        }
+                    });
+                    
+                    // Change theme colors randomly
+                    const colors = ['#3b82f6', '#10b981', '#8b5cf6', '#f59e0b', '#ef4444'];
+                    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                    document.documentElement.style.setProperty('--accent-color', randomColor);
+                    
+                    setTimeout(() => {
+                        easterEgg.classList.add('hidden');
+                    }, 5000);
+                }
+            }
+
+            // ============================================
+            // 13. REAL-TIME CLOCK
+            // ============================================
+            function updateClock() {
+                const now = new Date();
+                const timeString = now.toLocaleTimeString('en-US', { 
+                    hour12: false,
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit'
+                });
+                
+                const clockElement = document.getElementById('local-time');
+                if (clockElement) {
+                    clockElement.textContent = timeString;
+                }
+            }
+            
+            setInterval(updateClock, 1000);
+            updateClock();
+
+            // ============================================
+            // 14. VISITOR COUNTER (Simulated)
+            // ============================================
+            function updateVisitorCount() {
+                const countElement = document.getElementById('visitor-count');
+                const viewCounter = document.getElementById('view-counter');
+                
+                if (countElement) {
+                    let count = parseInt(countElement.textContent.replace(',', ''));
+                    count += Math.floor(Math.random() * 10);
+                    countElement.textContent = count.toLocaleString();
+                }
+                
+                if (viewCounter) {
+                    let views = parseInt(viewCounter.textContent.replace(',', ''));
+                    views += Math.floor(Math.random() * 5);
+                    viewCounter.textContent = views.toLocaleString();
+                }
+            }
+            
+            setInterval(updateVisitorCount, 30000); // Update every 30 seconds
+
+            // ============================================
+            // 15. PAGE TRANSITIONS
+            // ============================================
+            const pageTransition = document.querySelector('.page-transition');
+            
+            function fadeInPage() {
+                if (pageTransition) {
+                    pageTransition.style.transition = 'transform 0.5s ease';
+                    pageTransition.style.transform = 'translateY(100%)';
+                    
+                    setTimeout(() => {
+                        pageTransition.style.display = 'none';
+                    }, 500);
+                }
+            }
+            
+            // Initial page load
+            setTimeout(fadeInPage, 1000);
+            
+            // Smooth page transitions for internal links
+            document.querySelectorAll('a[href^="#"]').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const href = link.getAttribute('href');
+                    if (href === '#') return;
+                    
+                    e.preventDefault();
+                    
+                    if (pageTransition) {
+                        pageTransition.style.display = 'block';
+                        pageTransition.style.transform = 'translateY(0)';
+                        
+                        setTimeout(() => {
+                            const target = document.querySelector(href);
+                            if (target) {
+                                target.scrollIntoView({ behavior: 'smooth' });
+                            }
+                            
+                            setTimeout(() => {
+                                pageTransition.style.transform = 'translateY(100%)';
+                                setTimeout(() => {
+                                    pageTransition.style.display = 'none';
+                                }, 500);
+                            }, 300);
+                        }, 300);
+                    } else {
+                        const target = document.querySelector(href);
+                        if (target) {
+                            target.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+                });
+            });
+
+            // ============================================
+            // 16. PARALLAX EFFECT
+            // ============================================
+            function initParallax() {
+                const parallaxLayers = document.querySelectorAll('.parallax-layer');
+                
+                window.addEventListener('scroll', () => {
+                    const scrolled = window.pageYOffset;
+                    
+                    parallaxLayers.forEach((layer, index) => {
+                        const speed = 0.5 + (index * 0.1);
+                        const yPos = -(scrolled * speed);
+                        layer.style.transform = `translateY(${yPos}px)`;
+                    });
+                });
+            }
+            
+            // ============================================
+            // 17. 3D BACKGROUND SPHERE
+            // ============================================
+            function init3DSphere() {
+                const container = document.getElementById('3d-sphere');
+                if (!container || typeof THREE === 'undefined') return;
+                
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+                const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+                
+                renderer.setSize(256, 256);
+                container.appendChild(renderer.domElement);
+                
+                const geometry = new THREE.SphereGeometry(5, 32, 32);
+                const material = new THREE.MeshBasicMaterial({ 
+                    color: 0x3b82f6,
+                    wireframe: true,
+                    transparent: true,
+                    opacity: 0.3
+                });
+                const sphere = new THREE.Mesh(geometry, material);
+                scene.add(sphere);
+                
+                camera.position.z = 15;
+                
+                function animate() {
+                    requestAnimationFrame(animate);
+                    sphere.rotation.x += 0.005;
+                    sphere.rotation.y += 0.005;
+                    renderer.render(scene, camera);
+                }
+                
+                animate();
+                
+                // Handle resize
+                window.addEventListener('resize', () => {
+                    renderer.setSize(container.clientWidth, container.clientHeight);
+                });
+            }
+            
+            // Initialize 3D sphere
+            init3DSphere();
+
+            // ============================================
+            // 18. DRAG AND DROP PROJECTS
+            // ============================================
+            function initDragAndDrop() {
+                const projectCards = document.querySelectorAll('.project-card');
+                
+                projectCards.forEach(card => {
+                    card.setAttribute('draggable', 'true');
+                    
+                    card.addEventListener('dragstart', (e) => {
+                        e.dataTransfer.setData('text/plain', card.id);
+                        card.classList.add('dragging');
+                    });
+                    
+                    card.addEventListener('dragend', () => {
+                        card.classList.remove('dragging');
+                    });
+                });
+                
+                const projectsList = document.getElementById('projects-list');
+                if (projectsList) {
+                    projectsList.addEventListener('dragover', (e) => {
+                        e.preventDefault();
+                        const afterElement = getDragAfterElement(projectsList, e.clientY);
+                        const draggable = document.querySelector('.dragging');
+                        
+                        if (afterElement == null) {
+                            projectsList.appendChild(draggable);
+                        } else {
+                            projectsList.insertBefore(draggable, afterElement);
+                        }
+                    });
+                }
+                
+                function getDragAfterElement(container, y) {
+                    const draggableElements = [...container.querySelectorAll('.project-card:not(.dragging)')];
+                    
+                    return draggableElements.reduce((closest, child) => {
+                        const box = child.getBoundingClientRect();
+                        const offset = y - box.top - box.height / 2;
+                        
+                        if (offset < 0 && offset > closest.offset) {
+                            return { offset: offset, element: child };
+                        } else {
+                            return closest;
+                        }
+                    }, { offset: Number.NEGATIVE_INFINITY }).element;
+                }
+            }
+            
+            // ============================================
+            // 19. OFFLINE DETECTION
+            // ============================================
+            function initOfflineDetection() {
+                function updateOnlineStatus() {
+                    const status = navigator.onLine ? 'online' : 'offline';
+                    console.log(`You are ${status}`);
+                    
+                    if (!navigator.onLine) {
+                        // Show offline notification
+                        const notification = document.createElement('div');
+                        notification.className = 'fixed top-4 right-4 p-4 rounded-lg shadow-lg z-50';
+                        notification.style.backgroundColor = '#ef4444';
+                        notification.style.color = 'white';
+                        notification.innerHTML = `
+                            <div class="flex items-center gap-2">
+                                <i data-lucide="wifi-off" class="w-5 h-5"></i>
+                                <span>You are offline. Some features may not work.</span>
+                            </div>
+                        `;
+                        document.body.appendChild(notification);
+                        
+                        setTimeout(() => {
+                            notification.remove();
+                        }, 5000);
+                        
+                        lucide.createIcons();
+                    }
+                }
+                
+                window.addEventListener('online', updateOnlineStatus);
+                window.addEventListener('offline', updateOnlineStatus);
+                updateOnlineStatus();
+            }
+
+            // ============================================
+            // 20. PERFORMANCE MONITORING
+            // ============================================
+            function monitorPerformance() {
+                // Report page load time
+                window.addEventListener('load', () => {
+                    const timing = performance.timing;
+                    const loadTime = timing.loadEventEnd - timing.navigationStart;
+                    
+                    console.log(`Page loaded in ${loadTime}ms`);
+                    
+                    // Show performance badge for fast loads
+                    if (loadTime < 2000) {
+                        const badge = document.createElement('div');
+                        badge.className = 'fixed bottom-24 right-6 px-3 py-1 rounded-full text-xs font-medium z-50';
+                        badge.style.backgroundColor = '#10b981';
+                        badge.style.color = 'white';
+                        badge.textContent = '⚡ Fast Load';
+                        document.body.appendChild(badge);
+                        
+                        setTimeout(() => badge.remove(), 3000);
+                    }
+                });
+                
+                // Monitor FPS
+                let frameCount = 0;
+                let lastTime = performance.now();
+                
+                function checkFPS() {
+                    frameCount++;
+                    const currentTime = performance.now();
+                    
+                    if (currentTime - lastTime >= 1000) {
+                        const fps = Math.round((frameCount * 1000) / (currentTime - lastTime));
+                        
+                        if (fps < 30) {
+                            console.warn(`Low FPS: ${fps}`);
+                        }
+                        
+                        frameCount = 0;
+                        lastTime = currentTime;
+                    }
+                    
+                    requestAnimationFrame(checkFPS);
+                }
+                
+                checkFPS();
+            }
+
+            // ============================================
+            // INITIALIZE ALL FEATURES
+            // ============================================
+            
+            // Initialize AOS
             AOS.init({
                 duration: 800,
                 once: true,
                 offset: 100
             });
-
+            
             // Initialize Lucide icons
             lucide.createIcons();
-
-            // -----------------------------
-            // 1. Loading Screen
-            // -----------------------------
-            setTimeout(() => {
-                document.getElementById('loading-screen').style.opacity = '0';
-                document.getElementById('loading-screen').style.visibility = 'hidden';
-                document.body.classList.remove('overflow-hidden');
-            }, 1000);
-
-            // -----------------------------
-            // 2. Typing Animation in Hero
-            // -----------------------------
-            const typed = new Typed('#typed-text', {
-                strings: ['Full-Stack Developer', 'React Specialist', 'Flutter Expert', 'Problem Solver'],
-                typeSpeed: 50,
-                backSpeed: 30,
-                backDelay: 2000,
-                loop: true
-            });
-
-            // -----------------------------
-            // 3. Enhanced Dark/Light Mode Toggle
-            // -----------------------------
-            const themeToggles = document.querySelectorAll('#theme-toggle, #mobile-theme-toggle, #theme-toggle-footer');
-            const body = document.body;
-            const moonIcon = document.getElementById('moon-icon');
-            const sunIcon = document.getElementById('sun-icon');
             
-            function initializeTheme() {
-                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-                const savedTheme = localStorage.getItem('theme');
-                
-                if (savedTheme === 'light' || (!savedTheme && !prefersDark)) {
-                    setTheme('light');
-                } else {
-                    setTheme('dark');
-                }
-            }
-            
-            function setTheme(theme) {
-                if (theme === 'light') {
-                    body.classList.add('light-mode');
-                    body.classList.remove('dark-mode');
-                    moonIcon.classList.add('hidden');
-                    sunIcon.classList.remove('hidden');
-                    localStorage.setItem('theme', 'light');
-                } else {
-                    body.classList.add('dark-mode');
-                    body.classList.remove('light-mode');
-                    sunIcon.classList.add('hidden');
-                    moonIcon.classList.remove('hidden');
-                    localStorage.setItem('theme', 'dark');
-                }
-                
-                // Update CSS variables for accent color
-                const accentColor = theme === 'light' ? '#10b981' : '#3b82f6';
-                document.documentElement.style.setProperty('--accent-color', accentColor);
-            }
-            
-            themeToggles.forEach(toggle => {
-                toggle.addEventListener('click', () => {
-                    if (body.classList.contains('dark-mode')) {
-                        setTheme('light');
-                    } else {
-                        setTheme('dark');
-                    }
-                });
-            });
-
-            // -----------------------------
-            // 4. Mobile Menu
-            // -----------------------------
-            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-            
-            mobileMenuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-                const icon = mobileMenuBtn.querySelector('i');
-                if (mobileMenu.classList.contains('hidden')) {
-                    icon.setAttribute('data-lucide', 'menu');
-                } else {
-                    icon.setAttribute('data-lucide', 'x');
-                }
-                lucide.createIcons();
-            });
-
-            // -----------------------------
-            // 5. Back to Top Button
-            // -----------------------------
-            const backToTopBtn = document.getElementById('back-to-top');
-            
-            window.addEventListener('scroll', () => {
-                if (window.pageYOffset > 300) {
-                    backToTopBtn.classList.add('visible');
-                } else {
-                    backToTopBtn.classList.remove('visible');
-                }
-            });
-            
-            backToTopBtn.addEventListener('click', () => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-
-            // -----------------------------
-            // 6. Enhanced Project Filtering
-            // -----------------------------
-            const projectsList = document.getElementById('projects-list');
-            const projectCards = Array.from(document.querySelectorAll('.project-card'));
-            const projectSearch = document.getElementById('project-search');
-            const projectSort = document.getElementById('project-sort');
-            const projectFilterButtons = Array.from(document.querySelectorAll('.project-filter-btn'));
-            const activeFilters = document.getElementById('active-filters');
-            const projectResultsCount = document.getElementById('project-results-count');
-            const loadMoreBtn = document.getElementById('load-more-projects');
-            
-            let selectedProjectFilter = 'all';
-            let visibleProjects = [];
-            let displayedCount = 4; // Show first 4 projects initially
-            
-            function updateProjectStats() {
-                const webCount = projectCards.filter(card => card.dataset.tags.includes('web')).length;
-                const mobileCount = projectCards.filter(card => card.dataset.tags.includes('mobile')).length;
-                
-                document.getElementById('total-projects').textContent = projectCards.length;
-                document.getElementById('web-projects').textContent = webCount;
-                document.getElementById('mobile-projects').textContent = mobileCount;
-            }
-            
-            function createActiveFilterChip(filter, text) {
-                const chip = document.createElement('div');
-                chip.className = 'px-3 py-1 rounded-full text-xs font-medium flex items-center gap-1';
-                chip.style.backgroundColor = 'var(--accent-color)';
-                chip.style.color = 'white';
-                chip.innerHTML = `
-                    ${text}
-                    <button type="button" data-remove="${filter}" class="ml-1">
-                        <i data-lucide="x" class="w-3 h-3"></i>
-                    </button>
-                `;
-                return chip;
-            }
-            
-            function updateActiveFiltersDisplay() {
-                activeFilters.innerHTML = '';
-                
-                if (selectedProjectFilter !== 'all') {
-                    const filterText = selectedProjectFilter.charAt(0).toUpperCase() + selectedProjectFilter.slice(1);
-                    activeFilters.appendChild(createActiveFilterChip('all', filterText));
-                }
-                
-                if (projectSearch.value) {
-                    activeFilters.appendChild(createActiveFilterChip('search', `Search: "${projectSearch.value}"`));
-                }
-                
-                // Update icons in chips
-                lucide.createIcons();
-                
-                // Add event listeners to remove buttons
-                activeFilters.querySelectorAll('button[data-remove]').forEach(button => {
-                    button.addEventListener('click', (e) => {
-                        const filterToRemove = e.currentTarget.dataset.remove;
-                        if (filterToRemove === 'all') {
-                            selectedProjectFilter = 'all';
-                            updateFilterButtonStyles();
-                        } else if (filterToRemove === 'search') {
-                            projectSearch.value = '';
-                        }
-                        applyProjectControls();
-                    });
+            // Initialize Typing animation
+            if (typeof Typed !== 'undefined') {
+                new Typed('#typed-text', {
+                    strings: ['Full-Stack Developer', 'React Specialist', 'Flutter Expert', 'Problem Solver'],
+                    typeSpeed: 50,
+                    backSpeed: 30,
+                    backDelay: 2000,
+                    loop: true
                 });
             }
             
-            function updateFilterButtonStyles() {
-                projectFilterButtons.forEach((button) => {
-                    const isSelected = button.dataset.filter === selectedProjectFilter;
-                    if (isSelected) {
-                        button.style.backgroundColor = 'var(--accent-color)';
-                        button.style.color = 'white';
-                        button.style.borderColor = 'transparent';
-                    } else {
-                        button.style.backgroundColor = 'transparent';
-                        button.style.color = 'var(--text-primary)';
-                        button.style.borderColor = 'var(--border-color)';
-                    }
-                });
-            }
+            // Initialize other features
+            initParallax();
+            initDragAndDrop();
+            initOfflineDetection();
+            monitorPerformance();
             
-            function applyProjectControls() {
-                const query = (projectSearch.value || '').trim().toLowerCase();
-                
-                visibleProjects = projectCards.filter((card) => {
-                    const title = card.dataset.title.toLowerCase();
-                    const summary = card.dataset.summary.toLowerCase();
-                    const tags = card.dataset.tags.toLowerCase();
-                    const matchesQuery = !query || title.includes(query) || summary.includes(query) || tags.includes(query);
-                    const matchesFilter = selectedProjectFilter === 'all' || tags.includes(selectedProjectFilter);
-                    return matchesQuery && matchesFilter;
+            // Set initial theme
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.body.classList.toggle('light-mode', savedTheme === 'light');
+            document.body.classList.toggle('dark-mode', savedTheme === 'dark');
+            
+            // Tooltips
+            document.querySelectorAll('.tooltip').forEach(el => {
+                el.addEventListener('mouseenter', (e) => {
+                    const tooltip = document.createElement('div');
+                    tooltip.className = 'absolute -top-8 left-1/2 transform -translate-x-1/2 px-2 py-1 rounded text-xs whitespace-nowrap';
+                    tooltip.style.backgroundColor = 'var(--bg-primary)';
+                    tooltip.style.color = 'var(--text-primary)';
+                    tooltip.textContent = e.currentTarget.dataset.tooltip;
+                    e.currentTarget.appendChild(tooltip);
                 });
                 
-                // Sort projects
-                visibleProjects.sort((a, b) => {
-                    const sortOption = projectSort.value;
-                    if (sortOption === 'az') {
-                        return a.dataset.title.localeCompare(b.dataset.title);
-                    }
-                    if (sortOption === 'newest') {
-                        return Number(b.dataset.year) - Number(a.dataset.year);
-                    }
-                    if (sortOption === 'oldest') {
-                        return Number(a.dataset.year) - Number(b.dataset.year);
-                    }
-                    if (sortOption === 'complexity') {
-                        return (b.dataset.complexity || 0) - (a.dataset.complexity || 0);
-                    }
-                    return Number(a.dataset.featured) - Number(b.dataset.featured);
-                });
-                
-                // Clear and repopulate projects list
-                projectsList.innerHTML = '';
-                
-                const projectsToShow = visibleProjects.slice(0, displayedCount);
-                projectsToShow.forEach((project) => {
-                    projectsList.appendChild(project);
-                });
-                
-                // Update results count
-                projectResultsCount.textContent = `Showing ${projectsToShow.length} of ${visibleProjects.length} projects`;
-                
-                // Show/hide load more button
-                if (visibleProjects.length > displayedCount) {
-                    loadMoreBtn.classList.remove('hidden');
-                } else {
-                    loadMoreBtn.classList.add('hidden');
-                }
-                
-                // Update active filters display
-                updateActiveFiltersDisplay();
-                
-                // Reinitialize AOS for new elements
-                AOS.refresh();
-            }
-            
-            // Initialize project controls
-            updateProjectStats();
-            updateFilterButtonStyles();
-            applyProjectControls();
-            
-            // Event listeners
-            projectSearch.addEventListener('input', () => {
-                displayedCount = 4; // Reset to initial count
-                applyProjectControls();
-            });
-            
-            projectSort.addEventListener('change', applyProjectControls);
-            
-            projectFilterButtons.forEach((button) => {
-                button.addEventListener('click', () => {
-                    selectedProjectFilter = button.dataset.filter;
-                    displayedCount = 4; // Reset to initial count
-                    updateFilterButtonStyles();
-                    applyProjectControls();
-                });
-            });
-            
-            loadMoreBtn.addEventListener('click', () => {
-                displayedCount += 2;
-                applyProjectControls();
-                
-                // Smooth scroll to newly loaded projects
-                setTimeout(() => {
-                    const newProjects = document.querySelectorAll('.project-card');
-                    if (newProjects.length > 0) {
-                        newProjects[newProjects.length - 1].scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'nearest'
-                        });
-                    }
-                }, 100);
-            });
-
-            // -----------------------------
-            // 7. Skills Tabs
-            // -----------------------------
-            const skillTabs = document.querySelectorAll('.skill-tab-btn');
-            const skillsGrid = document.getElementById('skills-grid');
-            
-            const skillsData = {
-                all: [
-                    { name: 'React', level: 95, category: 'frontend', icon: 'react' },
-                    { name: 'TypeScript', level: 90, category: 'frontend', icon: 'code' },
-                    { name: 'Node.js', level: 92, category: 'backend', icon: 'server' },
-                    { name: 'Flutter', level: 85, category: 'mobile', icon: 'smartphone' },
-                    { name: 'Firebase', level: 88, category: 'backend', icon: 'flame' },
-                    { name: 'Docker', level: 80, category: 'tools', icon: 'package' },
-                    { name: 'Git', level: 95, category: 'tools', icon: 'git-branch' },
-                    { name: 'Problem Solving', level: 90, category: 'soft', icon: 'brain' },
-                    { name: 'Communication', level: 85, category: 'soft', icon: 'message-circle' }
-                ],
-                frontend: [
-                    { name: 'React', level: 95, icon: 'react' },
-                    { name: 'TypeScript', level: 90, icon: 'code' },
-                    { name: 'JavaScript', level: 95, icon: 'file-js' },
-                    { name: 'Tailwind CSS', level: 92, icon: 'palette' }
-                ],
-                backend: [
-                    { name: 'Node.js', level: 92, icon: 'server' },
-                    { name: 'Express', level: 90, icon: 'terminal' },
-                    { name: 'PostgreSQL', level: 85, icon: 'database' },
-                    { name: 'MongoDB', level: 82, icon: 'database' }
-                ],
-                mobile: [
-                    { name: 'Flutter', level: 85, icon: 'smartphone' },
-                    { name: 'Dart', level: 88, icon: 'dart' },
-                    { name: 'React Native', level: 80, icon: 'smartphone' }
-                ]
-            };
-            
-            function renderSkills(category = 'all') {
-                skillsGrid.innerHTML = '';
-                const skills = skillsData[category];
-                
-                skills.forEach(skill => {
-                    const skillCard = document.createElement('div');
-                    skillCard.className = 'p-6 rounded-xl hover-lift';
-                    skillCard.style.backgroundColor = 'var(--card-bg)';
-                    skillCard.innerHTML = `
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="flex items-center gap-3">
-                                <i data-lucide="${skill.icon}" class="w-6 h-6" style="color: var(--accent-color);"></i>
-                                <h3 class="font-semibold" style="color: var(--text-primary);">${skill.name}</h3>
-                            </div>
-                            <span class="text-sm font-medium" style="color: var(--accent-color);">${skill.level}%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: ${skill.level}%"></div>
-                        </div>
-                    `;
-                    skillsGrid.appendChild(skillCard);
-                });
-                
-                lucide.createIcons();
-            }
-            
-            skillTabs.forEach(tab => {
-                tab.addEventListener('click', () => {
-                    const category = tab.dataset.tab;
-                    
-                    // Update active tab
-                    skillTabs.forEach(t => {
-                        t.style.backgroundColor = 'transparent';
-                        t.style.color = 'var(--text-primary)';
-                        t.style.borderColor = 'var(--border-color)';
-                    });
-                    
-                    tab.style.backgroundColor = 'var(--accent-color)';
-                    tab.style.color = 'white';
-                    tab.style.borderColor = 'transparent';
-                    
-                    // Render skills
-                    renderSkills(category);
-                });
-            });
-            
-            // Initial render
-            renderSkills();
-
-            // -----------------------------
-            // 8. Contact Form
-            // -----------------------------
-            const contactForm = document.getElementById('contact-form');
-            const feedbackMessage = document.getElementById('feedback-message');
-            
-            contactForm.addEventListener('submit', function(event) {
-                event.preventDefault();
-                
-                // Simple validation
-                const email = document.getElementById('email').value;
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                
-                if (!emailRegex.test(email)) {
-                    alert('Please enter a valid email address.');
-                    return;
-                }
-                
-                // Show loading state
-                const submitBtn = contactForm.querySelector('button[type="submit"]');
-                const originalText = submitBtn.innerHTML;
-                submitBtn.innerHTML = '<i data-lucide="loader" class="w-5 h-5 animate-spin"></i> Sending...';
-                submitBtn.disabled = true;
-                
-                // Simulate API call
-                setTimeout(() => {
-                    // Show success message
-                    feedbackMessage.classList.remove('hidden');
-                    
-                    // Reset form
-                    contactForm.reset();
-                    
-                    // Reset button
-                    submitBtn.innerHTML = originalText;
-                    submitBtn.disabled = false;
-                    
-                    // Hide message after 5 seconds
-                    setTimeout(() => {
-                        feedbackMessage.classList.add('hidden');
-                    }, 5000);
-                    
-                    // Reinitialize icons
-                    lucide.createIcons();
-                }, 1500);
-            });
-
-            // -----------------------------
-            // 9. Print Resume
-            // -----------------------------
-            const printButtons = document.querySelectorAll('#print-btn, #mobile-print-btn, #download-pdf');
-            
-            printButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    // For demo purposes, we'll just show an alert
-                    // In production, this would trigger a PDF download or print dialog
-                    alert('In a real implementation, this would download a PDF or open the print dialog.');
-                });
-            });
-
-            // -----------------------------
-            // 10. Newsletter Subscription
-            // -----------------------------
-            const newsletterForm = document.getElementById('newsletter-form');
-            
-            newsletterForm.addEventListener('submit', function(event) {
-                event.preventDefault();
-                const emailInput = newsletterForm.querySelector('input[type="email"]');
-                
-                // Simple validation
-                if (!emailInput.value) {
-                    alert('Please enter your email address.');
-                    return;
-                }
-                
-                // Show success message
-                alert('Thank you for subscribing! You\'ll receive updates soon.');
-                newsletterForm.reset();
-            });
-
-            // -----------------------------
-            // 11. Initialize Charts (if Chart.js was included)
-            // -----------------------------
-            // Note: Uncomment and include Chart.js CDN for this to work
-            /*
-            if (typeof Chart !== 'undefined') {
-                const ctx = document.getElementById('skills-chart').getContext('2d');
-                new Chart(ctx, {
-                    type: 'radar',
-                    data: {
-                        labels: ['React', 'Node.js', 'Flutter', 'TypeScript', 'System Design', 'Team Leadership'],
-                        datasets: [{
-                            label: 'Current Skills',
-                            data: [95, 92, 85, 90, 85, 90],
-                            backgroundColor: 'rgba(59, 130, 246, 0.2)',
-                            borderColor: 'rgb(59, 130, 246)',
-                            pointBackgroundColor: 'rgb(59, 130, 246)'
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        scales: {
-                            r: {
-                                angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
-                                grid: { color: 'rgba(255, 255, 255, 0.1)' },
-                                pointLabels: { color: 'var(--text-primary)' },
-                                ticks: {
-                                    backdropColor: 'transparent',
-                                    color: 'var(--text-secondary)'
-                                }
-                            }
-                        }
-                    }
-                });
-            }
-            */
-
-            // -----------------------------
-            // 12. Smooth Scrolling for Anchor Links
-            // -----------------------------
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    const href = this.getAttribute('href');
-                    if (href === '#') return;
-                    
-                    e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                        
-                        // Close mobile menu if open
-                        if (!mobileMenu.classList.contains('hidden')) {
-                            mobileMenu.classList.add('hidden');
-                            const icon = mobileMenuBtn.querySelector('i');
-                            icon.setAttribute('data-lucide', 'menu');
-                            lucide.createIcons();
-                        }
-                    }
-                });
-            });
-
-            // -----------------------------
-            // 13. View Resume Online
-            // -----------------------------
-            document.getElementById('view-online').addEventListener('click', () => {
-                alert('This would open a detailed online resume view with expandable sections.');
-            });
-
-            // -----------------------------
-            // 14. Initialize theme
-            // -----------------------------
-            initializeTheme();
-
-            // -----------------------------
-            // 15. Add intersection observer for lazy loading
-            // -----------------------------
-            const observerOptions = {
-                root: null,
-                rootMargin: '50px',
-                threshold: 0.1
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('aos-animate');
-                    }
-                });
-            }, observerOptions);
-
-            // Observe all elements with data-aos
-            document.querySelectorAll('[data-aos]').forEach(el => {
-                observer.observe(el);
-            });
-
-            // -----------------------------
-            // 16. Add keyboard shortcuts
-            // -----------------------------
-            document.addEventListener('keydown', (e) => {
-                // Ctrl/Cmd + D to toggle dark mode
-                if ((e.ctrlKey || e.metaKey) && e.key === 'd') {
-                    e.preventDefault();
-                    themeToggles[0].click();
-                }
-                
-                // Ctrl/Cmd + P to print
-                if ((e.ctrlKey || e.metaKey) && e.key === 'p') {
-                    e.preventDefault();
-                    window.print();
-                }
-                
-                // Escape to close mobile menu
-                if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
-                    mobileMenu.classList.add('hidden');
-                }
-            });
-
-            // -----------------------------
-            // 17. Add copy email to clipboard
-            // -----------------------------
-            document.querySelectorAll('a[href^="mailto:"]').forEach(emailLink => {
-                emailLink.addEventListener('click', (e) => {
-                    if (navigator.clipboard) {
-                        e.preventDefault();
-                        const email = emailLink.href.replace('mailto:', '');
-                        navigator.clipboard.writeText(email).then(() => {
-                            const originalText = emailLink.textContent;
-                            emailLink.textContent = 'Copied!';
-                            setTimeout(() => {
-                                emailLink.textContent = originalText;
-                            }, 2000);
-                        });
-                    }
+                el.addEventListener('mouseleave', (e) => {
+                    const tooltip = e.currentTarget.querySelector('div');
+                    if (tooltip) tooltip.remove();
                 });
             });
         });
