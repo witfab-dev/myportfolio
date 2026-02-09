@@ -829,6 +829,1323 @@ console.log(greet("Visitor"));</pre>
                 </div>
             </div>
         </section>
+        <!-- Add to existing portfolio -->
+<section id="collaboration-workspace" class="section-padding hidden">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center gradient-text">Collaboration Workspace</h2>
+        
+        <div class="grid lg:grid-cols-3 gap-8">
+            <!-- Live Code Editor with Multiple Users -->
+            <div class="lg:col-span-2">
+                <div class="rounded-xl overflow-hidden" style="background-color: var(--card-bg);">
+                    <div class="p-4 border-b" style="border-color: var(--border-color);">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="flex -space-x-2">
+                                    <div class="w-8 h-8 rounded-full border-2" style="border-color: var(--card-bg); background-color: #3b82f6;"></div>
+                                    <div class="w-8 h-8 rounded-full border-2" style="border-color: var(--card-bg); background-color: #10b981;"></div>
+                                    <div class="w-8 h-8 rounded-full border-2" style="border-color: var(--card-bg); background-color: #8b5cf6;"></div>
+                                </div>
+                                <span class="text-sm" style="color: var(--text-secondary);">3 users online</span>
+                            </div>
+                            <button id="join-collab" class="px-4 py-2 rounded-lg text-sm" 
+                                    style="background-color: var(--accent-color); color: white;">
+                                Join Session
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="p-4">
+                        <div class="relative">
+                            <div class="absolute top-0 left-0 w-1 h-full" style="background-color: var(--accent-color);"></div>
+                            <pre id="collab-editor" contenteditable="true" class="pl-6 font-mono text-sm min-h-[300px] p-4"
+                                 style="background-color: var(--bg-primary); color: var(--text-primary);">
+// Collaborative coding session
+// Multiple users can edit simultaneously
+
+function fibonacci(n) {
+    if (n <= 1) return n;
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+// Try editing this code with others!
+console.log("Welcome to collaborative coding!");</pre>
+                        </div>
+                        
+                        <div class="mt-4 flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
+                                    <span class="text-xs" style="color: var(--text-secondary);">Live</span>
+                                </div>
+                                <span class="text-xs" style="color: var(--text-secondary);">Changes sync in real-time</span>
+                            </div>
+                            <button id="save-snapshot" class="px-3 py-1 rounded text-xs border"
+                                    style="border-color: var(--border-color); color: var(--text-primary);">
+                                Save Snapshot
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Chat Panel -->
+            <div>
+                <div class="rounded-xl h-full" style="background-color: var(--card-bg);">
+                    <div class="p-4 border-b" style="border-color: var(--border-color);">
+                        <h3 class="font-semibold" style="color: var(--text-primary);">Collaboration Chat</h3>
+                    </div>
+                    
+                    <div id="collab-chat" class="h-64 p-4 overflow-y-auto">
+                        <!-- Messages will appear here -->
+                    </div>
+                    
+                    <div class="p-4 border-t" style="border-color: var(--border-color);">
+                        <div class="flex gap-2">
+                            <input type="text" id="collab-message" 
+                                   class="flex-1 px-3 py-2 rounded text-sm"
+                                   style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);"
+                                   placeholder="Type a message...">
+                            <button id="send-collab" class="px-3 py-2 rounded text-sm"
+                                    style="background-color: var(--accent-color); color: white;">
+                                <i data-lucide="send" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        <section id="neural-network" class="section-padding hidden">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center gradient-text">AI Neural Network</h2>
+        
+        <div class="grid lg:grid-cols-2 gap-8">
+            <div>
+                <div class="rounded-xl p-6" style="background-color: var(--card-bg);">
+                    <h3 class="text-xl font-semibold mb-4" style="color: var(--text-primary);">Neural Network Simulator</h3>
+                    <p class="mb-6" style="color: var(--text-secondary);">
+                        Interactive visualization of a neural network. Adjust parameters and see how it learns.
+                    </p>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div>
+                            <label class="text-sm mb-1 block" style="color: var(--text-primary);">Learning Rate</label>
+                            <input type="range" id="learning-rate" min="0.001" max="1" step="0.001" value="0.01" 
+                                   class="w-full">
+                            <div class="text-xs" style="color: var(--text-secondary);" id="lr-value">0.01</div>
+                        </div>
+                        
+                        <div>
+                            <label class="text-sm mb-1 block" style="color: var(--text-primary);">Hidden Layers</label>
+                            <input type="range" id="hidden-layers" min="1" max="5" step="1" value="2" 
+                                   class="w-full">
+                            <div class="text-xs" style="color: var(--text-secondary);" id="hl-value">2 layers</div>
+                        </div>
+                        
+                        <div>
+                            <label class="text-sm mb-1 block" style="color: var(--text-primary);">Training Epochs</label>
+                            <input type="range" id="training-epochs" min="10" max="1000" step="10" value="100" 
+                                   class="w-full">
+                            <div class="text-xs" style="color: var(--text-secondary);" id="epochs-value">100 epochs</div>
+                        </div>
+                    </div>
+                    
+                    <button id="train-network" class="w-full py-3 rounded-lg font-semibold mb-4"
+                            style="background-color: var(--accent-color); color: white;">
+                        Train Network
+                    </button>
+                    
+                    <div class="p-4 rounded" style="background-color: var(--bg-primary);">
+                        <div class="text-sm mb-2" style="color: var(--text-primary);">Training Progress</div>
+                        <div class="progress-bar mb-2">
+                            <div id="training-progress" class="progress-fill" style="width: 0%"></div>
+                        </div>
+                        <div class="text-xs" id="training-loss" style="color: var(--text-secondary);">
+                            Loss: --
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <div class="rounded-xl p-6" style="background-color: var(--card-bg);">
+                    <h3 class="text-xl font-semibold mb-4" style="color: var(--text-primary);">Network Visualization</h3>
+                    <canvas id="neural-canvas" width="400" height="400" class="w-full h-auto rounded-lg"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        <section id="blockchain-simulator" class="section-padding hidden">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center gradient-text">Blockchain Simulator</h2>
+        
+        <div class="grid lg:grid-cols-3 gap-8">
+            <!-- Blockchain Visualization -->
+            <div class="lg:col-span-2">
+                <div class="rounded-xl p-6" style="background-color: var(--card-bg);">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-xl font-semibold" style="color: var(--text-primary);">Blockchain</h3>
+                        <div class="flex items-center gap-2">
+                            <div class="text-sm" style="color: var(--text-secondary);">
+                                Block Height: <span id="block-height">1</span>
+                            </div>
+                            <div class="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
+                        </div>
+                    </div>
+                    
+                    <div id="blockchain-visualization" class="space-y-4">
+                        <!-- Blocks will be generated here -->
+                    </div>
+                    
+                    <button id="mine-block" class="w-full mt-6 py-3 rounded-lg font-semibold"
+                            style="background-color: var(--accent-color); color: white;">
+                        Mine New Block
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Transaction Panel -->
+            <div>
+                <div class="rounded-xl p-6" style="background-color: var(--card-bg);">
+                    <h3 class="text-xl font-semibold mb-4" style="color: var(--text-primary);">Create Transaction</h3>
+                    
+                    <div class="space-y-4 mb-6">
+                        <div>
+                            <label class="text-sm mb-1 block" style="color: var(--text-primary);">From Address</label>
+                            <input type="text" id="from-address" 
+                                   class="w-full px-3 py-2 rounded text-sm font-mono"
+                                   style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);"
+                                   value="0x742d35Cc6634C0532925a3b844Bc9e...">
+                        </div>
+                        
+                        <div>
+                            <label class="text-sm mb-1 block" style="color: var(--text-primary);">To Address</label>
+                            <input type="text" id="to-address" 
+                                   class="w-full px-3 py-2 rounded text-sm font-mono"
+                                   style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);"
+                                   placeholder="Enter recipient address">
+                        </div>
+                        
+                        <div>
+                            <label class="text-sm mb-1 block" style="color: var(--text-primary);">Amount (ETH)</label>
+                            <input type="number" id="transaction-amount" step="0.001" 
+                                   class="w-full px-3 py-2 rounded text-sm"
+                                   style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);"
+                                   placeholder="0.00">
+                        </div>
+                    </div>
+                    
+                    <button id="create-transaction" class="w-full py-3 rounded-lg font-semibold mb-4"
+                            style="background-color: var(--accent-color); color: white;">
+                        Create Transaction
+                    </button>
+                    
+                    <!-- Transaction History -->
+                    <div>
+                        <h4 class="text-sm font-semibold mb-3" style="color: var(--text-primary);">Recent Transactions</h4>
+                        <div id="transaction-history" class="space-y-2">
+                            <!-- Transactions will appear here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        <section id="quantum-simulator" class="section-padding hidden">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center gradient-text">Quantum Computing Simulator</h2>
+        
+        <div class="grid lg:grid-cols-2 gap-8">
+            <!-- Quantum Circuit -->
+            <div>
+                <div class="rounded-xl p-6" style="background-color: var(--card-bg);">
+                    <h3 class="text-xl font-semibold mb-4" style="color: var(--text-primary);">Quantum Circuit</h3>
+                    <div id="quantum-circuit" class="space-y-6 p-4 rounded-lg" 
+                         style="background-color: var(--bg-primary);">
+                        <!-- Quantum gates will be placed here -->
+                    </div>
+                    
+                    <div class="grid grid-cols-4 gap-2 mt-4">
+                        <button class="quantum-gate p-3 rounded-lg text-center"
+                                data-gate="H" style="background-color: var(--bg-primary); color: var(--text-primary);">
+                            H
+                        </button>
+                        <button class="quantum-gate p-3 rounded-lg text-center"
+                                data-gate="X" style="background-color: var(--bg-primary); color: var(--text-primary);">
+                            X
+                        </button>
+                        <button class="quantum-gate p-3 rounded-lg text-center"
+                                data-gate="Y" style="background-color: var(--bg-primary); color: var(--text-primary);">
+                            Y
+                        </button>
+                        <button class="quantum-gate p-3 rounded-lg text-center"
+                                data-gate="Z" style="background-color: var(--bg-primary); color: var(--text-primary);">
+                            Z
+                        </button>
+                        <button class="quantum-gate p-3 rounded-lg text-center"
+                                data-gate="CNOT" style="background-color: var(--bg-primary); color: var(--text-primary);">
+                            CNOT
+                        </button>
+                        <button class="quantum-gate p-3 rounded-lg text-center"
+                                data-gate="SWAP" style="background-color: var(--bg-primary); color: var(--text-primary);">
+                            SWAP
+                        </button>
+                        <button class="quantum-gate p-3 rounded-lg text-center"
+                                data-gate="MEASURE" style="background-color: var(--bg-primary); color: var(--text-primary);">
+                            M
+                        </button>
+                        <button class="quantum-gate p-3 rounded-lg text-center"
+                                data-gate="RESET" style="background-color: var(--accent-color); color: white;">
+                            Reset
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Quantum State & Results -->
+            <div>
+                <div class="rounded-xl p-6" style="background-color: var(--card-bg);">
+                    <h3 class="text-xl font-semibold mb-4" style="color: var(--text-primary);">Quantum State</h3>
+                    
+                    <div class="mb-6">
+                        <h4 class="text-sm font-semibold mb-2" style="color: var(--text-primary);">State Vector</h4>
+                        <div id="state-vector" class="font-mono text-sm p-3 rounded" 
+                             style="background-color: var(--bg-primary); color: var(--text-primary);">
+                            |ψ⟩ = 1.0|00⟩
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h4 class="text-sm font-semibold mb-2" style="color: var(--text-primary);">Measurement Results</h4>
+                        <div id="measurement-results" class="h-32 overflow-y-auto p-3 rounded" 
+                             style="background-color: var(--bg-primary);">
+                            <!-- Results will appear here -->
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <button id="run-circuit" class="py-3 rounded-lg font-semibold"
+                                style="background-color: var(--accent-color); color: white;">
+                            Run Circuit
+                        </button>
+                        <button id="clear-circuit" class="py-3 rounded-lg font-semibold border"
+                                style="border-color: var(--border-color); color: var(--text-primary);">
+                            Clear All
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        <section id="ar-viewer" class="section-padding hidden">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center gradient-text">AR Portfolio Viewer</h2>
+        
+        <div class="grid lg:grid-cols-2 gap-8">
+            <!-- AR Instructions -->
+            <div>
+                <div class="rounded-xl p-6 mb-8" style="background-color: var(--card-bg);">
+                    <h3 class="text-xl font-semibold mb-4" style="color: var(--text-primary);">View in Augmented Reality</h3>
+                    <p class="mb-4" style="color: var(--text-secondary);">
+                        Use your camera to view my projects in augmented reality. Scan the QR code below or use the web AR feature.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="camera" class="w-5 h-5 mt-1" style="color: var(--accent-color);"></i>
+                            <div>
+                                <h4 class="font-medium mb-1" style="color: var(--text-primary);">Camera Access</h4>
+                                <p class="text-sm" style="color: var(--text-secondary);">
+                                    Allow camera access to view AR content
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="move" class="w-5 h-5 mt-1" style="color: var(--accent-color);"></i>
+                            <div>
+                                <h4 class="font-medium mb-1" style="color: var(--text-primary);">Move Around</h4>
+                                <p class="text-sm" style="color: var(--text-secondary);">
+                                    Move your device to view from different angles
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-3">
+                            <i data-lucide="touch" class="w-5 h-5 mt-1" style="color: var(--accent-color);"></i>
+                            <div>
+                                <h4 class="font-medium mb-1" style="color: var(--text-primary);">Interact</h4>
+                                <p class="text-sm" style="color: var(--text-secondary);">
+                                    Tap on AR objects to see more information
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- QR Code -->
+                <div class="rounded-xl p-6 text-center" style="background-color: var(--card-bg);">
+                    <h4 class="font-semibold mb-4" style="color: var(--text-primary);">Scan for Mobile AR</h4>
+                    <div id="qr-code" class="w-48 h-48 mx-auto bg-white p-4 rounded-lg">
+                        <!-- QR code will be generated here -->
+                    </div>
+                    <p class="text-sm mt-4" style="color: var(--text-secondary);">
+                        Scan with your phone's camera
+                    </p>
+                </div>
+            </div>
+            
+            <!-- AR Canvas -->
+            <div>
+                <div class="rounded-xl overflow-hidden" style="background-color: var(--card-bg);">
+                    <div class="p-4 border-b" style="border-color: var(--border-color);">
+                        <h3 class="text-xl font-semibold" style="color: var(--text-primary);">AR Preview</h3>
+                    </div>
+                    
+                    <div class="relative">
+                        <!-- Camera Feed -->
+                        <video id="ar-camera" autoplay playsinline class="w-full h-96 object-cover"></video>
+                        
+                        <!-- AR Overlay -->
+                        <canvas id="ar-canvas" class="absolute top-0 left-0 w-full h-96"></canvas>
+                        
+                        <!-- AR Controls -->
+                        <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-3">
+                            <button id="ar-start" class="px-4 py-2 rounded-full" 
+                                    style="background-color: var(--accent-color); color: white;">
+                                <i data-lucide="camera" class="w-5 h-5"></i>
+                            </button>
+                            <button id="ar-capture" class="px-4 py-2 rounded-full border" 
+                                    style="border-color: white; color: white; background-color: rgba(0,0,0,0.5);">
+                                <i data-lucide="aperture" class="w-5 h-5"></i>
+                            </button>
+                            <button id="ar-change-model" class="px-4 py-2 rounded-full border" 
+                                    style="border-color: white; color: white; background-color: rgba(0,0,0,0.5);">
+                                <i data-lucide="rotate-cw" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- AR Models List -->
+                    <div class="p-4">
+                        <h4 class="text-sm font-semibold mb-3" style="color: var(--text-primary);">Available Models</h4>
+                        <div class="grid grid-cols-3 gap-3">
+                            <button class="ar-model p-3 rounded-lg text-center border"
+                                    data-model="project-1"
+                                    style="border-color: var(--border-color); color: var(--text-primary);">
+                                Project 1
+                            </button>
+                            <button class="ar-model p-3 rounded-lg text-center border"
+                                    data-model="project-2"
+                                    style="border-color: var(--border-color); color: var(--text-primary);">
+                                Project 2
+                            </button>
+                            <button class="ar-model p-3 rounded-lg text-center border"
+                                    data-model="project-3"
+                                    style="border-color: var(--border-color); color: var(--text-primary);">
+                                Project 3
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        <section id="ml-trainer" class="section-padding hidden">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center gradient-text">Machine Learning Trainer</h2>
+        
+        <div class="grid lg:grid-cols-2 gap-8">
+            <!-- Dataset & Training -->
+            <div>
+                <div class="rounded-xl p-6" style="background-color: var(--card-bg);">
+                    <h3 class="text-xl font-semibold mb-4" style="color: var(--text-primary);">Model Training</h3>
+                    
+                    <div class="mb-6">
+                        <h4 class="text-sm font-semibold mb-2" style="color: var(--text-primary);">Select Dataset</h4>
+                        <div class="grid grid-cols-2 gap-3">
+                            <button class="dataset-btn p-3 rounded-lg border text-center"
+                                    data-dataset="iris"
+                                    style="border-color: var(--border-color); color: var(--text-primary);">
+                                Iris Dataset
+                            </button>
+                            <button class="dataset-btn p-3 rounded-lg border text-center"
+                                    data-dataset="mnist"
+                                    style="border-color: var(--border-color); color: var(--text-primary);">
+                                MNIST Digits
+                            </button>
+                            <button class="dataset-btn p-3 rounded-lg border text-center"
+                                    data-dataset="titanic"
+                                    style="border-color: var(--border-color); color: var(--text-primary);">
+                                Titanic
+                            </button>
+                            <button class="dataset-btn p-3 rounded-lg border text-center"
+                                    data-dataset="custom"
+                                    style="border-color: var(--border-color); color: var(--text-primary);">
+                                Custom CSV
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Training Parameters -->
+                    <div class="space-y-4 mb-6">
+                        <div>
+                            <label class="text-sm mb-1 block" style="color: var(--text-primary);">Model Type</label>
+                            <select id="model-type" class="w-full px-3 py-2 rounded text-sm"
+                                    style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);">
+                                <option value="logistic">Logistic Regression</option>
+                                <option value="svm">Support Vector Machine</option>
+                                <option value="random-forest">Random Forest</option>
+                                <option value="neural-network">Neural Network</option>
+                            </select>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="text-sm mb-1 block" style="color: var(--text-primary);">Test Size</label>
+                                <input type="range" id="test-size" min="0.1" max="0.5" step="0.05" value="0.2" 
+                                       class="w-full">
+                                <div class="text-xs" style="color: var(--text-secondary);" id="test-size-value">20%</div>
+                            </div>
+                            
+                            <div>
+                                <label class="text-sm mb-1 block" style="color: var(--text-primary);">Max Iterations</label>
+                                <input type="range" id="max-iter" min="10" max="1000" step="10" value="100" 
+                                       class="w-full">
+                                <div class="text-xs" style="color: var(--text-secondary);" id="iter-value">100</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button id="train-model" class="w-full py-3 rounded-lg font-semibold mb-4"
+                            style="background-color: var(--accent-color); color: white;">
+                        Train Model
+                    </button>
+                    
+                    <!-- Training Progress -->
+                    <div class="p-4 rounded" style="background-color: var(--bg-primary);">
+                        <div class="flex justify-between mb-2">
+                            <span class="text-sm" style="color: var(--text-primary);">Training Progress</span>
+                            <span class="text-xs" id="training-status" style="color: var(--text-secondary);">Not started</span>
+                        </div>
+                        <div class="progress-bar mb-2">
+                            <div id="ml-progress" class="progress-fill" style="width: 0%"></div>
+                        </div>
+                        <div class="text-xs" id="accuracy-display" style="color: var(--text-secondary);">
+                            Accuracy: --
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Results Visualization -->
+            <div>
+                <div class="rounded-xl p-6" style="background-color: var(--card-bg);">
+                    <h3 class="text-xl font-semibold mb-4" style="color: var(--text-primary);">Results & Predictions</h3>
+                    
+                    <!-- Confusion Matrix -->
+                    <div class="mb-6">
+                        <h4 class="text-sm font-semibold mb-2" style="color: var(--text-primary);">Confusion Matrix</h4>
+                        <canvas id="confusion-matrix" width="300" height="300" class="w-full h-auto"></canvas>
+                    </div>
+                    
+                    <!-- Prediction Test -->
+                    <div>
+                        <h4 class="text-sm font-semibold mb-2" style="color: var(--text-primary);">Test Prediction</h4>
+                        <div class="flex gap-2">
+                            <input type="text" id="prediction-input" 
+                                   class="flex-1 px-3 py-2 rounded text-sm"
+                                   style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);"
+                                   placeholder="Enter features (comma separated)">
+                            <button id="make-prediction" class="px-4 py-2 rounded text-sm"
+                                    style="background-color: var(--accent-color); color: white;">
+                                Predict
+                            </button>
+                        </div>
+                        <div id="prediction-result" class="mt-2 p-3 rounded text-sm"
+                             style="background-color: var(--bg-primary); color: var(--text-primary);">
+                            Enter features to get prediction
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        <section id="data-streaming" class="section-padding hidden">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center gradient-text">Real-time Data Streaming</h2>
+        
+        <div class="grid lg:grid-cols-4 gap-8">
+            <!-- Live Metrics -->
+            <div class="lg:col-span-2">
+                <div class="rounded-xl p-6" style="background-color: var(--card-bg);">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-xl font-semibold" style="color: var(--text-primary);">Live Metrics</h3>
+                        <div class="flex items-center gap-2">
+                            <div class="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
+                            <span class="text-sm" style="color: var(--text-secondary);">Streaming</span>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="metric-card p-4 rounded-lg text-center" 
+                             style="background-color: var(--bg-primary);">
+                            <div class="text-2xl font-bold gradient-text" id="requests-per-second">0</div>
+                            <div class="text-xs" style="color: var(--text-secondary);">Requests/sec</div>
+                        </div>
+                        <div class="metric-card p-4 rounded-lg text-center" 
+                             style="background-color: var(--bg-primary);">
+                            <div class="text-2xl font-bold gradient-text" id="active-users">0</div>
+                            <div class="text-xs" style="color: var(--text-secondary);">Active Users</div>
+                        </div>
+                        <div class="metric-card p-4 rounded-lg text-center" 
+                             style="background-color: var(--bg-primary);">
+                            <div class="text-2xl font-bold gradient-text" id="error-rate">0%</div>
+                            <div class="text-xs" style="color: var(--text-secondary);">Error Rate</div>
+                        </div>
+                        <div class="metric-card p-4 rounded-lg text-center" 
+                             style="background-color: var(--bg-primary);">
+                            <div class="text-2xl font-bold gradient-text" id="response-time">0ms</div>
+                            <div class="text-xs" style="color: var(--text-secondary);">Avg Response</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Live Chart -->
+                    <canvas id="live-chart" width="400" height="200" class="w-full h-auto"></canvas>
+                </div>
+            </div>
+            
+            <!-- Data Stream -->
+            <div class="lg:col-span-2">
+                <div class="rounded-xl p-6" style="background-color: var(--card-bg);">
+                    <h3 class="text-xl font-semibold mb-4" style="color: var(--text-primary);">Real-time Data Stream</h3>
+                    
+                    <div class="mb-4">
+                        <div class="flex gap-3 mb-4">
+                            <button class="stream-source px-3 py-1 rounded text-sm"
+                                    data-source="websocket"
+                                    style="background-color: var(--accent-color); color: white;">
+                                WebSocket
+                            </button>
+                            <button class="stream-source px-3 py-1 rounded text-sm border"
+                                    data-source="sse"
+                                    style="border-color: var(--border-color); color: var(--text-primary);">
+                                Server-Sent Events
+                            </button>
+                            <button class="stream-source px-3 py-1 rounded text-sm border"
+                                    data-source="mqtt"
+                                    style="border-color: var(--border-color); color: var(--text-primary);">
+                                MQTT
+                            </button>
+                        </div>
+                        
+                        <!-- Stream Controls -->
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
+                                <span class="text-sm" style="color: var(--text-secondary);" id="stream-status">Connected</span>
+                            </div>
+                            <div class="flex gap-2">
+                                <button id="pause-stream" class="px-3 py-1 rounded text-sm border"
+                                        style="border-color: var(--border-color); color: var(--text-primary);">
+                                    Pause
+                                </button>
+                                <button id="clear-stream" class="px-3 py-1 rounded text-sm border"
+                                        style="border-color: var(--border-color); color: var(--text-primary);">
+                                    Clear
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Stream Output -->
+                    <div id="stream-output" class="h-64 overflow-y-auto p-3 rounded font-mono text-sm"
+                         style="background-color: var(--bg-primary); color: var(--text-primary);">
+                        <!-- Stream data will appear here -->
+                    </div>
+                    
+                    <!-- Stream Input -->
+                    <div class="mt-4">
+                        <div class="flex gap-2">
+                            <input type="text" id="stream-input" 
+                                   class="flex-1 px-3 py-2 rounded text-sm font-mono"
+                                   style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);"
+                                   placeholder="Send a message...">
+                            <button id="send-stream" class="px-4 py-2 rounded text-sm"
+                                    style="background-color: var(--accent-color); color: white;">
+                                Send
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        <section id="webassembly-demo" class="section-padding hidden">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center gradient-text">WebAssembly Performance</h2>
+        
+        <div class="grid lg:grid-cols-2 gap-8">
+            <!-- Performance Comparison -->
+            <div>
+                <div class="rounded-xl p-6" style="background-color: var(--card-bg);">
+                    <h3 class="text-xl font-semibold mb-4" style="color: var(--text-primary);">Performance Comparison</h3>
+                    
+                    <div class="mb-6">
+                        <h4 class="text-sm font-semibold mb-2" style="color: var(--text-primary);">Select Benchmark</h4>
+                        <div class="grid grid-cols-3 gap-3 mb-4">
+                            <button class="benchmark-btn p-3 rounded-lg border text-center"
+                                    data-benchmark="fibonacci"
+                                    style="border-color: var(--border-color); color: var(--text-primary);">
+                                Fibonacci
+                            </button>
+                            <button class="benchmark-btn p-3 rounded-lg border text-center"
+                                    data-benchmark="matrix"
+                                    style="border-color: var(--border-color); color: var(--text-primary);">
+                                Matrix Math
+                            </button>
+                            <button class="benchmark-btn p-3 rounded-lg border text-center"
+                                    data-benchmark="image"
+                                    style="border-color: var(--border-color); color: var(--text-primary);">
+                                Image Processing
+                            </button>
+                        </div>
+                        
+                        <div class="p-4 rounded-lg mb-4" style="background-color: var(--bg-primary);">
+                            <div class="text-sm mb-2" style="color: var(--text-primary);">Compute Settings</div>
+                            <input type="range" id="compute-intensity" min="1" max="10" step="1" value="5" 
+                                   class="w-full mb-2">
+                            <div class="text-xs" style="color: var(--text-secondary);">
+                                Intensity: <span id="intensity-value">5</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <button id="run-js" class="py-3 rounded-lg font-semibold border"
+                                style="border-color: var(--border-color); color: var(--text-primary);">
+                            Run JavaScript
+                        </button>
+                        <button id="run-wasm" class="py-3 rounded-lg font-semibold"
+                                style="background-color: var(--accent-color); color: white;">
+                            Run WebAssembly
+                        </button>
+                    </div>
+                    
+                    <!-- Results -->
+                    <div class="mt-6 p-4 rounded" style="background-color: var(--bg-primary);">
+                        <div class="flex justify-between mb-2">
+                            <span class="text-sm" style="color: var(--text-primary);">JavaScript</span>
+                            <span class="text-sm font-mono" id="js-time">-- ms</span>
+                        </div>
+                        <div class="progress-bar mb-3">
+                            <div id="js-progress" class="progress-fill" style="width: 0%; background-color: #ef4444;"></div>
+                        </div>
+                        
+                        <div class="flex justify-between mb-2">
+                            <span class="text-sm" style="color: var(--text-primary);">WebAssembly</span>
+                            <span class="text-sm font-mono" id="wasm-time">-- ms</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div id="wasm-progress" class="progress-fill" style="width: 0%; background-color: #10b981;"></div>
+                        </div>
+                        
+                        <div class="text-center mt-3">
+                            <span class="text-sm font-semibold" id="speedup" style="color: var(--accent-color);">
+                                --
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- WebAssembly Code -->
+            <div>
+                <div class="rounded-xl p-6" style="background-color: var(--card-bg);">
+                    <h3 class="text-xl font-semibold mb-4" style="color: var(--text-primary);">WebAssembly Code</h3>
+                    
+                    <div class="mb-6">
+                        <div class="flex gap-2 mb-3">
+                            <button class="code-view-btn px-3 py-1 rounded text-sm"
+                                    data-view="c"
+                                    style="background-color: var(--accent-color); color: white;">
+                                C Code
+                            </button>
+                            <button class="code-view-btn px-3 py-1 rounded text-sm border"
+                                    data-view="wat"
+                                    style="border-color: var(--border-color); color: var(--text-primary);">
+                                WAT
+                            </button>
+                            <button class="code-view-btn px-3 py-1 rounded text-sm border"
+                                    data-view="js"
+                                    style="border-color: var(--border-color); color: var(--text-primary);">
+                                JavaScript
+                            </button>
+                        </div>
+                        
+                        <!-- Code Display -->
+                        <div id="code-display" class="h-64 overflow-auto p-4 rounded font-mono text-sm"
+                             style="background-color: var(--bg-primary); color: var(--text-primary);">
+
+ </div>
+                    </div>
+                    
+                    <!-- WASM Loader -->
+                    <div class="p-4 rounded" style="background-color: var(--bg-primary);">
+                        <div class="text-sm mb-2" style="color: var(--text-primary);">WebAssembly Module</div>
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            <span class="text-xs" style="color: var(--text-secondary);">Module loaded: 4.2KB</span>
+                        </div>
+                        <button id="load-wasm" class="w-full py-2 rounded text-sm border"
+                                style="border-color: var(--border-color); color: var(--text-primary);">
+                            Load WebAssembly Module
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+               </div>
+             </section>
+        <section id="graphql-explorer" class="section-padding hidden">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center gradient-text">GraphQL API Explorer</h2>
+        
+        <div class="grid lg:grid-cols-3 gap-8">
+            <!-- Query Editor -->
+            <div class="lg:col-span-2">
+                <div class="rounded-xl p-6" style="background-color: var(--card-bg);">
+                    <h3 class="text-xl font-semibold mb-4" style="color: var(--text-primary);">GraphQL Query Editor</h3>
+                    
+                    <div class="mb-4">
+                        <div class="flex gap-2 mb-3">
+                            <button class="query-template px-3 py-1 rounded text-sm"
+                                    data-template="projects"
+                                    style="background-color: var(--accent-color); color: white;">
+                                Projects
+                            </button>
+                            <button class="query-template px-3 py-1 rounded text-sm border"
+                                    data-template="skills"
+                                    style="border-color: var(--border-color); color: var(--text-primary);">
+                                Skills
+                            </button>
+                            <button class="query-template px-3 py-1 rounded text-sm border"
+                                    data-template="experience"
+                                    style="border-color: var(--border-color); color: var(--text-primary);">
+                                Experience
+                            </button>
+                        </div>
+                        
+                        <!-- Query Editor -->
+                        <div class="relative">
+                            <div class="absolute top-0 left-0 w-1 h-full" style="background-color: var(--accent-color);"></div>
+                            <textarea id="graphql-query" class="w-full pl-6 font-mono text-sm p-4 rounded-lg" 
+                                      rows="10" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);">
+{
+  projects {
+    title
+    description
+    technologies
+    year
+    links {
+      github
+      demo
+    }
+  }
+}</textarea>
+                        </div>
+                    </div>
+                    
+                    <!-- Variables -->
+                    <div class="mb-4">
+                        <div class="text-sm font-semibold mb-2" style="color: var(--text-primary);">Query Variables</div>
+                        <textarea id="graphql-variables" class="w-full font-mono text-sm p-3 rounded" 
+                                  rows="3" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);">
+{
+  "limit": 5
+}</textarea>
+                    </div>
+                    
+                    <!-- Execute Query -->
+                    <div class="flex gap-3">
+                        <button id="execute-query" class="flex-1 py-3 rounded-lg font-semibold"
+                                style="background-color: var(--accent-color); color: white;">
+                            Execute Query
+                        </button>
+                        <button id="explain-query" class="px-6 py-3 rounded-lg font-semibold border"
+                                style="border-color: var(--border-color); color: var(--text-primary);">
+                            Explain
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Results & Schema -->
+            <div>
+                <div class="rounded-xl p-6" style="background-color: var(--card-bg);">
+                    <h3 class="text-xl font-semibold mb-4" style="color: var(--text-primary);">API Response</h3>
+                    
+                    <div class="mb-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-sm" style="color: var(--text-primary);">Response</span>
+                            <span class="text-xs" id="response-time" style="color: var(--text-secondary);">-- ms</span>
+                        </div>
+                        
+                        <div id="graphql-response" class="h-64 overflow-auto p-3 rounded font-mono text-sm"
+                             style="background-color: var(--bg-primary); color: var(--text-primary);">
+// Execute a query to see results here</div>
+                    </div>
+                    
+                    <!-- Schema Explorer -->
+                    <div>
+                        <h4 class="text-sm font-semibold mb-2" style="color: var(--text-primary);">Schema Types</h4>
+                        <div id="schema-types" class="space-y-2">
+                            <div class="schema-type p-2 rounded text-sm cursor-pointer"
+                                 style="background-color: var(--bg-primary); color: var(--text-primary);">
+                                Project
+                            </div>
+                            <div class="schema-type p-2 rounded text-sm cursor-pointer"
+                                 style="background-color: var(--bg-primary); color: var(--text-primary);">
+                                Skill
+                            </div>
+                            <div class="schema-type p-2 rounded text-sm cursor-pointer"
+                                 style="background-color: var(--bg-primary); color: var(--text-primary);">
+                                Experience
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        <section id="webrtc-conference" class="section-padding hidden">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center gradient-text">WebRTC Video Conference</h2>
+        
+        <div class="grid lg:grid-cols-2 gap-8">
+            <!-- Video Conference -->
+            <div>
+                <div class="rounded-xl overflow-hidden" style="background-color: var(--card-bg);">
+                    <div class="p-4 border-b" style="border-color: var(--border-color);">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-xl font-semibold" style="color: var(--text-primary);">Video Conference</h3>
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
+                                <span class="text-sm" style="color: var(--text-secondary);">Connected</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Video Grid -->
+                    <div id="video-grid" class="grid grid-cols-2 gap-4 p-4">
+                        <!-- Local Video -->
+                        <div class="video-container relative rounded-lg overflow-hidden">
+                            <video id="local-video" autoplay playsinline muted 
+                                   class="w-full h-48 object-cover"></video>
+                            <div class="absolute bottom-2 left-2 px-2 py-1 rounded text-xs"
+                                 style="background-color: rgba(0,0,0,0.5); color: white;">
+                                You
+                            </div>
+                        </div>
+                        
+                        <!-- Remote Video -->
+                        <div class="video-container relative rounded-lg overflow-hidden">
+                            <video id="remote-video" autoplay playsinline
+                                   class="w-full h-48 object-cover bg-gray-800"></video>
+                            <div class="absolute bottom-2 left-2 px-2 py-1 rounded text-xs"
+                                 style="background-color: rgba(0,0,0,0.5); color: white;">
+                                Remote Peer
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Conference Controls -->
+                    <div class="p-4 border-t" style="border-color: var(--border-color);">
+                        <div class="flex justify-center gap-4">
+                            <button id="toggle-video" class="p-3 rounded-full"
+                                    style="background-color: var(--accent-color); color: white;">
+                                <i data-lucide="video" class="w-5 h-5"></i>
+                            </button>
+                            <button id="toggle-audio" class="p-3 rounded-full"
+                                    style="background-color: var(--accent-color); color: white;">
+                                <i data-lucide="mic" class="w-5 h-5"></i>
+                            </button>
+                            <button id="toggle-screen" class="p-3 rounded-full border"
+                                    style="border-color: var(--border-color); color: var(--text-primary);">
+                                <i data-lucide="monitor" class="w-5 h-5"></i>
+                            </button>
+                            <button id="end-call" class="p-3 rounded-full"
+                                    style="background-color: #ef4444; color: white;">
+                                <i data-lucide="phone-off" class="w-5 h-5"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Connection & Chat -->
+            <div>
+                <div class="rounded-xl p-6" style="background-color: var(--card-bg);">
+                    <h3 class="text-xl font-semibold mb-4" style="color: var(--text-primary);">Connection & Chat</h3>
+                    
+                    <!-- Connection Status -->
+                    <div class="mb-6">
+                        <h4 class="text-sm font-semibold mb-2" style="color: var(--text-primary);">Connection Status</h4>
+                        <div class="space-y-2">
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm" style="color: var(--text-secondary);">ICE Connection</span>
+                                <span class="text-sm" id="ice-status" style="color: #10b981;">Connected</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm" style="color: var(--text-secondary);">Signaling</span>
+                                <span class="text-sm" id="signaling-status" style="color: #10b981;">Connected</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm" style="color: var(--text-secondary);">Bandwidth</span>
+                                <span class="text-sm" id="bandwidth">-- kbps</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Chat -->
+                    <div class="mb-6">
+                        <h4 class="text-sm font-semibold mb-2" style="color: var(--text-primary);">Chat Messages</h4>
+                        <div id="webrtc-chat" class="h-32 overflow-y-auto mb-3 p-3 rounded"
+                             style="background-color: var(--bg-primary); color: var(--text-primary);">
+                            <!-- Chat messages will appear here -->
+                        </div>
+                        
+                        <div class="flex gap-2">
+                            <input type="text" id="webrtc-message" 
+                                   class="flex-1 px-3 py-2 rounded text-sm"
+                                   style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);"
+                                   placeholder="Type a message...">
+                            <button id="send-webrtc" class="px-4 py-2 rounded text-sm"
+                                    style="background-color: var(--accent-color); color: white;">
+                                Send
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Peer Connection -->
+                    <div>
+                        <h4 class="text-sm font-semibold mb-2" style="color: var(--text-primary);">Connect to Peer</h4>
+                        <div class="flex gap-2">
+                            <input type="text" id="peer-id" 
+                                   class="flex-1 px-3 py-2 rounded text-sm"
+                                   style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);"
+                                   placeholder="Enter peer ID">
+                            <button id="connect-peer" class="px-4 py-2 rounded text-sm"
+                                    style="background-color: var(--accent-color); color: white;">
+                                Connect
+                            </button>
+                        </div>
+                        <div class="text-xs mt-2" style="color: var(--text-secondary);">
+                            Your ID: <span id="my-peer-id" class="font-mono">--</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        <section id="webgl-gallery" class="section-padding hidden">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center gradient-text">3D Project Gallery</h2>
+        
+        <div class="grid lg:grid-cols-2 gap-8">
+            <div>
+                <div class="rounded-xl p-6" style="background-color: var(--card-bg);">
+                    <h3 class="text-xl font-semibold mb-4" style="color: var(--text-primary);">Interactive 3D Viewer</h3>
+                    <canvas id="webgl-canvas" width="400" height="400" class="w-full h-auto rounded-lg"></canvas>
+                    
+                    <div class="mt-4 grid grid-cols-4 gap-2">
+                        <button class="webgl-control p-2 rounded text-center"
+                                data-action="rotate" style="background-color: var(--bg-primary); color: var(--text-primary);">
+                            Rotate
+                        </button>
+                        <button class="webgl-control p-2 rounded text-center"
+                                data-action="zoom" style="background-color: var(--bg-primary); color: var(--text-primary);">
+                            Zoom
+                        </button>
+                        <button class="webgl-control p-2 rounded text-center"
+                                data-action="pan" style="background-color: var(--bg-primary); color: var(--text-primary);">
+                            Pan
+                        </button>
+                        <button class="webgl-control p-2 rounded text-center"
+                                data-action="reset" style="background-color: var(--accent-color); color: white;">
+                            Reset
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <div class="rounded-xl p-6" style="background-color: var(--card-bg);">
+                    <h3 class="text-xl font-semibold mb-4" style="color: var(--text-primary);">3D Models</h3>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <button class="3d-model p-4 rounded-lg border text-center"
+                                data-model="laptop"
+                                style="border-color: var(--border-color); color: var(--text-primary);">
+                            <i data-lucide="laptop" class="w-8 h-8 mx-auto mb-2"></i>
+                            <div class="text-sm">Laptop</div>
+                        </button>
+                        <button class="3d-model p-4 rounded-lg border text-center"
+                                data-model="mobile"
+                                style="border-color: var(--border-color); color: var(--text-primary);">
+                            <i data-lucide="smartphone" class="w-8 h-8 mx-auto mb-2"></i>
+                            <div class="text-sm">Mobile</div>
+                        </button>
+                        <button class="3d-model p-4 rounded-lg border text-center"
+                                data-model="server"
+                                style="border-color: var(--border-color); color: var(--text-primary);">
+                            <i data-lucide="server" class="w-8 h-8 mx-auto mb-2"></i>
+                            <div class="text-sm">Server</div>
+                        </button>
+                        <button class="3d-model p-4 rounded-lg border text-center"
+                                data-model="database"
+                                style="border-color: var(--border-color); color: var(--text-primary);">
+                            <i data-lucide="database" class="w-8 h-8 mx-auto mb-2"></i>
+                            <div class="text-sm">Database</div>
+                        </button>
+                    </div>
+                    
+                    <div class="p-4 rounded" style="background-color: var(--bg-primary);">
+                        <h4 class="text-sm font-semibold mb-2" style="color: var(--text-primary);">Model Info</h4>
+                        <div id="model-info" class="text-sm" style="color: var(--text-secondary);">
+                            Select a 3D model to view details
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        <section id="cybersecurity-game" class="section-padding hidden">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center gradient-text">Cybersecurity Challenge</h2>
+        
+        <div class="grid lg:grid-cols-2 gap-8">
+            <div>
+                <div class="rounded-xl p-6" style="background-color: var(--card-bg);">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-xl font-semibold" style="color: var(--text-primary);">Security Challenge</h3>
+                        <div class="flex items-center gap-2">
+                            <div class="text-sm" style="color: var(--text-secondary);">Score:</div>
+                            <div class="text-xl font-bold gradient-text" id="security-score">0</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6 p-4 rounded-lg" style="background-color: var(--bg-primary);">
+                        <div id="challenge-description" class="mb-4">
+                            <h4 class="font-semibold mb-2" style="color: var(--text-primary);">Challenge #1: SQL Injection</h4>
+                            <p class="text-sm" style="color: var(--text-secondary);">
+                                Identify and fix the SQL injection vulnerability in the code below.
+                            </p>
+                        </div>
+                        
+                        <div class="font-mono text-sm p-3 rounded" 
+                             style="background-color: #1a1a1a; color: #00ff00;">
+const query = `SELECT * FROM users WHERE username = '${username}' AND password = '${password}'`;</div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="text-sm font-semibold mb-2" style="color: var(--text-primary);">Your Solution</h4>
+                            <textarea id="security-solution" class="w-full p-3 rounded text-sm font-mono" 
+                                      rows="4" style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);">
+// Fix the SQL injection vulnerability here</textarea>
+                        </div>
+                        
+                        <button id="submit-solution" class="w-full py-3 rounded-lg font-semibold"
+                                style="background-color: var(--accent-color); color: white;">
+                            Submit Solution
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <div class="rounded-xl p-6" style="background-color: var(--card-bg);">
+                    <h3 class="text-xl font-semibold mb-4" style="color: var(--text-primary);">Security Tools</h3>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <button class="security-tool p-4 rounded-lg border text-center"
+                                data-tool="scanner"
+                                style="border-color: var(--border-color); color: var(--text-primary);">
+                            <i data-lucide="shield" class="w-8 h-8 mx-auto mb-2"></i>
+                            <div class="text-sm">Vulnerability Scanner</div>
+                        </button>
+                        <button class="security-tool p-4 rounded-lg border text-center"
+                                data-tool="encoder"
+                                style="border-color: var(--border-color); color: var(--text-primary);">
+                            <i data-lucide="lock" class="w-8 h-8 mx-auto mb-2"></i>
+                            <div class="text-sm">Encoder/Decoder</div>
+                        </button>
+                        <button class="security-tool p-4 rounded-lg border text-center"
+                                data-tool="hasher"
+                                style="border-color: var(--border-color); color: var(--text-primary);">
+                            <i data-lucide="key" class="w-8 h-8 mx-auto mb-2"></i>
+                            <div class="text-sm">Hash Generator</div>
+                        </button>
+                        <button class="security-tool p-4 rounded-lg border text-center"
+                                data-tool="analyzer"
+                                style="border-color: var(--border-color); color: var(--text-primary);">
+                            <i data-lucide="activity" class="w-8 h-8 mx-auto mb-2"></i>
+                            <div class="text-sm">Traffic Analyzer</div>
+                        </button>
+                    </div>
+                    
+                    <div class="p-4 rounded" style="background-color: var(--bg-primary);">
+                        <h4 class="text-sm font-semibold mb-2" style="color: var(--text-primary);">Leaderboard</h4>
+                        <div id="leaderboard" class="space-y-2">
+                            <div class="flex justify-between text-sm">
+                                <span style="color: var(--text-primary);">1. SecurityExpert</span>
+                                <span style="color: var(--accent-color);">950 pts</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span style="color: var(--text-primary);">2. CodeDefender</span>
+                                <span style="color: var(--accent-color);">870 pts</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span style="color: var(--text-primary);">3. You</span>
+                                <span style="color: var(--accent-color);" id="your-score">0 pts</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        <section id="iot-simulator" class="section-padding hidden">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl sm:text-4xl font-bold mb-12 text-center gradient-text">IoT Device Simulator</h2>
+        
+        <div class="grid lg:grid-cols-3 gap-8">
+            <!-- Device Dashboard -->
+            <div class="lg:col-span-2">
+                <div class="rounded-xl p-6" style="background-color: var(--card-bg);">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-xl font-semibold" style="color: var(--text-primary);">Smart Home Dashboard</h3>
+                        <div class="flex items-center gap-2">
+                            <div class="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
+                            <span class="text-sm" style="color: var(--text-secondary);">Connected</span>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                        <div class="iot-device p-4 rounded-lg text-center"
+                             data-device="thermostat"
+                             style="background-color: var(--bg-primary);">
+                            <i data-lucide="thermometer" class="w-8 h-8 mx-auto mb-2"></i>
+                            <div class="text-sm" style="color: var(--text-primary);">Thermostat</div>
+                            <div class="text-xl font-bold" id="temp-value">22°C</div>
+                        </div>
+                        
+                        <div class="iot-device p-4 rounded-lg text-center"
+                             data-device="lights"
+                             style="background-color: var(--bg-primary);">
+                            <i data-lucide="lightbulb" class="w-8 h-8 mx-auto mb-2"></i>
+                            <div class="text-sm" style="color: var(--text-primary);">Lights</div>
+                            <div class="text-xl font-bold" id="light-status">ON</div>
+                        </div>
+                        
+                        <div class="iot-device p-4 rounded-lg text-center"
+                             data-device="security"
+                             style="background-color: var(--bg-primary);">
+                            <i data-lucide="shield" class="w-8 h-8 mx-auto mb-2"></i>
+                            <div class="text-sm" style="color: var(--text-primary);">Security</div>
+                            <div class="text-xl font-bold" id="security-status">ARMED</div>
+                        </div>
+                        
+                        <div class="iot-device p-4 rounded-lg text-center"
+                             data-device="energy"
+                             style="background-color: var(--bg-primary);">
+                            <i data-lucide="battery" class="w-8 h-8 mx-auto mb-2"></i>
+                            <div class="text-sm" style="color: var(--text-primary);">Energy</div>
+                            <div class="text-xl font-bold" id="energy-usage">1.2 kW</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Device Controls -->
+                    <div class="p-4 rounded-lg" style="background-color: var(--bg-primary);">
+                        <h4 class="text-sm font-semibold mb-4" style="color: var(--text-primary);">Device Controls</h4>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-sm" style="color: var(--text-primary);">Temperature</span>
+                                    <span class="text-sm" id="temp-control-value">22°C</span>
+                                </div>
+                                <input type="range" id="temp-control" min="16" max="30" value="22" 
+                                       class="w-full">
+                            </div>
+                            
+                            <div class="flex gap-4">
+                                <button id="lights-on" class="flex-1 py-2 rounded-lg"
+                                        style="background-color: var(--accent-color); color: white;">
+                                    Lights ON
+                                </button>
+                                <button id="lights-off" class="flex-1 py-2 rounded-lg border"
+                                        style="border-color: var(--border-color); color: var(--text-primary);">
+                                    Lights OFF
+                                </button>
+                            </div>
+                            
+                            <div class="flex gap-4">
+                                <button id="arm-security" class="flex-1 py-2 rounded-lg"
+                                        style="background-color: #10b981; color: white;">
+                                    Arm Security
+                                </button>
+                                <button id="disarm-security" class="flex-1 py-2 rounded-lg"
+                                        style="background-color: #ef4444; color: white;">
+                                    Disarm Security
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Device Logs -->
+            <div>
+                <div class="rounded-xl p-6 h-full" style="background-color: var(--card-bg);">
+                    <h3 class="text-xl font-semibold mb-4" style="color: var(--text-primary);">Device Logs</h3>
+                    
+                    <div id="iot-logs" class="h-64 overflow-y-auto space-y-2">
+                        <!-- Logs will appear here -->
+                    </div>
+                    
+                    <div class="mt-4">
+                        <h4 class="text-sm font-semibold mb-2" style="color: var(--text-primary);">Add Custom Event</h4>
+                        <div class="flex gap-2">
+                            <input type="text" id="custom-event" 
+                                   class="flex-1 px-3 py-2 rounded text-sm"
+                                   style="background-color: var(--bg-primary); color: var(--text-primary); border-color: var(--border-color);"
+                                   placeholder="Event description">
+                            <button id="log-event" class="px-4 py-2 rounded text-sm"
+                                    style="background-color: var(--accent-color); color: white;">
+                                Log
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+        
     </main>
 
     <!-- Enhanced Footer -->
@@ -1857,6 +3174,2299 @@ console.log(greet("Visitor"));`;
                 });
             });
         });
+        // Add this JavaScript code to implement the new features
+
+// ============================================
+// REAL-TIME COLLABORATION
+// ============================================
+class CollaborationWorkspace {
+    constructor() {
+        this.socket = null;
+        this.users = new Map();
+        this.cursorPositions = new Map();
+        
+        this.init();
+    }
+    
+    async init() {
+        // Connect to signaling server (simulated)
+        this.socket = new WebSocket('wss://simulated-collab-server.com');
+        
+        this.socket.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+            this.handleMessage(data);
+        };
+        
+        // Initialize code editor
+        this.setupCodeEditor();
+        this.setupChat();
+    }
+    
+    setupCodeEditor() {
+        const editor = document.getElementById('collab-editor');
+        if (!editor) return;
+        
+        // Set up collaborative editing
+        editor.addEventListener('input', (e) => {
+            this.broadcastEdit(e.target.textContent);
+        });
+        
+        // Set up cursor tracking
+        editor.addEventListener('keyup', (e) => {
+            this.broadcastCursorPosition();
+        });
+    }
+    
+    setupChat() {
+        const sendBtn = document.getElementById('send-collab');
+        const messageInput = document.getElementById('collab-message');
+        
+        sendBtn.addEventListener('click', () => {
+            this.sendChatMessage(messageInput.value);
+            messageInput.value = '';
+        });
+        
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                this.sendChatMessage(messageInput.value);
+                messageInput.value = '';
+            }
+        });
+    }
+    
+    broadcastEdit(content) {
+        if (this.socket) {
+            this.socket.send(JSON.stringify({
+                type: 'edit',
+                content: content,
+                timestamp: Date.now()
+            }));
+        }
+    }
+    
+    sendChatMessage(message) {
+        if (message.trim()) {
+            const chatDiv = document.getElementById('collab-chat');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'mb-2';
+            messageDiv.innerHTML = `
+                <div class="text-xs" style="color: var(--text-secondary);">You</div>
+                <div class="p-2 rounded-lg" style="background-color: var(--accent-color); color: white; max-width: 80%;">
+                    ${message}
+                </div>
+            `;
+            chatDiv.appendChild(messageDiv);
+            chatDiv.scrollTop = chatDiv.scrollHeight;
+        }
+    }
+}
+
+// ============================================
+// NEURAL NETWORK VISUALIZATION
+// ============================================
+class NeuralNetworkVisualizer {
+    constructor() {
+        this.canvas = document.getElementById('neural-canvas');
+        this.ctx = this.canvas?.getContext('2d');
+        this.network = null;
+        
+        if (this.canvas && this.ctx) {
+            this.init();
+        }
+    }
+    
+    init() {
+        // Set canvas size
+        this.canvas.width = 400;
+        this.canvas.height = 400;
+        
+        // Initialize network
+        this.createNetwork();
+        
+        // Set up event listeners
+        this.setupEventListeners();
+        
+        // Start animation
+        this.animate();
+    }
+    
+    createNetwork() {
+        this.network = {
+            layers: [
+                { neurons: 3, activations: Array(3).fill(0) },
+                { neurons: 4, activations: Array(4).fill(0) },
+                { neurons: 2, activations: Array(2).fill(0) }
+            ],
+            weights: [],
+            biases: []
+        };
+        
+        // Initialize with random values
+        for (let i = 0; i < this.network.layers.length - 1; i++) {
+            const fromSize = this.network.layers[i].neurons;
+            const toSize = this.network.layers[i + 1].neurons;
+            
+            this.network.weights[i] = Array(fromSize).fill()
+                .map(() => Array(toSize).fill()
+                .map(() => Math.random() * 2 - 1));
+            
+            this.network.biases[i] = Array(toSize).fill()
+                .map(() => Math.random() * 2 - 1);
+        }
+    }
+    
+    setupEventListeners() {
+        const trainBtn = document.getElementById('train-network');
+        const learningRate = document.getElementById('learning-rate');
+        const hiddenLayers = document.getElementById('hidden-layers');
+        
+        if (trainBtn) {
+            trainBtn.addEventListener('click', () => this.trainNetwork());
+        }
+        
+        if (learningRate) {
+            learningRate.addEventListener('input', (e) => {
+                document.getElementById('lr-value').textContent = e.target.value;
+            });
+        }
+        
+        if (hiddenLayers) {
+            hiddenLayers.addEventListener('input', (e) => {
+                document.getElementById('hl-value').textContent = `${e.target.value} layers`;
+            });
+        }
+    }
+    
+    async trainNetwork() {
+        const progressBar = document.getElementById('training-progress');
+        const lossDisplay = document.getElementById('training-loss');
+        
+        for (let epoch = 0; epoch < 100; epoch++) {
+            // Simulate training
+            await new Promise(resolve => setTimeout(resolve, 50));
+            
+            // Update progress
+            const progress = ((epoch + 1) / 100) * 100;
+            progressBar.style.width = `${progress}%`;
+            
+            // Simulate loss reduction
+            const loss = Math.max(0.1, 1 - epoch / 100);
+            lossDisplay.textContent = `Loss: ${loss.toFixed(4)}`;
+            
+            // Update network visualization
+            this.updateNetworkActivations();
+        }
+    }
+    
+    updateNetworkActivations() {
+        // Randomly update neuron activations for visualization
+        this.network.layers.forEach(layer => {
+            layer.activations = layer.activations.map(() => Math.random());
+        });
+    }
+    
+    draw() {
+        if (!this.ctx || !this.network) return;
+        
+        // Clear canvas
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        
+        const layerSpacing = this.canvas.width / (this.network.layers.length + 1);
+        const neuronRadius = 20;
+        
+        // Draw connections
+        for (let layerIdx = 0; layerIdx < this.network.layers.length - 1; layerIdx++) {
+            const fromLayer = this.network.layers[layerIdx];
+            const toLayer = this.network.layers[layerIdx + 1];
+            
+            for (let fromIdx = 0; fromIdx < fromLayer.neurons; fromIdx++) {
+                for (let toIdx = 0; toIdx < toLayer.neurons; toIdx++) {
+                    const weight = this.network.weights[layerIdx][fromIdx][toIdx];
+                    const fromX = (layerIdx + 1) * layerSpacing;
+                    const fromY = (this.canvas.height / (fromLayer.neurons + 1)) * (fromIdx + 1);
+                    const toX = (layerIdx + 2) * layerSpacing;
+                    const toY = (this.canvas.height / (toLayer.neurons + 1)) * (toIdx + 1);
+                    
+                    // Set line style based on weight
+                    this.ctx.strokeStyle = weight > 0 ? '#10b981' : '#ef4444';
+                    this.ctx.lineWidth = Math.abs(weight) * 3;
+                    this.ctx.globalAlpha = 0.3;
+                    
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(fromX, fromY);
+                    this.ctx.lineTo(toX, toY);
+                    this.ctx.stroke();
+                }
+            }
+        }
+        
+        // Draw neurons
+        this.network.layers.forEach((layer, layerIdx) => {
+            const x = (layerIdx + 1) * layerSpacing;
+            
+            layer.activations.forEach((activation, neuronIdx) => {
+                const y = (this.canvas.height / (layer.neurons + 1)) * (neuronIdx + 1);
+                
+                // Draw neuron circle
+                this.ctx.globalAlpha = 1;
+                this.ctx.fillStyle = activation > 0.5 ? '#3b82f6' : '#8b5cf6';
+                this.ctx.beginPath();
+                this.ctx.arc(x, y, neuronRadius, 0, Math.PI * 2);
+                this.ctx.fill();
+                
+                // Draw activation value
+                this.ctx.fillStyle = 'white';
+                this.ctx.font = '12px Arial';
+                this.ctx.textAlign = 'center';
+                this.ctx.textBaseline = 'middle';
+                this.ctx.fillText(activation.toFixed(2), x, y);
+            });
+        });
+    }
+    
+    animate() {
+        this.draw();
+        requestAnimationFrame(() => this.animate());
+    }
+}
+
+// ============================================
+// BLOCKCHAIN SIMULATOR
+// ============================================
+class BlockchainSimulator {
+    constructor() {
+        this.chain = [];
+        this.pendingTransactions = [];
+        this.difficulty = 2;
+        
+        this.init();
+    }
+    
+    init() {
+        // Create genesis block
+        this.createGenesisBlock();
+        
+        // Set up event listeners
+        this.setupEventListeners();
+        
+        // Start mining simulation
+        this.startMiningSimulation();
+    }
+    
+    createGenesisBlock() {
+        const genesisBlock = {
+            index: 0,
+            timestamp: Date.now(),
+            transactions: [],
+            previousHash: '0',
+            nonce: 0,
+            hash: this.calculateHash(0, Date.now(), [], '0', 0)
+        };
+        
+        this.chain.push(genesisBlock);
+        this.updateVisualization();
+    }
+    
+    setupEventListeners() {
+        const mineBtn = document.getElementById('mine-block');
+        const createTxBtn = document.getElementById('create-transaction');
+        
+        if (mineBtn) {
+            mineBtn.addEventListener('click', () => this.mineBlock());
+        }
+        
+        if (createTxBtn) {
+            createTxBtn.addEventListener('click', () => this.createTransaction());
+        }
+    }
+    
+    calculateHash(index, timestamp, transactions, previousHash, nonce) {
+        const data = index + timestamp + JSON.stringify(transactions) + previousHash + nonce;
+        // Simple hash simulation
+        let hash = 0;
+        for (let i = 0; i < data.length; i++) {
+            hash = ((hash << 5) - hash) + data.charCodeAt(i);
+            hash |= 0;
+        }
+        return Math.abs(hash).toString(16).substring(0, 64);
+    }
+    
+    async mineBlock() {
+        const lastBlock = this.chain[this.chain.length - 1];
+        const newBlock = {
+            index: lastBlock.index + 1,
+            timestamp: Date.now(),
+            transactions: [...this.pendingTransactions],
+            previousHash: lastBlock.hash,
+            nonce: 0
+        };
+        
+        // Show mining animation
+        const mineBtn = document.getElementById('mine-block');
+        const originalText = mineBtn.textContent;
+        mineBtn.textContent = 'Mining...';
+        mineBtn.disabled = true;
+        
+        // Simulate mining process
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        
+        // Mine block (simple proof-of-work)
+        while (true) {
+            newBlock.hash = this.calculateHash(
+                newBlock.index,
+                newBlock.timestamp,
+                newBlock.transactions,
+                newBlock.previousHash,
+                newBlock.nonce
+            );
+            
+            if (newBlock.hash.substring(0, this.difficulty) === '00'.substring(0, this.difficulty)) {
+                break;
+            }
+            
+            newBlock.nonce++;
+        }
+        
+        this.chain.push(newBlock);
+        this.pendingTransactions = [];
+        
+        // Update UI
+        mineBtn.textContent = originalText;
+        mineBtn.disabled = false;
+        this.updateVisualization();
+        this.updateTransactionHistory();
+    }
+    
+    createTransaction() {
+        const from = document.getElementById('from-address').value;
+        const to = document.getElementById('to-address').value;
+        const amount = document.getElementById('transaction-amount').value;
+        
+        if (!from || !to || !amount) return;
+        
+        const transaction = {
+            from: from,
+            to: to,
+            amount: parseFloat(amount),
+            timestamp: Date.now(),
+            id: 'tx_' + Date.now()
+        };
+        
+        this.pendingTransactions.push(transaction);
+        
+        // Add to transaction history
+        this.addToTransactionHistory(transaction);
+        
+        // Clear form
+        document.getElementById('to-address').value = '';
+        document.getElementById('transaction-amount').value = '';
+    }
+    
+    addToTransactionHistory(transaction) {
+        const historyDiv = document.getElementById('transaction-history');
+        const txDiv = document.createElement('div');
+        txDiv.className = 'p-2 rounded text-xs';
+        txDiv.style.backgroundColor = 'var(--bg-primary)';
+        txDiv.style.color = 'var(--text-primary)';
+        txDiv.innerHTML = `
+            <div class="font-mono truncate">${transaction.id}</div>
+            <div class="flex justify-between">
+                <span>${transaction.amount} ETH</span>
+                <span class="text-xs" style="color: var(--text-secondary);">Pending</span>
+            </div>
+        `;
+        
+        historyDiv.insertBefore(txDiv, historyDiv.firstChild);
+        
+        // Limit history to 5 items
+        if (historyDiv.children.length > 5) {
+            historyDiv.removeChild(historyDiv.lastChild);
+        }
+    }
+    
+    updateVisualization() {
+        const visualizationDiv = document.getElementById('blockchain-visualization');
+        if (!visualizationDiv) return;
+        
+        visualizationDiv.innerHTML = '';
+        
+        this.chain.forEach((block, index) => {
+            const blockDiv = document.createElement('div');
+            blockDiv.className = 'p-4 rounded-lg border';
+            blockDiv.style.borderColor = 'var(--border-color)';
+            blockDiv.style.backgroundColor = 'var(--bg-primary)';
+            blockDiv.innerHTML = `
+                <div class="flex justify-between items-start mb-2">
+                    <div>
+                        <div class="font-semibold" style="color: var(--text-primary);">Block #${block.index}</div>
+                        <div class="text-xs font-mono truncate" style="color: var(--text-secondary);">
+                            Hash: ${block.hash.substring(0, 16)}...
+                        </div>
+                    </div>
+                    <div class="text-xs" style="color: var(--text-secondary);">
+                        ${block.transactions.length} tx
+                    </div>
+                </div>
+                <div class="text-xs" style="color: var(--text-secondary);">
+                    Nonce: ${block.nonce}
+                </div>
+            `;
+            
+            visualizationDiv.appendChild(blockDiv);
+        });
+        
+        // Update block height
+        document.getElementById('block-height').textContent = this.chain.length;
+    }
+    
+    updateTransactionHistory() {
+        const historyDiv = document.getElementById('transaction-history');
+        Array.from(historyDiv.children).forEach(child => {
+            const status = child.querySelector('span:last-child');
+            if (status) {
+                status.textContent = 'Confirmed';
+                status.style.color = '#10b981';
+            }
+        });
+    }
+    
+    startMiningSimulation() {
+        // Simulate periodic mining
+        setInterval(() => {
+            if (this.pendingTransactions.length > 0) {
+                this.mineBlock();
+            }
+        }, 30000); // Every 30 seconds
+    }
+}
+
+// ============================================
+// QUANTUM COMPUTING SIMULATOR
+// ============================================
+class QuantumSimulator {
+    constructor() {
+        this.circuit = [];
+        this.state = { re: 1, im: 0 }; // |0⟩ state
+        this.qubits = 2;
+        
+        this.init();
+    }
+    
+    init() {
+        this.setupEventListeners();
+        this.updateStateDisplay();
+    }
+    
+    setupEventListeners() {
+        // Quantum gate buttons
+        document.querySelectorAll('.quantum-gate').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const gate = e.currentTarget.dataset.gate;
+                this.addGate(gate);
+            });
+        });
+        
+        // Run circuit button
+        const runBtn = document.getElementById('run-circuit');
+        if (runBtn) {
+            runBtn.addEventListener('click', () => this.runCircuit());
+        }
+        
+        // Clear circuit button
+        const clearBtn = document.getElementById('clear-circuit');
+        if (clearBtn) {
+            clearBtn.addEventListener('click', () => this.clearCircuit());
+        }
+    }
+    
+    addGate(gate) {
+        if (gate === 'RESET') {
+            this.clearCircuit();
+            return;
+        }
+        
+        this.circuit.push({
+            gate: gate,
+            qubit: 0,
+            target: gate === 'CNOT' || gate === 'SWAP' ? 1 : null,
+            timestamp: Date.now()
+        });
+        
+        this.updateCircuitDisplay();
+    }
+    
+    updateCircuitDisplay() {
+        const circuitDiv = document.getElementById('quantum-circuit');
+        if (!circuitDiv) return;
+        
+        circuitDiv.innerHTML = '';
+        
+        this.circuit.forEach((operation, index) => {
+            const opDiv = document.createElement('div');
+            opDiv.className = 'flex items-center gap-2 p-2 rounded';
+            opDiv.style.backgroundColor = 'var(--bg-secondary)';
+            opDiv.innerHTML = `
+                <div class="w-8 h-8 rounded flex items-center justify-center" 
+                     style="background-color: var(--accent-color); color: white;">
+                    ${operation.gate}
+                </div>
+                <div>
+                    <div class="text-sm" style="color: var(--text-primary);">${operation.gate} Gate</div>
+                    <div class="text-xs" style="color: var(--text-secondary);">
+                        Qubit ${operation.qubit}${operation.target ? ` → ${operation.target}` : ''}
+                    </div>
+                </div>
+            `;
+            circuitDiv.appendChild(opDiv);
+        });
+    }
+    
+    async runCircuit() {
+        // Show running state
+        const runBtn = document.getElementById('run-circuit');
+        const originalText = runBtn.textContent;
+        runBtn.textContent = 'Running...';
+        runBtn.disabled = true;
+        
+        // Simulate quantum computation
+        for (let i = 0; i < 5; i++) {
+            await new Promise(resolve => setTimeout(resolve, 500));
+            
+            // Update state randomly for visualization
+            const angle = Math.random() * Math.PI * 2;
+            this.state = {
+                re: Math.cos(angle),
+                im: Math.sin(angle)
+            };
+            
+            this.updateStateDisplay();
+        }
+        
+        // Simulate measurement
+        this.measure();
+        
+        // Reset button
+        runBtn.textContent = originalText;
+        runBtn.disabled = false;
+    }
+    
+    measure() {
+        // Simulate quantum measurement
+        const probabilities = [
+            Math.pow(this.state.re, 2) + Math.pow(this.state.im, 2),
+            Math.random() * 0.5 // Simulated second state
+        ];
+        
+        const total = probabilities.reduce((a, b) => a + b, 0);
+        const normalized = probabilities.map(p => p / total);
+        
+        // Choose outcome based on probabilities
+        const random = Math.random();
+        let cumulative = 0;
+        let outcome = 0;
+        
+        for (let i = 0; i < normalized.length; i++) {
+            cumulative += normalized[i];
+            if (random <= cumulative) {
+                outcome = i;
+                break;
+            }
+        }
+        
+        // Add to results
+        this.addMeasurementResult(outcome);
+    }
+    
+    addMeasurementResult(outcome) {
+        const resultsDiv = document.getElementById('measurement-results');
+        const resultDiv = document.createElement('div');
+        resultDiv.className = 'p-2 mb-1 rounded text-xs';
+        resultDiv.style.backgroundColor = 'var(--bg-secondary)';
+        resultDiv.style.color = 'var(--text-primary)';
+        resultDiv.textContent = `|${outcome.toString(2).padStart(this.qubits, '0')}⟩`;
+        
+        resultsDiv.insertBefore(resultDiv, resultsDiv.firstChild);
+        
+        // Limit to 5 results
+        if (resultsDiv.children.length > 5) {
+            resultsDiv.removeChild(resultsDiv.lastChild);
+        }
+    }
+    
+    updateStateDisplay() {
+        const stateDiv = document.getElementById('state-vector');
+        if (stateDiv) {
+            const magnitude = Math.sqrt(this.state.re ** 2 + this.state.im ** 2);
+            const phase = Math.atan2(this.state.im, this.state.re);
+            
+            stateDiv.innerHTML = `
+                |ψ⟩ = ${magnitude.toFixed(2)}e<sup>${phase.toFixed(2)}i</sup>|0⟩
+            `;
+        }
+    }
+    
+    clearCircuit() {
+        this.circuit = [];
+        this.state = { re: 1, im: 0 };
+        
+        this.updateCircuitDisplay();
+        this.updateStateDisplay();
+        
+        // Clear results
+        const resultsDiv = document.getElementById('measurement-results');
+        if (resultsDiv) {
+            resultsDiv.innerHTML = '';
+        }
+    }
+}
+
+// ============================================
+// AR VIEWER
+// ============================================
+class ARViewer {
+    constructor() {
+        this.video = document.getElementById('ar-camera');
+        this.canvas = document.getElementById('ar-canvas');
+        this.ctx = this.canvas?.getContext('2d');
+        this.isActive = false;
+        this.currentModel = 'project-1';
+        
+        this.init();
+    }
+    
+    async init() {
+        // Generate QR code
+        this.generateQRCode();
+        
+        // Set up event listeners
+        this.setupEventListeners();
+    }
+    
+    generateQRCode() {
+        const qrDiv = document.getElementById('qr-code');
+        if (!qrDiv) return;
+        
+        // Simple QR code simulation
+        const size = 8;
+        let html = '';
+        
+        for (let y = 0; y < size; y++) {
+            for (let x = 0; x < size; x++) {
+                const isBlack = (x + y) % 3 === 0 || (x * y) % 5 === 0;
+                const color = isBlack ? 'black' : 'white';
+                html += `<div class="w-6 h-6 inline-block" style="background-color: ${color};"></div>`;
+            }
+            html += '<br>';
+        }
+        
+        qrDiv.innerHTML = html;
+    }
+    
+    setupEventListeners() {
+        const startBtn = document.getElementById('ar-start');
+        const captureBtn = document.getElementById('ar-capture');
+        const changeModelBtn = document.getElementById('ar-change-model');
+        
+        if (startBtn) {
+            startBtn.addEventListener('click', () => this.toggleAR());
+        }
+        
+        if (captureBtn) {
+            captureBtn.addEventListener('click', () => this.captureAR());
+        }
+        
+        if (changeModelBtn) {
+            changeModelBtn.addEventListener('click', () => this.changeModel());
+        }
+        
+        // Model selection
+        document.querySelectorAll('.ar-model').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                this.currentModel = e.currentTarget.dataset.model;
+                this.highlightSelectedModel();
+            });
+        });
+    }
+    
+    async toggleAR() {
+        if (!this.isActive) {
+            // Start AR
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: 'environment' }
+                });
+                
+                this.video.srcObject = stream;
+                this.isActive = true;
+                
+                // Start AR rendering
+                this.startARRendering();
+                
+                // Update button
+                const startBtn = document.getElementById('ar-start');
+                const icon = startBtn.querySelector('i');
+                icon.setAttribute('data-lucide', 'square');
+                lucide.createIcons();
+            } catch (error) {
+                console.error('Error accessing camera:', error);
+                alert('Could not access camera. Please check permissions.');
+            }
+        } else {
+            // Stop AR
+            const stream = this.video.srcObject;
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+            }
+            
+            this.video.srcObject = null;
+            this.isActive = false;
+            
+            // Update button
+            const startBtn = document.getElementById('ar-start');
+            const icon = startBtn.querySelector('i');
+            icon.setAttribute('data-lucide', 'camera');
+            lucide.createIcons();
+        }
+    }
+    
+    startARRendering() {
+        const render = () => {
+            if (!this.isActive) return;
+            
+            // Draw video frame
+            if (this.video.videoWidth > 0 && this.ctx) {
+                this.canvas.width = this.video.videoWidth;
+                this.canvas.height = this.video.videoHeight;
+                
+                this.ctx.drawImage(this.video, 0, 0);
+                
+                // Draw AR overlay
+                this.drawAROverlay();
+            }
+            
+            requestAnimationFrame(render);
+        };
+        
+        render();
+    }
+    
+    drawAROverlay() {
+        if (!this.ctx) return;
+        
+        // Draw bounding box for AR model
+        const centerX = this.canvas.width / 2;
+        const centerY = this.canvas.height / 2;
+        const size = 100;
+        
+        // Draw box
+        this.ctx.strokeStyle = this.currentModel === 'project-1' ? '#3b82f6' : 
+                               this.currentModel === 'project-2' ? '#10b981' : '#8b5cf6';
+        this.ctx.lineWidth = 3;
+        this.ctx.strokeRect(centerX - size, centerY - size, size * 2, size * 2);
+        
+        // Draw model name
+        this.ctx.fillStyle = 'white';
+        this.ctx.font = 'bold 16px Arial';
+        this.ctx.textAlign = 'center';
+        this.ctx.fillText(this.currentModel.toUpperCase(), centerX, centerY - size - 10);
+        
+        // Draw info text
+        this.ctx.font = '12px Arial';
+        this.ctx.fillText('Tap to interact', centerX, centerY + size + 20);
+    }
+    
+    captureAR() {
+        if (!this.ctx) return;
+        
+        // Create a temporary canvas for the capture
+        const tempCanvas = document.createElement('canvas');
+        tempCanvas.width = this.canvas.width;
+        tempCanvas.height = this.canvas.height;
+        const tempCtx = tempCanvas.getContext('2d');
+        
+        if (!tempCtx) return;
+        
+        // Draw video frame
+        tempCtx.drawImage(this.video, 0, 0);
+        
+        // Draw AR overlay
+        const centerX = tempCanvas.width / 2;
+        const centerY = tempCanvas.height / 2;
+        const size = 100;
+        
+        tempCtx.strokeStyle = this.currentModel === 'project-1' ? '#3b82f6' : 
+                               this.currentModel === 'project-2' ? '#10b981' : '#8b5cf6';
+        tempCtx.lineWidth = 3;
+        tempCtx.strokeRect(centerX - size, centerY - size, size * 2, size * 2);
+        
+        // Create download link
+        const link = document.createElement('a');
+        link.download = `ar-capture-${Date.now()}.png`;
+        link.href = tempCanvas.toDataURL();
+        link.click();
+    }
+    
+    changeModel() {
+        const models = ['project-1', 'project-2', 'project-3'];
+        const currentIndex = models.indexOf(this.currentModel);
+        const nextIndex = (currentIndex + 1) % models.length;
+        this.currentModel = models[nextIndex];
+        
+        this.highlightSelectedModel();
+    }
+    
+    highlightSelectedModel() {
+        document.querySelectorAll('.ar-model').forEach(btn => {
+            if (btn.dataset.model === this.currentModel) {
+                btn.style.borderColor = 'var(--accent-color)';
+                btn.style.color = 'var(--accent-color)';
+            } else {
+                btn.style.borderColor = 'var(--border-color)';
+                btn.style.color = 'var(--text-primary)';
+            }
+        });
+    }
+}
+
+// ============================================
+// INITIALIZE ALL FEATURES WHEN DOM LOADS
+// ============================================
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize all features
+    
+    // 1. Collaboration Workspace
+    if (document.getElementById('collaboration-workspace')) {
+        new CollaborationWorkspace();
+    }
+    
+    // 2. Neural Network Visualization
+    if (document.getElementById('neural-canvas')) {
+        new NeuralNetworkVisualizer();
+    }
+    
+    // 3. Blockchain Simulator
+    if (document.getElementById('blockchain-visulator')) {
+        new BlockchainSimulator();
+    }
+    
+    // 4. Quantum Computing Simulator
+    if (document.getElementById('quantum-circuit')) {
+        new QuantumSimulator();
+    }
+    
+    // 5. AR Viewer
+    if (document.getElementById('ar-camera')) {
+        new ARViewer();
+    }
+    
+    // Initialize other existing features
+    initializeOtherFeatures();
+});
+
+// Function to initialize other features
+function initializeOtherFeatures() {
+    // Machine Learning Trainer
+    setupMLTrainer();
+    
+    // Real-time Data Streaming
+    setupDataStreaming();
+    
+    // WebAssembly Demo
+    setupWebAssemblyDemo();
+    
+    // GraphQL Explorer
+    setupGraphQLExplorer();
+    
+    // WebRTC Conference
+    setupWebRTCConference();
+}
+
+// ============================================
+// MACHINE LEARNING TRAINER
+// ============================================
+function setupMLTrainer() {
+    const trainBtn = document.getElementById('train-model');
+    const datasetBtns = document.querySelectorAll('.dataset-btn');
+    const modelType = document.getElementById('model-type');
+    const testSize = document.getElementById('test-size');
+    const maxIter = document.getElementById('max-iter');
+    const predictionInput = document.getElementById('prediction-input');
+    const makePredictionBtn = document.getElementById('make-prediction');
+    
+    if (trainBtn) {
+        trainBtn.addEventListener('click', async () => {
+            const progressBar = document.getElementById('ml-progress');
+            const status = document.getElementById('training-status');
+            const accuracy = document.getElementById('accuracy-display');
+            
+            // Reset progress
+            progressBar.style.width = '0%';
+            status.textContent = 'Loading dataset...';
+            
+            // Simulate dataset loading
+            for (let i = 0; i <= 100; i += 10) {
+                await new Promise(resolve => setTimeout(resolve, 200));
+                progressBar.style.width = `${i}%`;
+            }
+            
+            status.textContent = 'Training model...';
+            
+            // Simulate training
+            for (let i = 0; i <= 100; i += 5) {
+                await new Promise(resolve => setTimeout(resolve, 100));
+                progressBar.style.width = `${i}%`;
+            }
+            
+            // Show results
+            const modelAccuracy = (Math.random() * 0.3 + 0.7).toFixed(4); // 70-100%
+            accuracy.textContent = `Accuracy: ${(modelAccuracy * 100).toFixed(2)}%`;
+            status.textContent = 'Training complete!';
+            
+            // Update confusion matrix
+            updateConfusionMatrix();
+        });
+    }
+    
+    // Dataset selection
+    datasetBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            datasetBtns.forEach(b => {
+                b.style.borderColor = 'var(--border-color)';
+                b.style.color = 'var(--text-primary)';
+            });
+            
+            btn.style.borderColor = 'var(--accent-color)';
+            btn.style.color = 'var(--accent-color)';
+        });
+    });
+    
+    // Slider updates
+    if (testSize) {
+        testSize.addEventListener('input', (e) => {
+            document.getElementById('test-size-value').textContent = 
+                `${(e.target.value * 100).toFixed(0)}%`;
+        });
+    }
+    
+    if (maxIter) {
+        maxIter.addEventListener('input', (e) => {
+            document.getElementById('iter-value').textContent = e.target.value;
+        });
+    }
+    
+    // Prediction
+    if (makePredictionBtn && predictionInput) {
+        makePredictionBtn.addEventListener('click', () => {
+            const input = predictionInput.value;
+            if (!input.trim()) return;
+            
+            const resultDiv = document.getElementById('prediction-result');
+            const prediction = Math.random() > 0.5 ? 'Class A' : 'Class B';
+            const confidence = (Math.random() * 0.4 + 0.6).toFixed(4); // 60-100%
+            
+            resultDiv.innerHTML = `
+                <div class="font-semibold">Prediction: ${prediction}</div>
+                <div class="text-xs" style="color: var(--text-secondary);">
+                    Confidence: ${(confidence * 100).toFixed(2)}%
+                </div>
+            `;
+        });
+    }
+}
+
+function updateConfusionMatrix() {
+    const canvas = document.getElementById('confusion-matrix');
+    if (!canvas) return;
+    
+    const ctx = canvas.getContext('2d');
+    const size = canvas.width;
+    const cellSize = size / 3;
+    
+    // Clear canvas
+    ctx.clearRect(0, 0, size, size);
+    
+    // Draw grid
+    ctx.strokeStyle = 'var(--border-color)';
+    ctx.lineWidth = 1;
+    
+    for (let i = 0; i <= 3; i++) {
+        // Vertical lines
+        ctx.beginPath();
+        ctx.moveTo(i * cellSize, 0);
+        ctx.lineTo(i * cellSize, size);
+        ctx.stroke();
+        
+        // Horizontal lines
+        ctx.beginPath();
+        ctx.moveTo(0, i * cellSize);
+        ctx.lineTo(size, i * cellSize);
+        ctx.stroke();
+    }
+    
+    // Fill cells with simulated data
+    const data = [
+        [45, 5, 2],
+        [3, 48, 4],
+        [1, 3, 49]
+    ];
+    
+    const maxVal = Math.max(...data.flat());
+    
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+            const value = data[i][j];
+            const intensity = value / maxVal;
+            
+            // Color based on intensity
+            ctx.fillStyle = i === j ? 
+                `rgba(16, 185, 129, ${0.3 + intensity * 0.7})` :
+                `rgba(239, 68, 68, ${0.3 + intensity * 0.7})`;
+            
+            ctx.fillRect(j * cellSize, i * cellSize, cellSize, cellSize);
+            
+            // Draw value
+            ctx.fillStyle = 'white';
+            ctx.font = '12px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(
+                value.toString(),
+                j * cellSize + cellSize / 2,
+                i * cellSize + cellSize / 2
+            );
+        }
+    }
+    
+    // Draw labels
+    ctx.fillStyle = 'var(--text-primary)';
+    ctx.font = '10px Arial';
+    
+    ['A', 'B', 'C'].forEach((label, i) => {
+        // Row labels (predicted)
+        ctx.fillText(
+            `Pred ${label}`,
+            size + 5,
+            i * cellSize + cellSize / 2
+        );
+        
+        // Column labels (actual)
+        ctx.fillText(
+            `Actual ${label}`,
+            i * cellSize + cellSize / 2,
+            size + 15
+        );
+    });
+}
+
+// ============================================
+// REAL-TIME DATA STREAMING
+// ============================================
+function setupDataStreaming() {
+    const streamSources = document.querySelectorAll('.stream-source');
+    const pauseBtn = document.getElementById('pause-stream');
+    const clearBtn = document.getElementById('clear-stream');
+    const sendBtn = document.getElementById('send-stream');
+    const streamInput = document.getElementById('stream-input');
+    const streamOutput = document.getElementById('stream-output');
+    
+    let isStreaming = true;
+    let streamInterval;
+    
+    // Initialize streaming
+    startDataStream();
+    
+    // Stream source selection
+    streamSources.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const source = e.currentTarget.dataset.source;
+            
+            streamSources.forEach(b => {
+                b.style.backgroundColor = 'transparent';
+                b.style.color = 'var(--text-primary)';
+                b.style.borderColor = 'var(--border-color)';
+            });
+            
+            btn.style.backgroundColor = 'var(--accent-color)';
+            btn.style.color = 'white';
+            btn.style.borderColor = 'transparent';
+            
+            // Restart stream with new source
+            stopDataStream();
+            startDataStream();
+        });
+    });
+    
+    // Pause/resume stream
+    if (pauseBtn) {
+        pauseBtn.addEventListener('click', () => {
+            isStreaming = !isStreaming;
+            
+            if (isStreaming) {
+                pauseBtn.textContent = 'Pause';
+                startDataStream();
+            } else {
+                pauseBtn.textContent = 'Resume';
+                stopDataStream();
+            }
+        });
+    }
+    
+    // Clear stream
+    if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+            if (streamOutput) {
+                streamOutput.innerHTML = '';
+            }
+        });
+    }
+    
+    // Send message
+    if (sendBtn && streamInput) {
+        sendBtn.addEventListener('click', () => {
+            sendStreamMessage(streamInput.value);
+            streamInput.value = '';
+        });
+        
+        streamInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendStreamMessage(streamInput.value);
+                streamInput.value = '';
+            }
+        });
+    }
+    
+    // Update metrics
+    updateMetrics();
+    setInterval(updateMetrics, 2000);
+    
+    // Initialize live chart
+    initLiveChart();
+    
+    function startDataStream() {
+        if (!isStreaming) return;
+        
+        streamInterval = setInterval(() => {
+            if (!streamOutput) return;
+            
+            // Generate random data
+            const dataTypes = ['INFO', 'WARN', 'ERROR', 'DATA'];
+            const messages = [
+                'User connected from 192.168.1.1',
+                'Processing request ID: ' + Math.random().toString(36).substr(2, 9),
+                'Database query completed in ' + (Math.random() * 100).toFixed(2) + 'ms',
+                'Memory usage: ' + (Math.random() * 80 + 20).toFixed(1) + '%',
+                'API response time: ' + (Math.random() * 500).toFixed(2) + 'ms'
+            ];
+            
+            const type = dataTypes[Math.floor(Math.random() * dataTypes.length)];
+            const message = messages[Math.floor(Math.random() * messages.length)];
+            const timestamp = new Date().toISOString().split('T')[1].split('.')[0];
+            
+            const logEntry = document.createElement('div');
+            logEntry.className = 'font-mono text-xs mb-1';
+            
+            let typeColor;
+            switch (type) {
+                case 'INFO': typeColor = '#3b82f6'; break;
+                case 'WARN': typeColor = '#f59e0b'; break;
+                case 'ERROR': typeColor = '#ef4444'; break;
+                default: typeColor = '#10b981';
+            }
+            
+            logEntry.innerHTML = `
+                <span style="color: ${typeColor};">[${type}]</span>
+                <span style="color: var(--text-secondary);">${timestamp}</span>
+                <span>${message}</span>
+            `;
+            
+            streamOutput.appendChild(logEntry);
+            
+            // Auto-scroll
+            streamOutput.scrollTop = streamOutput.scrollHeight;
+            
+            // Limit entries
+            if (streamOutput.children.length > 50) {
+                streamOutput.removeChild(streamOutput.firstChild);
+            }
+        }, 1000);
+    }
+    
+    function stopDataStream() {
+        clearInterval(streamInterval);
+    }
+    
+    function sendStreamMessage(message) {
+        if (!message.trim() || !streamOutput) return;
+        
+        const timestamp = new Date().toISOString().split('T')[1].split('.')[0];
+        const logEntry = document.createElement('div');
+        logEntry.className = 'font-mono text-xs mb-1';
+        logEntry.innerHTML = `
+            <span style="color: var(--accent-color);">[SENT]</span>
+            <span style="color: var(--text-secondary);">${timestamp}</span>
+            <span>${message}</span>
+        `;
+        
+        streamOutput.appendChild(logEntry);
+        streamOutput.scrollTop = streamOutput.scrollHeight;
+    }
+    
+    function updateMetrics() {
+        // Update request rate
+        const rpsElement = document.getElementById('requests-per-second');
+        if (rpsElement) {
+            const rps = Math.floor(Math.random() * 1000) + 500;
+            rpsElement.textContent = rps.toLocaleString();
+        }
+        
+        // Update active users
+        const usersElement = document.getElementById('active-users');
+        if (usersElement) {
+            const users = Math.floor(Math.random() * 100) + 50;
+            usersElement.textContent = users.toLocaleString();
+        }
+        
+        // Update error rate
+        const errorElement = document.getElementById('error-rate');
+        if (errorElement) {
+            const errorRate = (Math.random() * 5).toFixed(2);
+            errorElement.textContent = errorRate + '%';
+        }
+        
+        // Update response time
+        const responseElement = document.getElementById('response-time');
+        if (responseElement) {
+            const responseTime = Math.floor(Math.random() * 200) + 50;
+            responseElement.textContent = responseTime + 'ms';
+        }
+    }
+    
+    function initLiveChart() {
+        const canvas = document.getElementById('live-chart');
+        if (!canvas) return;
+        
+        const ctx = canvas.getContext('2d');
+        const data = {
+            labels: Array(20).fill('').map((_, i) => i.toString()),
+            datasets: [{
+                label: 'Requests per Second',
+                data: Array(20).fill(0),
+                borderColor: '#3b82f6',
+                backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                tension: 0.4,
+                fill: true
+            }]
+        };
+        
+        const config = {
+            type: 'line',
+            data: data,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                        ticks: { color: 'var(--text-secondary)' }
+                    },
+                    x: {
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                        ticks: { color: 'var(--text-secondary)' }
+                    }
+                }
+            }
+        };
+        
+        const chart = new Chart(ctx, config);
+        
+        // Update chart data periodically
+        setInterval(() => {
+            if (chart.data.datasets[0].data.length >= 20) {
+                chart.data.datasets[0].data.shift();
+            }
+            
+            const newValue = Math.floor(Math.random() * 1000) + 500;
+            chart.data.datasets[0].data.push(newValue);
+            
+            chart.update('quiet');
+        }, 2000);
+    }
+}
+
+// ============================================
+// WEBASSEMBLY PERFORMANCE DEMO
+// ============================================
+function setupWebAssemblyDemo() {
+    const benchmarkBtns = document.querySelectorAll('.benchmark-btn');
+    const runJSBtn = document.getElementById('run-js');
+    const runWasmBtn = document.getElementById('run-wasm');
+    const intensitySlider = document.getElementById('compute-intensity');
+    const codeViewBtns = document.querySelectorAll('.code-view-btn');
+    const loadWasmBtn = document.getElementById('load-wasm');
+    
+    let currentBenchmark = 'fibonacci';
+    let wasmModule = null;
+    
+    // Benchmark selection
+    benchmarkBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            currentBenchmark = e.currentTarget.dataset.benchmark;
+            
+            benchmarkBtns.forEach(b => {
+                b.style.borderColor = 'var(--border-color)';
+                b.style.color = 'var(--text-primary)';
+            });
+            
+            btn.style.borderColor = 'var(--accent-color)';
+            btn.style.color = 'var(--accent-color)';
+            
+            updateCodeDisplay();
+        });
+    });
+    
+    // Code view selection
+    codeViewBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const view = e.currentTarget.dataset.view;
+            
+            codeViewBtns.forEach(b => {
+                b.style.backgroundColor = 'transparent';
+                b.style.color = 'var(--text-primary)';
+                b.style.borderColor = 'var(--border-color)';
+            });
+            
+            btn.style.backgroundColor = 'var(--accent-color)';
+            btn.style.color = 'white';
+            btn.style.borderColor = 'transparent';
+            
+            updateCodeDisplay(view);
+        });
+    });
+    
+    // Intensity slider
+    if (intensitySlider) {
+        intensitySlider.addEventListener('input', (e) => {
+            document.getElementById('intensity-value').textContent = e.target.value;
+        });
+    }
+    
+    // Load WASM
+    if (loadWasmBtn) {
+        loadWasmBtn.addEventListener('click', async () => {
+            loadWasmBtn.disabled = true;
+            loadWasmBtn.textContent = 'Loading...';
+            
+            // Simulate WASM loading
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            
+            wasmModule = { loaded: true };
+            loadWasmBtn.textContent = 'Loaded!';
+            loadWasmBtn.style.backgroundColor = '#10b981';
+            
+            setTimeout(() => {
+                loadWasmBtn.textContent = 'Load WebAssembly Module';
+                loadWasmBtn.style.backgroundColor = '';
+                loadWasmBtn.disabled = false;
+            }, 2000);
+        });
+    }
+    
+    // Run JavaScript benchmark
+    if (runJSBtn) {
+        runJSBtn.addEventListener('click', () => {
+            runBenchmark('js');
+        });
+    }
+    
+    // Run WebAssembly benchmark
+    if (runWasmBtn) {
+        runWasmBtn.addEventListener('click', () => {
+            if (!wasmModule) {
+                alert('Please load the WebAssembly module first.');
+                return;
+            }
+            runBenchmark('wasm');
+        });
+    }
+    
+    function runBenchmark(type) {
+        const intensity = parseInt(intensitySlider?.value || 5);
+        const iterations = intensity * 1000000;
+        
+        // Disable buttons during benchmark
+        runJSBtn.disabled = true;
+        runWasmBtn.disabled = true;
+        
+        const startTime = performance.now();
+        
+        // Run benchmark based on type
+        let result;
+        switch (currentBenchmark) {
+            case 'fibonacci':
+                result = type === 'js' ? 
+                    runFibonacciJS(iterations) : 
+                    runFibonacciWASM(iterations);
+                break;
+            case 'matrix':
+                result = type === 'js' ? 
+                    runMatrixJS(iterations) : 
+                    runMatrixWASM(iterations);
+                break;
+            case 'image':
+                result = type === 'js' ? 
+                    runImageJS(iterations) : 
+                    runImageWASM(iterations);
+                break;
+        }
+        
+        const endTime = performance.now();
+        const duration = endTime - startTime;
+        
+        // Update results
+        updateResults(type, duration);
+        
+        // Re-enable buttons
+        setTimeout(() => {
+            runJSBtn.disabled = false;
+            runWasmBtn.disabled = false;
+        }, 1000);
+    }
+    
+    function runFibonacciJS(iterations) {
+        // JavaScript Fibonacci implementation
+        function fib(n) {
+            if (n <= 1) return n;
+            return fib(n - 1) + fib(n - 2);
+        }
+        
+        let sum = 0;
+        for (let i = 0; i < iterations; i++) {
+            sum += fib(i % 20);
+        }
+        return sum;
+    }
+    
+    function runFibonacciWASM(iterations) {
+        // Simulated WebAssembly Fibonacci
+        // In a real implementation, this would call the WASM module
+        return runFibonacciJS(iterations * 2); // Simulate faster performance
+    }
+    
+    function runMatrixJS(iterations) {
+        // JavaScript matrix multiplication
+        const size = 50;
+        const matrix = Array(size).fill().map(() => Array(size).fill().map(() => Math.random()));
+        
+        let result = 0;
+        for (let iter = 0; iter < iterations / 100; iter++) {
+            for (let i = 0; i < size; i++) {
+                for (let j = 0; j < size; j++) {
+                    for (let k = 0; k < size; k++) {
+                        result += matrix[i][k] * matrix[k][j];
+                    }
+                }
+            }
+        }
+        return result;
+    }
+    
+    function runMatrixWASM(iterations) {
+        // Simulated WebAssembly matrix multiplication
+        return runMatrixJS(iterations * 1.5); // Simulate faster performance
+    }
+    
+    function runImageJS(iterations) {
+        // JavaScript image processing simulation
+        const width = 100;
+        const height = 100;
+        const imageData = new Array(width * height * 4).fill().map(() => Math.random() * 255);
+        
+        let result = 0;
+        for (let iter = 0; iter < iterations / 1000; iter++) {
+            for (let i = 0; i < imageData.length; i += 4) {
+                // Convert to grayscale
+                const gray = 0.299 * imageData[i] + 
+                            0.587 * imageData[i + 1] + 
+                            0.114 * imageData[i + 2];
+                result += gray;
+            }
+        }
+        return result;
+    }
+    
+    function runImageWASM(iterations) {
+        // Simulated WebAssembly image processing
+        return runImageJS(iterations * 2); // Simulate faster performance
+    }
+    
+    function updateResults(type, duration) {
+        const timeElement = type === 'js' ? 
+            document.getElementById('js-time') : 
+            document.getElementById('wasm-time');
+        
+        const progressElement = type === 'js' ? 
+            document.getElementById('js-progress') : 
+            document.getElementById('wasm-progress');
+        
+        if (timeElement) {
+            timeElement.textContent = duration.toFixed(2) + ' ms';
+        }
+        
+        if (progressElement) {
+            // Scale progress bar based on performance
+            const maxDuration = 5000; // 5 seconds max
+            const progress = Math.max(0, 100 - (duration / maxDuration) * 100);
+            progressElement.style.width = progress + '%';
+        }
+        
+        // Calculate and display speedup
+        const jsTime = parseFloat(document.getElementById('js-time')?.textContent || 0);
+        const wasmTime = parseFloat(document.getElementById('wasm-time')?.textContent || 0);
+        
+        if (jsTime > 0 && wasmTime > 0) {
+            const speedup = jsTime / wasmTime;
+            const speedupElement = document.getElementById('speedup');
+            if (speedupElement) {
+                speedupElement.textContent = `${speedup.toFixed(2)}x faster`;
+            }
+        }
+    }
+    
+    function updateCodeDisplay(view = 'c') {
+        const codeDisplay = document.getElementById('code-display');
+        if (!codeDisplay) return;
+        
+        let code = '';
+        
+        switch (view) {
+            case 'c':
+                code = `// C code for ${currentBenchmark}
+#include <stdint.h>
+
+${getCCode(currentBenchmark)}`;
+                break;
+            case 'wat':
+                code = `;; WebAssembly Text Format for ${currentBenchmark}
+(module
+  ${getWATCode(currentBenchmark)})`;
+                break;
+            case 'js':
+                code = `// JavaScript implementation for ${currentBenchmark}
+${getJSCode(currentBenchmark)}`;
+                break;
+        }
+        
+        codeDisplay.textContent = code;
+    }
+    
+    function getCCode(benchmark) {
+        switch (benchmark) {
+            case 'fibonacci':
+                return `int fibonacci(int n) {
+    if (n <= 1) return n;
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+void compute_fibonacci(int* input, int* output, int size) {
+    for (int i = 0; i < size; i++) {
+        output[i] = fibonacci(input[i]);
+    }
+}`;
+            case 'matrix':
+                return `void matrix_multiply(float* a, float* b, float* c, int n) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            float sum = 0;
+            for (int k = 0; k < n; k++) {
+                sum += a[i * n + k] * b[k * n + j];
+            }
+            c[i * n + j] = sum;
+        }
+    }
+}`;
+            case 'image':
+                return `void grayscale(uint8_t* input, uint8_t* output, int size) {
+    for (int i = 0; i < size; i += 4) {
+        uint8_t gray = (uint8_t)(
+            0.299 * input[i] +
+            0.587 * input[i + 1] +
+            0.114 * input[i + 2]
+        );
+        output[i] = output[i + 1] = output[i + 2] = gray;
+        output[i + 3] = input[i + 3];
+    }
+}`;
+            default:
+                return '// Code not available';
+        }
+    }
+    
+    function getWATCode(benchmark) {
+        // Simplified WAT code examples
+        return '(func (export "compute") (param i32) (result i32) ...)';
+    }
+    
+    function getJSCode(benchmark) {
+        switch (benchmark) {
+            case 'fibonacci':
+                return `function fibonacci(n) {
+    if (n <= 1) return n;
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+function computeFibonacci(array) {
+    return array.map(fibonacci);
+}`;
+            default:
+                return '// JavaScript implementation';
+        }
+    }
+    
+    // Initialize code display
+    updateCodeDisplay();
+}
+
+// ============================================
+// GRAPHQL API EXPLORER
+// ============================================
+function setupGraphQLExplorer() {
+    const queryTemplates = document.querySelectorAll('.query-template');
+    const executeBtn = document.getElementById('execute-query');
+    const explainBtn = document.getElementById('explain-query');
+    const queryInput = document.getElementById('graphql-query');
+    const variablesInput = document.getElementById('graphql-variables');
+    const responseDiv = document.getElementById('graphql-response');
+    const schemaTypes = document.querySelectorAll('.schema-type');
+    
+    // Query templates
+    queryTemplates.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const template = e.currentTarget.dataset.template;
+            loadQueryTemplate(template);
+        });
+    });
+    
+    // Execute query
+    if (executeBtn) {
+        executeBtn.addEventListener('click', async () => {
+            await executeGraphQLQuery();
+        });
+    }
+    
+    // Explain query
+    if (explainBtn) {
+        explainBtn.addEventListener('click', () => {
+            explainGraphQLQuery();
+        });
+    }
+    
+    // Schema type clicks
+    schemaTypes.forEach(type => {
+        type.addEventListener('click', () => {
+            showSchemaType(type.textContent);
+        });
+    });
+    
+    function loadQueryTemplate(template) {
+        if (!queryInput) return;
+        
+        let query = '';
+        let variables = '{}';
+        
+        switch (template) {
+            case 'projects':
+                query = `{
+  projects {
+    id
+    title
+    description
+    technologies
+    year
+    links {
+      github
+      demo
+      docs
+    }
+    status
+    complexity
+  }
+}`;
+                variables = `{
+  "limit": 5
+}`;
+                break;
+                
+            case 'skills':
+                query = `{
+  skills {
+    category
+    name
+    level
+    years
+    projects
+    lastUsed
+  }
+}`;
+                break;
+                
+            case 'experience':
+                query = `{
+  experience {
+    id
+    company
+    position
+    startDate
+    endDate
+    description
+    technologies
+    achievements
+  }
+}`;
+                break;
+        }
+        
+        queryInput.value = query;
+        if (variablesInput) {
+            variablesInput.value = variables;
+        }
+    }
+    
+    async function executeGraphQLQuery() {
+        if (!responseDiv) return;
+        
+        const startTime = performance.now();
+        
+        // Show loading state
+        responseDiv.textContent = 'Executing query...';
+        executeBtn.disabled = true;
+        
+        // Simulate API call
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        const endTime = performance.now();
+        const duration = endTime - startTime;
+        
+        // Update response time
+        const timeElement = document.getElementById('response-time');
+        if (timeElement) {
+            timeElement.textContent = `${duration.toFixed(0)} ms`;
+        }
+        
+        // Generate mock response based on query
+        const query = queryInput?.value || '';
+        let response = {};
+        
+        if (query.includes('projects')) {
+            response = {
+                data: {
+                    projects: [
+                        {
+                            id: "proj_1",
+                            title: "Market-Kigali",
+                            description: "Mobile marketplace app",
+                            technologies: ["Flutter", "Firebase", "Dart"],
+                            year: 2024,
+                            links: {
+                                github: "https://github.com/witnessfabrice/market-kigali",
+                                demo: "https://demo.marketkigali.com",
+                                docs: null
+                            },
+                            status: "COMPLETED",
+                            complexity: "MEDIUM"
+                        },
+                        {
+                            id: "proj_2",
+                            title: "Analytics API Hub",
+                            description: "Multi-tenant SaaS dashboard",
+                            technologies: ["React", "Node.js", "PostgreSQL"],
+                            year: 2023,
+                            links: {
+                                github: "https://github.com/witnessfabrice/analytics-api",
+                                demo: "https://analytics.demo.com",
+                                docs: "https://docs.analytics.com"
+                            },
+                            status: "ACTIVE",
+                            complexity: "HIGH"
+                        }
+                    ]
+                }
+            };
+        } else if (query.includes('skills')) {
+            response = {
+                data: {
+                    skills: [
+                        {
+                            category: "FRONTEND",
+                            name: "React",
+                            level: 95,
+                            years: 3,
+                            projects: 12,
+                            lastUsed: "2024-03-15"
+                        },
+                        {
+                            category: "BACKEND",
+                            name: "Node.js",
+                            level: 92,
+                            years: 3,
+                            projects: 8,
+                            lastUsed: "2024-03-10"
+                        }
+                    ]
+                }
+            };
+        } else if (query.includes('experience')) {
+            response = {
+                data: {
+                    experience: [
+                        {
+                            id: "exp_1",
+                            company: "Innovatech Solutions",
+                            position: "Senior Full-Stack Developer",
+                            startDate: "2022-01-01",
+                            endDate: null,
+                            description: "Led development of enterprise CRM platform",
+                            technologies: ["React", "Node.js", "TypeScript", "AWS"],
+                            achievements: ["Improved API performance by 45%", "Mentored 3 junior developers"]
+                        }
+                    ]
+                }
+            };
+        } else {
+            response = {
+                data: {},
+                errors: [
+                    {
+                        message: "Please select a valid query template"
+                    }
+                ]
+            };
+        }
+        
+        // Display response
+        responseDiv.textContent = JSON.stringify(response, null, 2);
+        
+        // Re-enable button
+        executeBtn.disabled = false;
+    }
+    
+    function explainGraphQLQuery() {
+        if (!responseDiv) return;
+        
+        const query = queryInput?.value || '';
+        
+        let explanation = `Query Analysis:
+        
+Operation: ${query.includes('query') ? 'QUERY' : 'MUTATION'}
+Complexity: ${estimateQueryComplexity(query)}
+Fields Requested: ${countFields(query)}
+Depth: ${calculateQueryDepth(query)}
+
+Optimization Suggestions:
+1. Use fragments for repeated fields
+2. Add pagination for large datasets
+3. Specify only needed fields
+4. Use variables for dynamic values`;
+
+        responseDiv.textContent = explanation;
+    }
+    
+    function estimateQueryComplexity(query) {
+        const lines = query.split('\n').length;
+        if (lines < 10) return 'LOW';
+        if (lines < 20) return 'MEDIUM';
+        return 'HIGH';
+    }
+    
+    function countFields(query) {
+        return (query.match(/\w+\s*{/g) || []).length;
+    }
+    
+    function calculateQueryDepth(query) {
+        let depth = 0;
+        let maxDepth = 0;
+        
+        for (const char of query) {
+            if (char === '{') {
+                depth++;
+                maxDepth = Math.max(maxDepth, depth);
+            } else if (char === '}') {
+                depth--;
+            }
+        }
+        
+        return maxDepth;
+    }
+    
+    function showSchemaType(typeName) {
+        const typeInfo = {
+            'Project': `type Project {
+  id: ID!
+  title: String!
+  description: String!
+  technologies: [String!]!
+  year: Int!
+  links: ProjectLinks!
+  status: ProjectStatus!
+  complexity: ComplexityLevel!
+}
+
+enum ProjectStatus {
+  PLANNED
+  IN_PROGRESS
+  COMPLETED
+  ARCHIVED
+}`,
+            'Skill': `type Skill {
+  id: ID!
+  category: SkillCategory!
+  name: String!
+  level: Int!
+  years: Int!
+  projects: Int!
+  lastUsed: String!
+}
+
+enum SkillCategory {
+  FRONTEND
+  BACKEND
+  MOBILE
+  DEVOPS
+  DATABASE
+}`,
+            'Experience': `type Experience {
+  id: ID!
+  company: String!
+  position: String!
+  startDate: String!
+  endDate: String
+  description: String!
+  technologies: [String!]!
+  achievements: [String!]!
+}`
+        };
+        
+        if (responseDiv && typeInfo[typeName]) {
+            responseDiv.textContent = typeInfo[typeName];
+        }
+    }
+    
+    // Load default template
+    loadQueryTemplate('projects');
+}
+
+// ============================================
+// WEBRTC VIDEO CONFERENCE
+// ============================================
+function setupWebRTCConference() {
+    const toggleVideoBtn = document.getElementById('toggle-video');
+    const toggleAudioBtn = document.getElementById('toggle-audio');
+    const toggleScreenBtn = document.getElementById('toggle-screen');
+    const endCallBtn = document.getElementById('end-call');
+    const connectPeerBtn = document.getElementById('connect-peer');
+    const peerIdInput = document.getElementById('peer-id');
+    const sendWebRTCBtn = document.getElementById('send-webrtc');
+    const webrtcMessageInput = document.getElementById('webrtc-message');
+    
+    let localStream = null;
+    let remoteStream = null;
+    let peerConnection = null;
+    let dataChannel = null;
+    let isVideoEnabled = true;
+    let isAudioEnabled = true;
+    let isScreenSharing = false;
+    
+    // Generate random peer ID
+    const myPeerId = 'peer_' + Math.random().toString(36).substr(2, 9);
+    document.getElementById('my-peer-id').textContent = myPeerId;
+    
+    // Initialize local video
+    initializeLocalVideo();
+    
+    // Set up event listeners
+    if (toggleVideoBtn) {
+        toggleVideoBtn.addEventListener('click', toggleVideo);
+    }
+    
+    if (toggleAudioBtn) {
+        toggleAudioBtn.addEventListener('click', toggleAudio);
+    }
+    
+    if (toggleScreenBtn) {
+        toggleScreenBtn.addEventListener('click', toggleScreenShare);
+    }
+    
+    if (endCallBtn) {
+        endCallBtn.addEventListener('click', endCall);
+    }
+    
+    if (connectPeerBtn && peerIdInput) {
+        connectPeerBtn.addEventListener('click', () => {
+            connectToPeer(peerIdInput.value);
+        });
+    }
+    
+    if (sendWebRTCBtn && webrtcMessageInput) {
+        sendWebRTCBtn.addEventListener('click', () => {
+            sendChatMessage(webrtcMessageInput.value);
+            webrtcMessageInput.value = '';
+        });
+        
+        webrtcMessageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendChatMessage(webrtcMessageInput.value);
+                webrtcMessageInput.value = '';
+            }
+        });
+    }
+    
+    // Update connection stats
+    updateConnectionStats();
+    setInterval(updateConnectionStats, 3000);
+    
+    async function initializeLocalVideo() {
+        try {
+            localStream = await navigator.mediaDevices.getUserMedia({
+                video: true,
+                audio: true
+            });
+            
+            const localVideo = document.getElementById('local-video');
+            if (localVideo) {
+                localVideo.srcObject = localStream;
+            }
+        } catch (error) {
+            console.error('Error accessing media devices:', error);
+            alert('Could not access camera/microphone. Please check permissions.');
+        }
+    }
+    
+    function toggleVideo() {
+        if (!localStream) return;
+        
+        const videoTrack = localStream.getVideoTracks()[0];
+        if (videoTrack) {
+            isVideoEnabled = !videoTrack.enabled;
+            videoTrack.enabled = isVideoEnabled;
+            
+            // Update button icon
+            const icon = toggleVideoBtn.querySelector('i');
+            icon.setAttribute('data-lucide', isVideoEnabled ? 'video' : 'video-off');
+            lucide.createIcons();
+        }
+    }
+    
+    function toggleAudio() {
+        if (!localStream) return;
+        
+        const audioTrack = localStream.getAudioTracks()[0];
+        if (audioTrack) {
+            isAudioEnabled = !audioTrack.enabled;
+            audioTrack.enabled = isAudioEnabled;
+            
+            // Update button icon
+            const icon = toggleAudioBtn.querySelector('i');
+            icon.setAttribute('data-lucide', isAudioEnabled ? 'mic' : 'mic-off');
+            lucide.createIcons();
+        }
+    }
+    
+    async function toggleScreenShare() {
+        if (isScreenSharing) {
+            // Stop screen sharing
+            const screenStream = localStream;
+            await initializeLocalVideo(); // Switch back to camera
+            
+            if (peerConnection) {
+                const videoTrack = localStream.getVideoTracks()[0];
+                const sender = peerConnection.getSenders().find(s => 
+                    s.track?.kind === 'video'
+                );
+                if (sender && videoTrack) {
+                    sender.replaceTrack(videoTrack);
+                }
+            }
+            
+            isScreenSharing = false;
+        } else {
+            // Start screen sharing
+            try {
+                const screenStream = await navigator.mediaDevices.getDisplayMedia({
+                    video: true
+                });
+                
+                // Replace video track with screen share
+                const videoTrack = screenStream.getVideoTracks()[0];
+                const oldVideoTrack = localStream.getVideoTracks()[0];
+                
+                if (oldVideoTrack) {
+                    localStream.removeTrack(oldVideoTrack);
+                    oldVideoTrack.stop();
+                }
+                
+                localStream.addTrack(videoTrack);
+                
+                if (peerConnection) {
+                    const sender = peerConnection.getSenders().find(s => 
+                        s.track?.kind === 'video'
+                    );
+                    if (sender && videoTrack) {
+                        sender.replaceTrack(videoTrack);
+                    }
+                }
+                
+                isScreenSharing = true;
+                
+                // Handle when user stops sharing
+                videoTrack.onended = () => {
+                    toggleScreenShare();
+                };
+            } catch (error) {
+                console.error('Error sharing screen:', error);
+            }
+        }
+        
+        // Update button icon
+        const icon = toggleScreenBtn.querySelector('i');
+        icon.setAttribute('data-lucide', isScreenSharing ? 'monitor-off' : 'monitor');
+        lucide.createIcons();
+    }
+    
+    async function connectToPeer(peerId) {
+        if (!peerId.trim()) {
+            alert('Please enter a peer ID');
+            return;
+        }
+        
+        // Simulate connection
+        document.getElementById('ice-status').textContent = 'Connecting...';
+        document.getElementById('signaling-status').textContent = 'Establishing...';
+        
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        
+        // Simulate successful connection
+        document.getElementById('ice-status').textContent = 'Connected';
+        document.getElementById('signaling-status').textContent = 'Connected';
+        document.getElementById('ice-status').style.color = '#10b981';
+        document.getElementById('signaling-status').style.color = '#10b981';
+        
+        // Show simulated remote video
+        const remoteVideo = document.getElementById('remote-video');
+        if (remoteVideo) {
+            remoteVideo.style.backgroundColor = '#1f2937';
+            
+            // Add simulated video feed
+            const canvas = document.createElement('canvas');
+            canvas.width = 640;
+            canvas.height = 480;
+            const ctx = canvas.getContext('2d');
+            
+            function drawSimulatedVideo() {
+                if (ctx) {
+                    // Draw gradient background
+                    const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+                    gradient.addColorStop(0, '#3b82f6');
+                    gradient.addColorStop(1, '#8b5cf6');
+                    ctx.fillStyle = gradient;
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    
+                    // Draw peer ID
+                    ctx.fillStyle = 'white';
+                    ctx.font = 'bold 48px Arial';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText(peerId.substring(0, 8), canvas.width / 2, canvas.height / 2);
+                    
+                    // Draw timestamp
+                    ctx.font = '24px Arial';
+                    ctx.fillText(new Date().toLocaleTimeString(), canvas.width / 2, canvas.height / 2 + 60);
+                }
+                
+                requestAnimationFrame(drawSimulatedVideo);
+            }
+            
+            drawSimulatedVideo();
+            
+            // Convert canvas to video stream
+            const stream = canvas.captureStream(30);
+            remoteVideo.srcObject = stream;
+        }
+        
+        // Send welcome message
+        sendChatMessage(`Connected to peer: ${peerId}`, true);
+    }
+    
+    function endCall() {
+        // Stop local stream
+        if (localStream) {
+            localStream.getTracks().forEach(track => track.stop());
+        }
+        
+        // Reset UI
+        const localVideo = document.getElementById('local-video');
+        const remoteVideo = document.getElementById('remote-video');
+        
+        if (localVideo) {
+            localVideo.srcObject = null;
+        }
+        
+        if (remoteVideo) {
+            remoteVideo.srcObject = null;
+            remoteVideo.style.backgroundColor = '';
+        }
+        
+        // Update status
+        document.getElementById('ice-status').textContent = 'Disconnected';
+        document.getElementById('signaling-status').textContent = 'Disconnected';
+        document.getElementById('ice-status').style.color = '#ef4444';
+        document.getElementById('signaling-status').style.color = '#ef4444';
+        
+        // Send disconnect message
+        sendChatMessage('Call ended', true);
+        
+        // Reinitialize
+        setTimeout(initializeLocalVideo, 1000);
+    }
+    
+    function sendChatMessage(message, isSystem = false) {
+        if (!message.trim()) return;
+        
+        const chatDiv = document.getElementById('webrtc-chat');
+        if (!chatDiv) return;
+        
+        const messageDiv = document.createElement('div');
+        messageDiv.className = 'mb-2';
+        
+        if (isSystem) {
+            messageDiv.innerHTML = `
+                <div class="text-xs text-center" style="color: var(--text-secondary);">
+                    ${message}
+                </div>
+            `;
+        } else {
+            messageDiv.innerHTML = `
+                <div class="text-xs" style="color: var(--text-secondary);">You</div>
+                <div class="p-2 rounded-lg" style="background-color: var(--accent-color); color: white; max-width: 80%;">
+                    ${message}
+                </div>
+            `;
+        }
+        
+        chatDiv.appendChild(messageDiv);
+        chatDiv.scrollTop = chatDiv.scrollHeight;
+    }
+    
+    function updateConnectionStats() {
+        // Simulate bandwidth measurement
+        const bandwidth = Math.floor(Math.random() * 5000) + 1000; // 1-6 Mbps
+        const bandwidthElement = document.getElementById('bandwidth');
+        if (bandwidthElement) {
+            bandwidthElement.textContent = `${bandwidth} kbps`;
+        }
+    }
+}
     </script>
 </body>
 </html>
